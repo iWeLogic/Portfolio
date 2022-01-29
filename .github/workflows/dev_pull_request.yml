@@ -1,4 +1,4 @@
-name: Upload to Firebase App Distribution
+name: Run unit tests on PR in dev
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   Unit-test:
-    name: Run unit tests on PR in main
+    name: Run unit tests on PR in dev
     runs-on: ubuntu-latest
 
     steps:
@@ -25,22 +25,6 @@ jobs:
 
     - name: Run unit Tests
       run: ./gradlew testDebugUnitTest
-
-    - name: Build Signed APK
-      uses: victorbnl/build-signed-apk@main
-      with:
-        keystore: ${{ secrets.SIGNING_KEY }}
-        keystore_password: ${{ secrets.KEY_STORE_PASSWORD }}
-        key_alias: ${{ secrets.ALIAS }}
-        key_password: ${{ secrets.KEY_PASSWORD }}
-
-    - name: Upload artifact to Firebase App Distribution
-      uses: wzieba/Firebase-Distribution-Github-Action@v1
-      with:
-        appId: ${{secrets.FIREBASE_APP_ID}}
-        token: ${{secrets.FIREBASE_TOKEN}}
-        groups: testers
-        file: app/build/outputs/apk/release/app-release.apk
 
     - name: Android Test Report
       if: always()
