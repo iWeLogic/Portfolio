@@ -1,6 +1,7 @@
 package com.iwelogic.ui.main
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,6 +21,7 @@ class MainFragment : BaseFragment<MainNavigator,  MainViewModel>(), MainNavigato
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.navigator = this
         binding.viewModel = viewModel
+        Log.w("myLog", "onCreateView: Test" )
         return binding.root
     }
 }
