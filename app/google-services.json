@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "455869194774",
+    "project_id": "iwelogic-portfolio",
+    "storage_bucket": "iwelogic-portfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455869194774:android:020fa258427772d1688b37",
+        "android_client_info": {
+          "package_name": "com.iwelogic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455869194774-a7he7dbfpro4qd9oi0mchvi06ctpuqqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm3sV8ydlRtmi8GplXtOMRqXt0hyq-clw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455869194774-a7he7dbfpro4qd9oi0mchvi06ctpuqqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
