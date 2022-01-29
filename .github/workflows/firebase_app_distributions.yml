@@ -1,8 +1,9 @@
 name: Upload to Firebase App Distribution
 
 on:
-  pull_request:
-    branches: [ dev ]
+  push:
+    branches:
+      - 'dev'
 
 jobs:
   build:
@@ -22,9 +23,6 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x ./gradlew
 
-    - name: Run unit Tests
-      run: ./gradlew testDebugUnitTest
-
     - name: Build Signed APK
       uses: victorbnl/build-signed-apk@main
       with:
@@ -40,7 +38,3 @@ jobs:
         token: ${{secrets.FIREBASE_TOKEN}}
         groups: testers
         file: app/build/outputs/apk/release/app-release.apk
-
-    - name: Android Test Report
-      if: always()
-      uses: asadmansr/android-test-report-action@v1.2.0
