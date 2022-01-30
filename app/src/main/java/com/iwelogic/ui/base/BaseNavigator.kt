@@ -12,7 +12,5 @@ interface BaseNavigator {
 
     fun openMain(isFirstLaunch: Boolean = false)
 
-    fun showPopupWarning(message: String)
-
-    fun openOnboarding()
+    fun showWarningDialog(message: String)
 }

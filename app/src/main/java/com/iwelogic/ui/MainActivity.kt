@@ -1,6 +1,7 @@
 package com.iwelogic.ui
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -33,11 +34,11 @@ class MainActivity : AppCompatActivity(), MainNavigator {
     }
 
     override fun openLogin() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-        val graphInflater = navHostFragment.navController.navInflater
-        val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.startDestination = R.id.signInFragment
-        navHostFragment.navController.graph = navGraph
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
+            val graphInflater = navHostFragment.navController.navInflater
+            val navGraph = graphInflater.inflate(R.navigation.main)
+            navGraph.startDestination = R.id.signInFragment
+            navHostFragment.navController.graph = navGraph
     }
 
     override fun openOnboarding() {

@@ -13,6 +13,12 @@ sealed class Result<out T> {
             @SerializedName("3033")
             ALREADY_EXISTS,
 
+            @SerializedName("3087")
+            NOT_CONFIRMED,
+
+            @SerializedName("3003")
+            WRONG_EMAIL_OR_PASSWORD,
+
             UNKNOWN,
 
             AUTH;

@@ -1,7 +1,11 @@
 package com.iwelogic.ui.base
 
+import android.app.AlertDialog
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.iwelogic.R
 
 open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), BaseNavigator {
 
@@ -24,12 +28,10 @@ open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), 
     }
 
     override fun openLogin() {
+
     }
 
     override fun openMain(isFirstLaunch: Boolean) {
-    }
-
-    override fun openOnboarding() {
 
     }
 
@@ -38,7 +40,17 @@ open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), 
         viewModel.navigator = null
     }
 
-    override fun showPopupWarning(message: String) {
-
+    override fun showWarningDialog(message: String) {
+        context?.let {
+            val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog).create()
+            val view = layoutInflater.inflate(R.layout.dialog_warning, null)
+            view.findViewById<TextView>(R.id.message).text = message
+            builder.setView(view)
+            view.findViewById<View>(R.id.btnOk).setOnClickListener {
+                builder.dismiss()
+            }
+            builder.setCanceledOnTouchOutside(false)
+            builder.show()
+        }
     }
 }

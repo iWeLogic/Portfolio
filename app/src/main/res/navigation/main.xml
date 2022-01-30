@@ -16,4 +16,14 @@
         android:id="@+id/registerFragment"
         android:name="com.iwelogic.ui.register.RegisterFragment"
         android:label="RegisterFragment" /><action android:id="@+id/action_global_registerFragment" app:destination="@id/registerFragment"/>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.iwelogic.ui.forgot_password.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" >
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <action android:id="@+id/action_global_forgotPasswordFragment" app:destination="@id/forgotPasswordFragment" />
 </navigation>

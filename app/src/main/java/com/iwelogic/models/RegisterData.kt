@@ -2,7 +2,7 @@ package com.iwelogic.models
 
 import com.google.gson.annotations.SerializedName
 
-data class RegisterUser(
+data class RegisterData(
 
     @field:SerializedName("email")
     val email: String? = null,

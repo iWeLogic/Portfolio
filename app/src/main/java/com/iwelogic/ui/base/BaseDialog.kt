@@ -38,11 +38,7 @@ open class BaseDialog<T : BaseNavigator, VM : BaseViewModel<T>> : DialogFragment
 
     }
 
-    override fun showPopupWarning(message: String) {
-
-    }
-
-    override fun openOnboarding() {
+    override fun showWarningDialog(message: String) {
 
     }
 
