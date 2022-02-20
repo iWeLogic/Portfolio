@@ -1,31 +1,27 @@
 package com.iwelogic.ui
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.data.store.LocalStorageImp
+import com.iwelogic.domain.main.ExistStatus
+import com.iwelogic.domain.main.UserUseCase
 import com.iwelogic.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.lang.ref.WeakReference
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(@ApplicationContext applicationContext: Context, val localStorage: LocalStorageImp) : ViewModel() {
+class MainViewModel @Inject constructor(var userUseCase: UserUseCase) : ViewModel() {
 
-    var context: WeakReference<Context> = WeakReference(applicationContext)
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openLogin: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     fun checkIsLogged() {
         viewModelScope.launch {
-            localStorage.userFlow.collect {
-                if (it.userToken.isNullOrEmpty()) {
-                    openLogin.postValue(true)
-                } else {
-                    openMain.postValue(true)
+            userUseCase.getExistStatus().collect {
+                when (it) {
+                    ExistStatus.True -> openMain.postValue(true)
+                    ExistStatus.False -> openLogin.postValue(true)
                 }
             }
         }
