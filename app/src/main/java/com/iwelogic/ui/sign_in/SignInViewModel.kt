@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.iwelogic.R
 import com.iwelogic.data.models.SignInData
 import com.iwelogic.data.repository.RepositoryImp
-import com.iwelogic.data.store.LocalStorageImp
+import com.iwelogic.data.store.DataStorageRepositoryImp
 import com.iwelogic.ui.base.BaseViewModel
 import com.iwelogic.ui.base.SingleLiveEvent
 import com.iwelogic.utils.isEmail
@@ -19,10 +19,10 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SignInViewModel @AssistedInject constructor(@Assisted private val repository: RepositoryImp, @Assisted private val localStorage: LocalStorageImp) : BaseViewModel() {
+class SignInViewModel @AssistedInject constructor(@Assisted private val repository: RepositoryImp, @Assisted private val localStorage: DataStorageRepositoryImp) : BaseViewModel() {
 
     companion object {
-        fun provideFactory(assistedFactory: SignInViewModelFactory, repository: RepositoryImp, localStorage: LocalStorageImp): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+        fun provideFactory(assistedFactory: SignInViewModelFactory, repository: RepositoryImp, localStorage: DataStorageRepositoryImp): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 @Suppress("UNCHECKED_CAST")
                 return assistedFactory.create(repository, localStorage) as T
@@ -109,6 +109,6 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
 
 @AssistedFactory
 interface SignInViewModelFactory {
-    fun create(repository: RepositoryImp, localStorage: LocalStorageImp): SignInViewModel
+    fun create(repository: RepositoryImp, localStorage: DataStorageRepositoryImp): SignInViewModel
 }
 

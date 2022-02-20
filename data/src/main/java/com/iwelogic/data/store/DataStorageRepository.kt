@@ -3,7 +3,7 @@ package com.iwelogic.data.store
 import com.iwelogic.data.models.User
 import kotlinx.coroutines.flow.Flow
 
-interface LocalStorage {
+interface DataStorageRepository {
 
     var userFlow: Flow<User>
 }

@@ -14,7 +14,7 @@ object LocalStorageModule {
 
     @Provides
     @Singleton
-    fun provideLocalStorage(@ApplicationContext appContext: Context): LocalStorageImp {
-        return LocalStorageImp(appContext)
+    fun provideLocalStorage(@ApplicationContext appContext: Context): DataStorageRepositoryImp {
+        return DataStorageRepositoryImp(appContext)
     }
 }

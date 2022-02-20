@@ -6,14 +6,13 @@ import androidx.datastore.dataStore
 import com.codelab.android.datastore.UserPreferences
 import com.iwelogic.data.UserPreferencesSerializer
 import com.iwelogic.data.models.User
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 
-class LocalStorageImp (val context: Context) : LocalStorage {
+class DataStorageRepositoryImp (val context: Context) : DataStorageRepository {
 
     private val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(fileName = "settings", serializer = UserPreferencesSerializer)
 

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.iwelogic.R
 import com.iwelogic.data.repository.RepositoryImp
 import com.iwelogic.data.source.DataSourceImp
-import com.iwelogic.data.store.LocalStorageImp
+import com.iwelogic.data.store.DataStorageRepositoryImp
 import com.iwelogic.databinding.FragmentSignInBinding
 import com.iwelogic.ui.base.BaseFragment
 import com.iwelogic.ui.main.MainFragmentDirections
@@ -26,7 +26,7 @@ class SignInFragment : BaseFragment<SignInViewModel>() {
     lateinit var dataSource: DataSourceImp
 
     @Inject
-    lateinit var localStorage: LocalStorageImp
+    lateinit var localStorage: DataStorageRepositoryImp
 
     @Inject
     lateinit var viewModelFactory: SignInViewModelFactory

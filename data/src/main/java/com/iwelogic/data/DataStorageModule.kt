@@ -1,8 +1,8 @@
 package com.iwelogic.data
 
 import android.content.Context
-import com.iwelogic.data.store.LocalStorage
-import com.iwelogic.data.store.LocalStorageImp
+import com.iwelogic.data.store.DataStorageRepository
+import com.iwelogic.data.store.DataStorageRepositoryImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,7 +17,7 @@ object DataStorageModule {
 
     @Provides
     @Singleton
-    fun provideApi(@ApplicationContext context: Context): LocalStorage {
-        return LocalStorageImp(context)
+    fun provideApi(@ApplicationContext context: Context): DataStorageRepository {
+        return DataStorageRepositoryImp(context)
     }
 }
