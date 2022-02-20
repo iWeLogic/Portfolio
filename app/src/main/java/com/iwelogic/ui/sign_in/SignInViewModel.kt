@@ -1,34 +1,21 @@
 package com.iwelogic.ui.sign_in
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.R
-import com.iwelogic.data.models.SignInData
-import com.iwelogic.data.repository.RepositoryImp
-import com.iwelogic.data.store.DataStorageRepositoryImp
+import com.iwelogic.domain.main.login.LoginUseCase
+import com.iwelogic.domain.main.models.Result
+import com.iwelogic.domain.main.models.SignInData
 import com.iwelogic.ui.base.BaseViewModel
 import com.iwelogic.ui.base.SingleLiveEvent
 import com.iwelogic.utils.isEmail
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
-import kotlinx.coroutines.Dispatchers
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class SignInViewModel @AssistedInject constructor(@Assisted private val repository: RepositoryImp, @Assisted private val localStorage: DataStorageRepositoryImp) : BaseViewModel() {
-
-    companion object {
-        fun provideFactory(assistedFactory: SignInViewModelFactory, repository: RepositoryImp, localStorage: DataStorageRepositoryImp): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
-            override fun <T : ViewModel> create(modelClass: Class<T>): T {
-                @Suppress("UNCHECKED_CAST")
-                return assistedFactory.create(repository, localStorage) as T
-            }
-        }
-    }
+@HiltViewModel
+class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseViewModel() {
 
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
@@ -78,24 +65,17 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
         if (!allFieldsCorrect) return
 
         viewModelScope.launch {
-            repository.login(SignInData(email.value, password.value)).collect { result ->
+            loginUseCase.login(SignInData(email.value, password.value)).collect { result ->
                 when (result) {
-                    is com.iwelogic.data.Result.Loading -> progress.postValue(true)
-                    is com.iwelogic.data.Result.Finish -> progress.postValue(false)
-                    is com.iwelogic.data.Result.Success -> {
-                        withContext(Dispatchers.IO) {
-                            result.data?.let {
-                                localStorage.updateUserPreference(it)
-                                openMain.postValue(true)
-                            }
-                        }
-                    }
-                    is com.iwelogic.data.Result.Error -> {
+                    is Result.Loading -> progress.postValue(true)
+                    is Result.Finish -> progress.postValue(false)
+                    is Result.Success -> openMain.postValue(true)
+                    is Result.Error -> {
                         when (result.code) {
-                            com.iwelogic.data.Result.Error.Code.NOT_CONFIRMED -> {
+                            Result.Error.Code.NOT_CONFIRMED -> {
                                 // navigator?.showWarningDialog(result.message)
                             }
-                            com.iwelogic.data.Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
+                            Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
                             else -> {
                                 //navigator?.showToast(result.message)
                             }
@@ -106,9 +86,3 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
         }
     }
 }
-
-@AssistedFactory
-interface SignInViewModelFactory {
-    fun create(repository: RepositoryImp, localStorage: DataStorageRepositoryImp): SignInViewModel
-}
-

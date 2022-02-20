@@ -2,8 +2,8 @@ package com.iwelogic.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.domain.main.ExistStatus
-import com.iwelogic.domain.main.UserUseCase
+import com.iwelogic.domain.main.local_user.ExistStatus
+import com.iwelogic.domain.main.local_user.UserUseCase
 import com.iwelogic.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect

@@ -1,8 +1,7 @@
-package com.iwelogic.data
+package com.iwelogic.data.local_user
 
 import android.content.Context
-import com.iwelogic.data.store.DataStorageRepository
-import com.iwelogic.data.store.DataStorageRepositoryImp
+import com.iwelogic.domain.main.local_user.LocalUserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,14 +9,13 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
-@Module
 @InstallIn(SingletonComponent::class)
-object DataStorageModule {
+@Module
+object LocalUserRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideApi(@ApplicationContext context: Context): DataStorageRepository {
-        return DataStorageRepositoryImp(context)
+    fun provideLocalUserRepository(@ApplicationContext context: Context): LocalUserRepository {
+        return LocalUserRepositoryImp(context)
     }
 }

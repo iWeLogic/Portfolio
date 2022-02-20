@@ -1,11 +1,11 @@
-package com.iwelogic.data.models
+package com.iwelogic.domain.main.models
 
 import com.google.gson.annotations.SerializedName
 
 open class BaseResponse(
 
     @field:SerializedName("code")
-    val code: com.iwelogic.data.Result.Error.Code? = null,
+    val code: Result.Error.Code? = null,
 
     @field:SerializedName("message")
     val message: String? = null

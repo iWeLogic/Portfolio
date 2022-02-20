@@ -1,4 +1,4 @@
-package com.iwelogic.data
+package com.iwelogic.domain.main.models
 
 import com.google.gson.annotations.SerializedName
 
@@ -6,7 +6,7 @@ sealed class Result<out T> {
 
     data class Success<out R>(val data: R?) : Result<R>()
 
-    data class Error(val code: Code, val message: String) : Result<Nothing>() {
+    data class Error(val code: Code, val message: String?) : Result<Nothing>() {
 
         enum class Code {
 

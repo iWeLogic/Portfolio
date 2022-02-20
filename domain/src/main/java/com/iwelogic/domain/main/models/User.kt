@@ -1,4 +1,4 @@
-package com.iwelogic.data.models
+package com.iwelogic.domain.main.models
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,18 +1,19 @@
-package com.iwelogic.data.store
+package com.iwelogic.data.local_user
 
 import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import com.codelab.android.datastore.UserPreferences
 import com.iwelogic.data.UserPreferencesSerializer
-import com.iwelogic.data.models.User
+import com.iwelogic.domain.main.models.User
+import com.iwelogic.domain.main.local_user.LocalUserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
 import java.io.IOException
 
 
-class DataStorageRepositoryImp (val context: Context) : DataStorageRepository {
+class LocalUserRepositoryImp(val context: Context) : LocalUserRepository {
 
     private val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(fileName = "settings", serializer = UserPreferencesSerializer)
 
@@ -26,7 +27,7 @@ class DataStorageRepositoryImp (val context: Context) : DataStorageRepository {
         }.map { User(it.name, it.userToken, it.email) }
         set(value) {}
 
-    suspend fun updateUserPreference(user: User) {
+    override suspend fun updateUserPreference(user: User) {
         context.userPreferencesStore.updateData { preferences ->
             val builder = preferences.toBuilder()
             user.name?.let { builder.setName(it) }

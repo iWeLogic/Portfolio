@@ -1,9 +1,9 @@
 package com.iwelogic.data.source
 
-import com.iwelogic.data.Result
-import com.iwelogic.data.models.RegisterData
-import com.iwelogic.data.models.SignInData
-import com.iwelogic.data.models.User
+import com.iwelogic.domain.main.models.Result
+import com.iwelogic.domain.main.models.RegisterData
+import com.iwelogic.domain.main.models.SignInData
+import com.iwelogic.domain.main.models.User
 
 interface DataSource {
 

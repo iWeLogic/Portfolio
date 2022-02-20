@@ -5,6 +5,8 @@ import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.iwelogic.data.BuildConfig.BACKEND_URL
+import com.iwelogic.data.source.DataSource
+import com.iwelogic.data.source.DataSourceImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,6 +24,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
+    @Provides
+    @Singleton
+    fun provideDataSource(api: Api): DataSource {
+        return DataSourceImp(api)
+    }
 
     @Provides
     @Singleton
