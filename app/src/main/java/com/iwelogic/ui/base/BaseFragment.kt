@@ -7,11 +7,11 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.iwelogic.R
 
-open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), BaseNavigator {
+open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
     lateinit var viewModel: VM
 
-    override fun showToast(msg: String?) {
+   /* override fun showToast(msg: String?) {
         context?.let {
             Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
         }
@@ -33,14 +33,9 @@ open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), 
 
     override fun openMain(isFirstLaunch: Boolean) {
 
-    }
+    }*/
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.navigator = null
-    }
-
-    override fun showWarningDialog(message: String) {
+/*    override fun showWarningDialog(message: String) {
         context?.let {
             val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog).create()
             val view = layoutInflater.inflate(R.layout.dialog_warning, null)
@@ -52,5 +47,5 @@ open class BaseFragment<T : BaseNavigator, VM : BaseViewModel<T>> : Fragment(), 
             builder.setCanceledOnTouchOutside(false)
             builder.show()
         }
-    }
+    }*/
 }

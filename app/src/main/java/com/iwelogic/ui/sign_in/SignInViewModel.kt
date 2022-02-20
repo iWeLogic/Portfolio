@@ -10,6 +10,7 @@ import com.iwelogic.data.repository.RepositoryImp
 import com.iwelogic.data.store.LocalStorageImp
 import com.iwelogic.models.SignInData
 import com.iwelogic.ui.base.BaseViewModel
+import com.iwelogic.ui.base.SingleLiveEvent
 import com.iwelogic.utils.isEmail
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
@@ -19,7 +20,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SignInViewModel @AssistedInject constructor(@Assisted private val repository: RepositoryImp, @Assisted private val localStorage: LocalStorageImp) : BaseViewModel<SignInNavigator>() {
+class SignInViewModel @AssistedInject constructor(@Assisted private val repository: RepositoryImp, @Assisted private val localStorage: LocalStorageImp) : BaseViewModel() {
 
     companion object {
         fun provideFactory(assistedFactory: SignInViewModelFactory, repository: RepositoryImp, localStorage: LocalStorageImp): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
@@ -30,6 +31,9 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
         }
     }
 
+    val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
     var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
     var password: MutableLiveData<String> = MutableLiveData("kleo2304")
     val emailError: MutableLiveData<Any> = MutableLiveData()
@@ -49,11 +53,11 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
     }
 
     fun onClickRegister() {
-        navigator?.openRegister()
+        openRegister.postValue(true)
     }
 
     fun onClickForgotPassword() {
-        navigator?.openForgotPassword(email.value)
+        openForgotPassword.postValue(email.value)
     }
 
     override fun onCleared() {
@@ -80,18 +84,22 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> {
-                        withContext(Dispatchers.IO){
+                        withContext(Dispatchers.IO) {
                             result.data?.let {
                                 localStorage.updateUserPreference(it)
-                                navigator?.openMain()
+                                openMain.postValue(true)
                             }
                         }
                     }
                     is Result.Error -> {
                         when (result.code) {
-                            Result.Error.Code.NOT_CONFIRMED -> navigator?.showWarningDialog(result.message)
+                            Result.Error.Code.NOT_CONFIRMED -> {
+                                // navigator?.showWarningDialog(result.message)
+                            }
                             Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
-                            else -> navigator?.showToast(result.message)
+                            else -> {
+                                //navigator?.showToast(result.message)
+                            }
                         }
                     }
                 }

@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class SignInFragment : BaseFragment<SignInNavigator, SignInViewModel>(), SignInNavigator {
+class SignInFragment : BaseFragment<SignInViewModel>() {
 
     @Inject
     lateinit var dataSource: DataSourceImp
@@ -35,20 +35,21 @@ class SignInFragment : BaseFragment<SignInNavigator, SignInViewModel>(), SignInN
         val binding: FragmentSignInBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, SignInViewModel.provideFactory(viewModelFactory, RepositoryImp(dataSource), localStorage)).get(SignInViewModel::class.java)
-        viewModel.navigator = this
         binding.viewModel = viewModel
+        subscribe()
         return binding.root
     }
 
-    override fun openRegister() {
-        catchAll {
-            findNavController().navigate(MainFragmentDirections.actionGlobalRegisterFragment())
+    fun subscribe() {
+        viewModel.openRegister.observe(this) {
+            catchAll {
+                findNavController().navigate(MainFragmentDirections.actionGlobalRegisterFragment())
+            }
         }
-    }
-
-    override fun openForgotPassword(email: String?) {
-        catchAll {
-            findNavController().navigate(MainFragmentDirections.actionGlobalForgotPasswordFragment(email))
+        viewModel.openForgotPassword.observe(this) {
+            catchAll {
+                findNavController().navigate(MainFragmentDirections.actionGlobalForgotPasswordFragment(it))
+            }
         }
     }
 }

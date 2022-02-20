@@ -12,13 +12,12 @@ import com.iwelogic.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment : BaseFragment<MainNavigator,  MainViewModel>(), MainNavigator {
+class MainFragment : BaseFragment<MainViewModel>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: FragmentMainBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
-        viewModel.navigator = this
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         binding.viewModel = viewModel
         return binding.root
     }

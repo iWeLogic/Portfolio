@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ForgotPasswordFragment : BaseFragment<ForgotPasswordNavigator, ForgotPasswordViewModel>(), ForgotPasswordNavigator {
+class ForgotPasswordFragment : BaseFragment<ForgotPasswordViewModel>() {
 
     @Inject
     lateinit var viewModelFactory: ForgotPasswordViewModelFactory
@@ -27,7 +27,6 @@ class ForgotPasswordFragment : BaseFragment<ForgotPasswordNavigator, ForgotPassw
         val binding: FragmentForgotPasswordBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgot_password, container, false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, ForgotPasswordViewModel.provideFactory(viewModelFactory, RepositoryImp(dataSource))).get(ForgotPasswordViewModel::class.java)
-        viewModel.navigator = this
         binding.viewModel = viewModel
         return binding.root
     }

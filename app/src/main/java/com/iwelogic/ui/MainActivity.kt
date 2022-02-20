@@ -1,7 +1,6 @@
 package com.iwelogic.ui
 
 import android.os.Bundle
-import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +10,7 @@ import com.iwelogic.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MainNavigator {
+class MainActivity : AppCompatActivity() {
 
     lateinit var viewModel: MainViewModel
 
@@ -20,28 +19,26 @@ class MainActivity : AppCompatActivity(), MainNavigator {
         val binding: ActivityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        viewModel.navigator = this
         binding.viewModel = viewModel
         viewModel.checkIsLogged()
+        subscribe()
     }
 
-    override fun openMain() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-        val graphInflater = navHostFragment.navController.navInflater
-        val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.startDestination = R.id.mainFragment
-        navHostFragment.navController.graph = navGraph
-    }
+    private fun subscribe() {
+        viewModel.openMain.observe(this) {
+            val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
+            val graphInflater = navHostFragment.navController.navInflater
+            val navGraph = graphInflater.inflate(R.navigation.main)
+            navGraph.startDestination = R.id.mainFragment
+            navHostFragment.navController.graph = navGraph
+        }
 
-    override fun openLogin() {
+        viewModel.openLogin.observe(this) {
             val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
             val graphInflater = navHostFragment.navController.navInflater
             val navGraph = graphInflater.inflate(R.navigation.main)
             navGraph.startDestination = R.id.signInFragment
             navHostFragment.navController.graph = navGraph
-    }
-
-    override fun openOnboarding() {
-
+        }
     }
 }

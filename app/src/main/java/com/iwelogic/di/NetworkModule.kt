@@ -1,15 +1,17 @@
-package com.iwelogic.data
+package com.iwelogic.di
 
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.iwelogic.BuildConfig.BACKEND_URL
+import com.iwelogic.data.Api
+import com.iwelogic.data.HeaderInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import com.iwelogic.BuildConfig.BACKEND_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Converter
@@ -18,8 +20,9 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@InstallIn(SingletonComponent::class)
+
 @Module
+@InstallIn(SingletonComponent::class)
 object NetworkModule {
 
     @Provides

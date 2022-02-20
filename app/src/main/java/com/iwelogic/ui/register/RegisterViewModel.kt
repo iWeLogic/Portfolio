@@ -8,7 +8,7 @@ import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
-class RegisterViewModel @AssistedInject constructor(@Assisted private val repository: Repository) : BaseViewModel<RegisterNavigator>() {
+class RegisterViewModel @AssistedInject constructor(@Assisted private val repository: Repository) : BaseViewModel() {
 
     companion object {
         fun provideFactory(assistedFactory: RegisterViewModelFactory, repository: Repository): ViewModelProvider.Factory = object : ViewModelProvider.Factory {

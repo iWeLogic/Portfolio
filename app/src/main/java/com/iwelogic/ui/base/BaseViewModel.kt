@@ -3,15 +3,14 @@ package com.iwelogic.ui.base
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-open class BaseViewModel<T : BaseNavigator> : ViewModel() {
+open class BaseViewModel : ViewModel() {
 
     var progress: MutableLiveData<Boolean> = MutableLiveData(false)
     var error: MutableLiveData<Boolean> = MutableLiveData(false)
 
-    var navigator: T? = null
 
     fun onClickClose() {
-        navigator?.close()
+      //  navigator?.close()
     }
 
     fun onClickRetry() {
@@ -21,6 +20,4 @@ open class BaseViewModel<T : BaseNavigator> : ViewModel() {
     open fun reload() {
 
     }
-
-    fun getBase(): BaseViewModel<T> = this
 }

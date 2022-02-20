@@ -15,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class RegisterFragment : BaseFragment<RegisterNavigator, RegisterViewModel>(), RegisterNavigator {
+class RegisterFragment : BaseFragment<RegisterViewModel>() {
 
     @Inject
     lateinit var dataSource: DataSourceImp
@@ -27,7 +27,6 @@ class RegisterFragment : BaseFragment<RegisterNavigator, RegisterViewModel>(), R
         val binding: FragmentRegisterBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false)
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this, RegisterViewModel.provideFactory(viewModelFactory, RepositoryImp(dataSource)))[RegisterViewModel::class.java]
-        viewModel.navigator = this
         binding.viewModel = viewModel
         return binding.root
     }
