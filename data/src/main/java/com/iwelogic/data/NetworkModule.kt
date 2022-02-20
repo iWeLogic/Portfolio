@@ -1,12 +1,10 @@
-package com.iwelogic.di
+package com.iwelogic.data
 
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import com.iwelogic.BuildConfig.BACKEND_URL
-import com.iwelogic.data.Api
-import com.iwelogic.data.HeaderInterceptor
+import com.iwelogic.data.BuildConfig.BACKEND_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -68,7 +66,7 @@ object NetworkModule {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         val builder = OkHttpClient.Builder()
-        builder.addInterceptor(HeaderInterceptor(appContext))
+        builder.addInterceptor(com.iwelogic.data.HeaderInterceptor(appContext))
         builder.addInterceptor(logging)
         builder.connectTimeout(30, TimeUnit.SECONDS)
         builder.writeTimeout(30, TimeUnit.SECONDS)

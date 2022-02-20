@@ -1,8 +1,8 @@
 package com.iwelogic.data
 
-import com.iwelogic.models.RegisterData
-import com.iwelogic.models.SignInData
-import com.iwelogic.models.User
+import com.iwelogic.data.models.RegisterData
+import com.iwelogic.data.models.SignInData
+import com.iwelogic.data.models.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

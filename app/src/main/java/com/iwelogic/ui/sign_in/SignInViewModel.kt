@@ -5,10 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.R
-import com.iwelogic.data.Result
+import com.iwelogic.data.models.SignInData
 import com.iwelogic.data.repository.RepositoryImp
 import com.iwelogic.data.store.LocalStorageImp
-import com.iwelogic.models.SignInData
 import com.iwelogic.ui.base.BaseViewModel
 import com.iwelogic.ui.base.SingleLiveEvent
 import com.iwelogic.utils.isEmail
@@ -81,9 +80,9 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
         viewModelScope.launch {
             repository.login(SignInData(email.value, password.value)).collect { result ->
                 when (result) {
-                    is Result.Loading -> progress.postValue(true)
-                    is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> {
+                    is com.iwelogic.data.Result.Loading -> progress.postValue(true)
+                    is com.iwelogic.data.Result.Finish -> progress.postValue(false)
+                    is com.iwelogic.data.Result.Success -> {
                         withContext(Dispatchers.IO) {
                             result.data?.let {
                                 localStorage.updateUserPreference(it)
@@ -91,12 +90,12 @@ class SignInViewModel @AssistedInject constructor(@Assisted private val reposito
                             }
                         }
                     }
-                    is Result.Error -> {
+                    is com.iwelogic.data.Result.Error -> {
                         when (result.code) {
-                            Result.Error.Code.NOT_CONFIRMED -> {
+                            com.iwelogic.data.Result.Error.Code.NOT_CONFIRMED -> {
                                 // navigator?.showWarningDialog(result.message)
                             }
-                            Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
+                            com.iwelogic.data.Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
                             else -> {
                                 //navigator?.showToast(result.message)
                             }

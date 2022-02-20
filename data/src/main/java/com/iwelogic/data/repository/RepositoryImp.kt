@@ -1,10 +1,10 @@
 package com.iwelogic.data.repository
 
 import com.iwelogic.data.Result
+import com.iwelogic.data.models.RegisterData
+import com.iwelogic.data.models.SignInData
+import com.iwelogic.data.models.User
 import com.iwelogic.data.source.DataSource
-import com.iwelogic.models.RegisterData
-import com.iwelogic.models.SignInData
-import com.iwelogic.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

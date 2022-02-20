@@ -1,8 +1,8 @@
 package com.iwelogic.data.repository
 
 import com.iwelogic.data.Result
-import com.iwelogic.models.RegisterData
-import com.iwelogic.models.SignInData
+import com.iwelogic.data.models.RegisterData
+import com.iwelogic.data.models.SignInData
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {

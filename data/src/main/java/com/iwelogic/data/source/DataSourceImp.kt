@@ -2,13 +2,12 @@ package com.iwelogic.data.source
 
 import android.content.Context
 import com.google.gson.Gson
-import com.iwelogic.R
 import com.iwelogic.data.Api
 import com.iwelogic.data.Result
-import com.iwelogic.models.RegisterData
-import com.iwelogic.models.BaseResponse
-import com.iwelogic.models.SignInData
-import com.iwelogic.models.User
+import com.iwelogic.data.models.BaseResponse
+import com.iwelogic.data.models.RegisterData
+import com.iwelogic.data.models.SignInData
+import com.iwelogic.data.models.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
 import javax.inject.Inject
@@ -16,15 +15,15 @@ import javax.inject.Inject
 class DataSourceImp @Inject constructor(private val api: Api, @ApplicationContext val applicationContext: Context) : DataSource {
 
     override suspend fun register(data: RegisterData): Result<User> {
-        return getResponse(request = { api.register(data) }, applicationContext.getString(R.string.something_went_wrong))
+        return getResponse(request = { api.register(data) }, "applicationContext.getString(R.string.something_went_wrong)")
     }
 
     override suspend fun login(data: SignInData): Result<User> {
-        return getResponse(request = { api.login(data) }, applicationContext.getString(R.string.something_went_wrong))
+        return getResponse(request = { api.login(data) }, "applicationContext.getString(R.string.something_went_wrong)")
     }
 
     override suspend fun resendEmailConfirmation(email: String?): Result<Void> {
-        return getResponse(request = { api.resendEmailConfirmation(email) }, applicationContext.getString(R.string.something_went_wrong))
+        return getResponse(request = { api.resendEmailConfirmation(email) }, "applicationContext.getString(R.string.something_went_wrong)")
     }
 
     @Suppress("BlockingMethodInNonBlockingContext")
