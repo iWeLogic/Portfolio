@@ -6,14 +6,24 @@
 
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.iwelogic.ui.sign_in.SignInFragment"
+        android:name="com.iwelogic.portfolio.ui.sign_in.SignInFragment"
         android:label="SignInFragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.iwelogic.ui.main.MainFragment"
+        android:name="com.iwelogic.portfolio.ui.main.MainFragment"
         android:label="MainFragment" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.iwelogic.ui.register.RegisterFragment"
+        android:name="com.iwelogic.portfolio.ui.register.RegisterFragment"
         android:label="RegisterFragment" /><action android:id="@+id/action_global_registerFragment" app:destination="@id/registerFragment"/>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.iwelogic.portfolio.ui.forgot_password.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment" >
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <action android:id="@+id/action_global_forgotPasswordFragment" app:destination="@id/forgotPasswordFragment" />
 </navigation>

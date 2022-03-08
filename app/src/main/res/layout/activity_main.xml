@@ -5,17 +5,15 @@
 
     <data>
 
-        <import type="android.view.View" />
-
         <variable
             name="viewModel"
-            type="com.iwelogic.ui.MainViewModel" />
+            type="com.iwelogic.portfolio.ui.MainViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.MainActivity">
+        tools:context=".portfolio.ui.MainActivity">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/hostContainer"
