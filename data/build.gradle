@@ -14,7 +14,9 @@ android {
         }
 
         debug {
+            minifyEnabled false
             buildConfigField "String", "BACKEND_URL", '"https://chosencable.backendless.app"'
+            debuggable true
         }
     }
     compileOptions {

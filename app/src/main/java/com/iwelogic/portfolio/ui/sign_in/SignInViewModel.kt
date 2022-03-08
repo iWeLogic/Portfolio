@@ -1,5 +1,6 @@
 package com.iwelogic.portfolio.ui.sign_in
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.R
@@ -67,12 +68,16 @@ class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : Base
 
         viewModelScope.launch {
             loginUseCase.login(SignInData(email.value, password.value)).catch {
-
+                it.printStackTrace()
+                Log.w("myLog", "onClickSignIn: ERROR $it")
             }.collect { result ->
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> openMain.postValue(true)
+                    is Result.Success -> {
+                        Log.w("myLog", "openMain: ")
+                        openMain.postValue(true)
+                    }
                     is Result.Error -> {
                         when (result.code) {
                             Result.Error.Code.NOT_CONFIRMED -> warning.postValue(result.message)

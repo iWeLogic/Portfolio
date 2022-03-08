@@ -1,6 +1,7 @@
 package com.iwelogic.portfolio.domain.login
 
 
+import android.util.Log
 import com.iwelogic.portfolio.data.login.LoginRepository
 import com.iwelogic.portfolio.data.local_user.LocalUserRepository
 import com.iwelogic.portfolio.data.models.Result
@@ -12,7 +13,9 @@ import kotlinx.coroutines.flow.onEach
 class LoginUseCaseImp(var loginRepository: LoginRepository, var localUserRepository: LocalUserRepository) : LoginUseCase {
 
     override fun login(data: SignInData): Flow<Result<User>> {
+        Log.w("myLog", "login: 1")
         return loginRepository.login(data).onEach {
+            Log.w("myLog", "login: 2")
             if (it is Result.Success<User>) {
                 it.data?.let {
                     localUserRepository.updateUserPreference(it)

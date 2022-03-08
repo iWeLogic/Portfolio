@@ -30,8 +30,8 @@ android {
         }
 
         debug {
-            buildConfigField "String", "BACKEND_URL", '"https://jolifcurve.backendless.app"'
             minifyEnabled false
+            buildConfigField "String", "BACKEND_URL", '"https://jolifcurve.backendless.app"'
             debuggable true
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
