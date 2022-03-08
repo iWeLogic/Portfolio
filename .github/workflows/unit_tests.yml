@@ -1,10 +1,9 @@
 name: Unit Tests
 on:
   push:
-    branches:
-      - '**'
-      - '!master'
-      - '!dev'
+    branches-ignore:
+      - 'dev'
+      - 'master'
 
 jobs:
   test:
