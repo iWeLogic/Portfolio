@@ -10,7 +10,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.ui.sign_in.SignInViewModel" />
+            type="com.iwelogic.portfolio.ui.sign_in.SignInViewModel" />
     </data>
 
     <FrameLayout
