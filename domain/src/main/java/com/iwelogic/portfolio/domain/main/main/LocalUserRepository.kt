@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main.local_user
+package com.iwelogic.portfolio.domain.main.main
 
 import com.iwelogic.portfolio.domain.main.models.User
 import kotlinx.coroutines.flow.Flow

@@ -1,7 +1,7 @@
 package com.iwelogic.portfolio.data.local_user
 
 import android.content.Context
-import com.iwelogic.portfolio.domain.main.local_user.LocalUserRepository
+import com.iwelogic.portfolio.domain.main.main.LocalUserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

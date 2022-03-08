@@ -25,20 +25,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun subscribe() {
-        viewModel.openMain.observe(this) {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-            val graphInflater = navHostFragment.navController.navInflater
-            val navGraph = graphInflater.inflate(R.navigation.main)
-            navGraph.startDestination = R.id.mainFragment
-            navHostFragment.navController.graph = navGraph
-        }
+        viewModel.openMain.observe(this) { openMain() }
+        viewModel.openLogin.observe(this) { openLogin() }
+    }
 
-        viewModel.openLogin.observe(this) {
-            val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-            val graphInflater = navHostFragment.navController.navInflater
-            val navGraph = graphInflater.inflate(R.navigation.main)
-            navGraph.startDestination = R.id.signInFragment
-            navHostFragment.navController.graph = navGraph
-        }
+    fun openLogin() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
+        val graphInflater = navHostFragment.navController.navInflater
+        val navGraph = graphInflater.inflate(R.navigation.main)
+        navGraph.startDestination = R.id.signInFragment
+        navHostFragment.navController.graph = navGraph
+    }
+
+    fun openMain() {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
+        val graphInflater = navHostFragment.navController.navInflater
+        val navGraph = graphInflater.inflate(R.navigation.main)
+        navGraph.startDestination = R.id.mainFragment
+        navHostFragment.navController.graph = navGraph
     }
 }

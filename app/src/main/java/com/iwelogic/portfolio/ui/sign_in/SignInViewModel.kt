@@ -10,6 +10,7 @@ import com.iwelogic.portfolio.ui.base.BaseViewModel
 import com.iwelogic.portfolio.ui.base.SingleLiveEvent
 import com.iwelogic.portfolio.utils.isEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,8 +21,8 @@ class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : Base
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
-    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
-    var password: MutableLiveData<String> = MutableLiveData("kleo2304")
+    var email: MutableLiveData<String> = MutableLiveData()
+    var password: MutableLiveData<String> = MutableLiveData()
     val emailError: MutableLiveData<Any> = MutableLiveData()
     val passwordError: MutableLiveData<Any> = MutableLiveData()
     private val emailObserver: (String) -> Unit = {
@@ -65,7 +66,9 @@ class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : Base
         if (!allFieldsCorrect) return
 
         viewModelScope.launch {
-            loginUseCase.login(SignInData(email.value, password.value)).collect { result ->
+            loginUseCase.login(SignInData(email.value, password.value)).catch {
+
+            }.collect { result ->
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)

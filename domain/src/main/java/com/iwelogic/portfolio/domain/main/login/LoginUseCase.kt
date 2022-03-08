@@ -1,7 +1,7 @@
 package com.iwelogic.portfolio.domain.main.login
 
 
-import com.iwelogic.portfolio.domain.main.local_user.LocalUserRepository
+import com.iwelogic.portfolio.domain.main.main.LocalUserRepository
 import com.iwelogic.portfolio.domain.main.models.SignInData
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach

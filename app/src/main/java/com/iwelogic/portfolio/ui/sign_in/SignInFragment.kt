@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentSignInBinding
+import com.iwelogic.portfolio.ui.MainActivity
 import com.iwelogic.portfolio.ui.base.BaseFragment
 import com.iwelogic.portfolio.ui.main.MainFragmentDirections
-import com.iwelogic.portfolio.utils.catchAll
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -28,13 +28,16 @@ class SignInFragment : BaseFragment<SignInViewModel>() {
     }
 
     private fun subscribe() {
+        viewModel.openMain.observe(this) {
+            (activity as MainActivity).openMain()
+        }
         viewModel.openRegister.observe(this) {
-            catchAll {
+            if (findNavController().currentDestination?.id == R.id.signInFragment) {
                 findNavController().navigate(MainFragmentDirections.actionGlobalRegisterFragment())
             }
         }
         viewModel.openForgotPassword.observe(this) {
-            catchAll {
+            if (findNavController().currentDestination?.id == R.id.signInFragment) {
                 findNavController().navigate(MainFragmentDirections.actionGlobalForgotPasswordFragment(it))
             }
         }

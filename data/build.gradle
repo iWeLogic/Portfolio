@@ -10,11 +10,11 @@ android {
 
     buildTypes {
         release {
-            buildConfigField "String", "BACKEND_URL", '"https://jolifcurve.backendless.app"'
+            buildConfigField "String", "BACKEND_URL", '"https://chosencable.backendless.app"'
         }
 
         debug {
-            buildConfigField "String", "BACKEND_URL", '"https://jolifcurve.backendless.app"'
+            buildConfigField "String", "BACKEND_URL", '"https://chosencable.backendless.app"'
         }
     }
     compileOptions {
