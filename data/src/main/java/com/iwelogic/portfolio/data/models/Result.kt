@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main.models
+package com.iwelogic.portfolio.data.models
 
 import com.google.gson.annotations.SerializedName
 

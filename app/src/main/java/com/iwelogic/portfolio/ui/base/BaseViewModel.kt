@@ -7,10 +7,10 @@ open class BaseViewModel : ViewModel() {
 
     var progress: MutableLiveData<Boolean> = MutableLiveData(false)
     var error: MutableLiveData<Boolean> = MutableLiveData(false)
-
+    val close: SingleLiveEvent<Boolean> = SingleLiveEvent()
 
     fun onClickClose() {
-      //  navigator?.close()
+      close.postValue(true)
     }
 
     fun onClickRetry() {

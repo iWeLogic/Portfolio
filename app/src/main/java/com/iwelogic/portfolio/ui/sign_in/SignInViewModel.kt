@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.domain.main.login.LoginUseCase
-import com.iwelogic.portfolio.domain.main.models.Result
-import com.iwelogic.portfolio.domain.main.models.SignInData
+import com.iwelogic.portfolio.data.models.Result
+import com.iwelogic.portfolio.data.models.SignInData
 import com.iwelogic.portfolio.ui.base.BaseViewModel
 import com.iwelogic.portfolio.ui.base.SingleLiveEvent
 import com.iwelogic.portfolio.utils.isEmail
@@ -21,8 +21,8 @@ class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : Base
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
-    var email: MutableLiveData<String> = MutableLiveData()
-    var password: MutableLiveData<String> = MutableLiveData()
+    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
+    var password: MutableLiveData<String> = MutableLiveData("kleo2304")
     val emailError: MutableLiveData<Any> = MutableLiveData()
     val passwordError: MutableLiveData<Any> = MutableLiveData()
     private val emailObserver: (String) -> Unit = {

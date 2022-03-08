@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.iwelogic.portfolio.R
-import com.iwelogic.portfolio.data.repository.RepositoryImp
+import com.iwelogic.portfolio.data.register.RegisterRepositoryImp
 import com.iwelogic.portfolio.data.source.DataSourceImp
 import com.iwelogic.portfolio.databinding.FragmentForgotPasswordBinding
 import com.iwelogic.portfolio.ui.base.BaseFragment
@@ -26,7 +26,7 @@ class ForgotPasswordFragment : BaseFragment<ForgotPasswordViewModel>() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding: FragmentForgotPasswordBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_forgot_password, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this, ForgotPasswordViewModel.provideFactory(viewModelFactory, RepositoryImp(dataSource))).get(ForgotPasswordViewModel::class.java)
+        viewModel = ViewModelProvider(this, ForgotPasswordViewModel.provideFactory(viewModelFactory, RegisterRepositoryImp(dataSource))).get(ForgotPasswordViewModel::class.java)
         binding.viewModel = viewModel
         return binding.root
     }

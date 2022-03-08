@@ -1,8 +1,8 @@
 package com.iwelogic.portfolio.data
 
-import com.iwelogic.portfolio.domain.main.models.RegisterData
-import com.iwelogic.portfolio.domain.main.models.SignInData
-import com.iwelogic.portfolio.domain.main.models.User
+import com.iwelogic.portfolio.data.models.RegisterData
+import com.iwelogic.portfolio.data.models.SignInData
+import com.iwelogic.portfolio.data.models.User
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST

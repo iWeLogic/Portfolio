@@ -1,34 +1,40 @@
 package com.iwelogic.portfolio.ui.base
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 
 open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
     lateinit var viewModel: VM
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-   /* override fun showToast(msg: String?) {
-        context?.let {
-            Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
+        viewModel.close.observe(this) {
+            activity?.onBackPressed()
         }
     }
 
-    override fun showToast(msg: Int) {
-        context?.let {
-            Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
-        }
-    }
+    /* override fun showToast(msg: String?) {
+         context?.let {
+             Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
+         }
+     }
 
-    override fun close() {
-        activity?.onBackPressed()
-    }
+     override fun showToast(msg: Int) {
+         context?.let {
+             Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
+         }
+     }
 
-    override fun openLogin() {
 
-    }
+     override fun openLogin() {
 
-    override fun openMain(isFirstLaunch: Boolean) {
+     }
 
-    }*/
+     override fun openMain(isFirstLaunch: Boolean) {
+
+     }*/
 
 /*    override fun showWarningDialog(message: String) {
         context?.let {

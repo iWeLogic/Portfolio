@@ -2,11 +2,7 @@ package com.iwelogic.portfolio.data.source
 
 import com.google.gson.Gson
 import com.iwelogic.portfolio.data.Api
-import com.iwelogic.portfolio.domain.main.models.Result
-import com.iwelogic.portfolio.domain.main.models.BaseResponse
-import com.iwelogic.portfolio.domain.main.models.RegisterData
-import com.iwelogic.portfolio.domain.main.models.SignInData
-import com.iwelogic.portfolio.domain.main.models.User
+import com.iwelogic.portfolio.data.models.*
 import retrofit2.Response
 import javax.inject.Inject
 

@@ -1,5 +1,6 @@
 package com.iwelogic.portfolio.domain.main.main
 
+import com.iwelogic.portfolio.data.local_user.LocalUserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

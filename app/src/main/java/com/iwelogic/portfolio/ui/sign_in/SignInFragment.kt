@@ -14,7 +14,6 @@ import com.iwelogic.portfolio.ui.base.BaseFragment
 import com.iwelogic.portfolio.ui.main.MainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class SignInFragment : BaseFragment<SignInViewModel>() {
 

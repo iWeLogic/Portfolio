@@ -1,9 +1,9 @@
 package com.iwelogic.portfolio.data.source
 
-import com.iwelogic.portfolio.domain.main.models.Result
-import com.iwelogic.portfolio.domain.main.models.RegisterData
-import com.iwelogic.portfolio.domain.main.models.SignInData
-import com.iwelogic.portfolio.domain.main.models.User
+import com.iwelogic.portfolio.data.models.RegisterData
+import com.iwelogic.portfolio.data.models.SignInData
+import com.iwelogic.portfolio.data.models.User
+import com.iwelogic.portfolio.data.models.Result
 
 interface DataSource {
 

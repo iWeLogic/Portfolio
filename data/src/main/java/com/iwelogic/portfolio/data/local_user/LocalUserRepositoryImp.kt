@@ -5,8 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import com.codelab.android.datastore.UserPreferences
 import com.iwelogic.portfolio.data.UserPreferencesSerializer
-import com.iwelogic.portfolio.domain.main.models.User
-import com.iwelogic.portfolio.domain.main.main.LocalUserRepository
+import com.iwelogic.portfolio.data.models.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map

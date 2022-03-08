@@ -1,16 +1,16 @@
 package com.iwelogic.portfolio.data.login
 
-import com.iwelogic.portfolio.domain.main.models.Result
-import com.iwelogic.portfolio.domain.main.models.SignInData
-import com.iwelogic.portfolio.domain.main.models.User
+
+import com.iwelogic.portfolio.data.models.Result
+import com.iwelogic.portfolio.data.models.SignInData
+import com.iwelogic.portfolio.data.models.User
 import com.iwelogic.portfolio.data.source.DataSource
-import com.iwelogic.portfolio.domain.main.login.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class LoginRepositoryImp (private val dataSource: DataSource) : LoginRepository{
+class LoginRepositoryImp(private val dataSource: DataSource) : LoginRepository {
 
     override fun login(data: SignInData): Flow<Result<User>> {
         return flow {
