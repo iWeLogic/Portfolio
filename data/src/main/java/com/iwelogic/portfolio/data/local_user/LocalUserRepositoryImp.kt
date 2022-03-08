@@ -16,7 +16,7 @@ class LocalUserRepositoryImp(val context: Context) : LocalUserRepository {
 
     private val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(fileName = "settings", serializer = UserPreferencesSerializer)
 
-    override var userFlow: Flow<User>
+    override val userFlow: Flow<User>
         get() = context.userPreferencesStore.data.catch {
             if (it is IOException) {
                 emit(UserPreferences.getDefaultInstance())
@@ -24,7 +24,6 @@ class LocalUserRepositoryImp(val context: Context) : LocalUserRepository {
                 throw it
             }
         }.map { User(it.name, it.userToken, it.email) }
-        set(value) {}
 
     override suspend fun updateUserPreference(user: User) {
         context.userPreferencesStore.updateData { preferences ->
@@ -32,6 +31,14 @@ class LocalUserRepositoryImp(val context: Context) : LocalUserRepository {
             user.name?.let { builder.setName(it) }
             user.email?.let { builder.setEmail(it) }
             user.userToken?.let { builder.setUserToken(it) }
+            builder.build()
+        }
+    }
+
+    override suspend fun clearData() {
+        context.userPreferencesStore.updateData { preferences ->
+            val builder = preferences.toBuilder()
+            builder.setUserToken("")
             builder.build()
         }
     }

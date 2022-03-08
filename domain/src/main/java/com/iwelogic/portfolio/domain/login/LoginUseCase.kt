@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main.login
+package com.iwelogic.portfolio.domain.login
 
 import com.iwelogic.portfolio.data.local_user.LocalUserRepository
 import com.iwelogic.portfolio.data.login.LoginRepository

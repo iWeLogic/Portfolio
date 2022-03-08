@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main.main
+package com.iwelogic.portfolio.domain.main_activity
 
 import com.iwelogic.portfolio.data.local_user.LocalUserRepository
 import kotlinx.coroutines.Dispatchers

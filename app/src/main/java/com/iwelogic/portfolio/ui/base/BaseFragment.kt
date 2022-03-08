@@ -1,8 +1,11 @@
 package com.iwelogic.portfolio.ui.base
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.iwelogic.portfolio.R
 
 open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
@@ -12,6 +15,20 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
         viewModel.close.observe(this) {
             activity?.onBackPressed()
+        }
+
+        viewModel.warning.observe(this) { warning ->
+            context?.let {
+                val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog).create()
+                val dialogView = layoutInflater.inflate(R.layout.dialog_warning, null)
+                dialogView.findViewById<TextView>(R.id.message).text = warning
+                builder.setView(dialogView)
+                dialogView.findViewById<View>(R.id.btnOk).setOnClickListener {
+                    builder.dismiss()
+                }
+                builder.setCanceledOnTouchOutside(false)
+                builder.show()
+            }
         }
     }
 
@@ -36,17 +53,4 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
      }*/
 
-/*    override fun showWarningDialog(message: String) {
-        context?.let {
-            val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog).create()
-            val view = layoutInflater.inflate(R.layout.dialog_warning, null)
-            view.findViewById<TextView>(R.id.message).text = message
-            builder.setView(view)
-            view.findViewById<View>(R.id.btnOk).setOnClickListener {
-                builder.dismiss()
-            }
-            builder.setCanceledOnTouchOutside(false)
-            builder.show()
-        }
-    }*/
 }

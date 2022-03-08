@@ -3,7 +3,7 @@ package com.iwelogic.portfolio.ui.register
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.data.models.RegisterData
 import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.domain.main.register.RegisterUseCase
+import com.iwelogic.portfolio.domain.register.RegisterUseCase
 import com.iwelogic.portfolio.ui.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch

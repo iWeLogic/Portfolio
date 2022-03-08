@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main.register
+package com.iwelogic.portfolio.domain.register
 
 
 import com.iwelogic.portfolio.data.models.RegisterData

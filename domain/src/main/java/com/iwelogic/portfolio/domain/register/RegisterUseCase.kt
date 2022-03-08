@@ -1,8 +1,7 @@
-package com.iwelogic.portfolio.domain.main.register
+package com.iwelogic.portfolio.domain.register
 
 import com.iwelogic.portfolio.data.models.RegisterData
 import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.data.models.User
 import com.iwelogic.portfolio.data.register.RegisterRepository
 import dagger.Module
 import dagger.Provides

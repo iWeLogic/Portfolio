@@ -12,9 +12,11 @@ import javax.inject.Singleton
 
 interface LocalUserRepository {
 
-    var userFlow: Flow<User>
+    val userFlow: Flow<User>
 
     suspend fun updateUserPreference(user: User)
+
+    suspend fun clearData()
 }
 
 @InstallIn(SingletonComponent::class)
