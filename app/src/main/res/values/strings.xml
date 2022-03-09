@@ -14,4 +14,8 @@
     <string name="logo">Logo</string>
     <string name="back">Back</string>
     <string name="profile">Profile</string>
+    <string name="apps">Apps</string>
+    <string name="news">News</string>
+    <string name="chat">Chat</string>
+    <string name="info">Info</string>
 </resources>
