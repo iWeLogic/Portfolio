@@ -15,15 +15,21 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.iwelogic.portfolio.ui.register.RegisterFragment"
-        android:label="RegisterFragment" /><action android:id="@+id/action_global_registerFragment" app:destination="@id/registerFragment"/>
+        android:label="RegisterFragment" />
+    <action
+        android:id="@+id/action_global_registerFragment"
+        app:destination="@id/registerFragment" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.iwelogic.portfolio.ui.forgot_password.ForgotPasswordFragment"
-        android:label="ForgotPasswordFragment" >
+        android:label="ForgotPasswordFragment">
         <argument
             android:name="email"
             app:argType="string"
             app:nullable="true" />
     </fragment>
-    <action android:id="@+id/action_global_forgotPasswordFragment" app:destination="@id/forgotPasswordFragment" />
+    <action
+        android:id="@+id/action_global_forgotPasswordFragment"
+        app:destination="@id/forgotPasswordFragment" />
+
 </navigation>

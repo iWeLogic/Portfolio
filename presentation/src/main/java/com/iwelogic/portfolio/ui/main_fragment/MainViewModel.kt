@@ -27,4 +27,8 @@ class MainViewModel @Inject constructor(var logoutUseCase: LogoutUseCase) : Base
             }
         }
     }
+
+    fun onClickProfile(){
+        onClickLogout()
+    }
 }

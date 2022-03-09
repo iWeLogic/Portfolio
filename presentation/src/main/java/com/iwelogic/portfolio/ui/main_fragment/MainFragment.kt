@@ -1,15 +1,20 @@
 package com.iwelogic.portfolio.ui.main_fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentMainBinding
-import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import com.iwelogic.portfolio.ui.base.BaseFragment
+import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -28,5 +33,13 @@ class MainFragment : BaseFragment<MainViewModel>() {
         viewModel.openLogin.observe(this) {
             (activity as MainActivity).openLogin()
         }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.w("myLog", "onViewCreated: 1")
+        val navHostFragment = childFragmentManager.findFragmentById(R.id.bottomNavigationContainer)
+        NavigationUI.setupWithNavController(view!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView), (navHostFragment  as NavHostFragment).navController)
     }
 }
