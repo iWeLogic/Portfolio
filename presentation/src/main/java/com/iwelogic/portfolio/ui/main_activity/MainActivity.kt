@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
         val graphInflater = navHostFragment.navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.startDestination = R.id.loginFragment
+        navGraph.setStartDestination(R.id.loginFragment)
         navHostFragment.navController.graph = navGraph
     }
 
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
         val graphInflater = navHostFragment.navController.navInflater
         val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.startDestination = R.id.mainFragment
+        navGraph.setStartDestination(R.id.mainFragment)
         navHostFragment.navController.graph = navGraph
     }
 }
