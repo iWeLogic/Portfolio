@@ -7,6 +7,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Portfolio"
-include ':presentation'
+include ':app'
 include ':domain'
 include ':data'
