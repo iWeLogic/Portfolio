@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.ui.sign_in
+package com.iwelogic.portfolio.ui.login
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,19 +8,19 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.iwelogic.portfolio.R
-import com.iwelogic.portfolio.databinding.FragmentSignInBinding
-import com.iwelogic.portfolio.ui.MainActivity
+import com.iwelogic.portfolio.databinding.FragmentLoginBinding
 import com.iwelogic.portfolio.ui.base.BaseFragment
-import com.iwelogic.portfolio.ui.main.MainFragmentDirections
+import com.iwelogic.portfolio.ui.main_fragment.MainFragmentDirections
+import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SignInFragment : BaseFragment<SignInViewModel>() {
+class LoginFragment : BaseFragment<LoginViewModel>() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val binding: FragmentSignInBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in, container, false)
+        val binding: FragmentLoginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.lifecycleOwner = this
-        viewModel = ViewModelProvider(this)[SignInViewModel::class.java]
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding.viewModel = viewModel
         subscribe()
         return binding.root
@@ -31,12 +31,12 @@ class SignInFragment : BaseFragment<SignInViewModel>() {
             (activity as MainActivity).openMain()
         }
         viewModel.openRegister.observe(this) {
-            if (findNavController().currentDestination?.id == R.id.signInFragment) {
+            if (findNavController().currentDestination?.id == R.id.loginFragment) {
                 findNavController().navigate(MainFragmentDirections.actionGlobalRegisterFragment())
             }
         }
         viewModel.openForgotPassword.observe(this) {
-            if (findNavController().currentDestination?.id == R.id.signInFragment) {
+            if (findNavController().currentDestination?.id == R.id.loginFragment) {
                 findNavController().navigate(MainFragmentDirections.actionGlobalForgotPasswordFragment(it))
             }
         }

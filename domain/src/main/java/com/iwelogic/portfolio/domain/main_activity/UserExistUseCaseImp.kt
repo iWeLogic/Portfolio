@@ -1,6 +1,7 @@
 package com.iwelogic.portfolio.domain.main_activity
 
-import com.iwelogic.portfolio.data.local_user.LocalUserRepository
+import com.iwelogic.portfolio.domain.LocalUserRepository
+import com.iwelogic.portfolio.domain.models.ExistStatus
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOn

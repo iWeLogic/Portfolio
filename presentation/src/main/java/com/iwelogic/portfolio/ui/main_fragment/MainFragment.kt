@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.ui.main
+package com.iwelogic.portfolio.ui.main_fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentMainBinding
-import com.iwelogic.portfolio.ui.MainActivity
+import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import com.iwelogic.portfolio.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 

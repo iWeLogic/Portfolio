@@ -1,9 +1,8 @@
 package com.iwelogic.portfolio.domain.register
 
 
-import com.iwelogic.portfolio.data.models.RegisterData
-import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.data.register.RegisterRepository
+import com.iwelogic.portfolio.domain.models.RegisterData
+import com.iwelogic.portfolio.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 
 class RegisterUseCaseImp(private val registerRepository: RegisterRepository) : RegisterUseCase {

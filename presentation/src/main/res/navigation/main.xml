@@ -2,15 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
-    app:startDestination="@id/signInFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.iwelogic.portfolio.ui.sign_in.SignInFragment"
-        android:label="SignInFragment" />
+        android:id="@+id/loginFragment"
+        android:name="com.iwelogic.portfolio.ui.login.LoginFragment"
+        android:label="LoginFragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.iwelogic.portfolio.ui.main.MainFragment"
+        android:name="com.iwelogic.portfolio.ui.main_fragment.MainFragment"
         android:label="MainFragment" />
     <fragment
         android:id="@+id/registerFragment"

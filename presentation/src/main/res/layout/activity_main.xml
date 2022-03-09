@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.ui.MainViewModel" />
+            type="com.iwelogic.portfolio.ui.main_activity.MainViewModel" />
     </data>
 
     <FrameLayout

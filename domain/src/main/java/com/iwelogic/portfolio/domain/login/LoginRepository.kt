@@ -5,7 +5,6 @@ import com.iwelogic.portfolio.domain.models.SignInData
 import com.iwelogic.portfolio.domain.models.User
 import kotlinx.coroutines.flow.Flow
 
-interface LoginUseCase {
-
+interface LoginRepository {
     fun login(data: SignInData): Flow<Result<User>>
 }

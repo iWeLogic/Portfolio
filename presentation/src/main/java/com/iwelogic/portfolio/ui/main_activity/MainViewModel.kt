@@ -1,9 +1,9 @@
-package com.iwelogic.portfolio.ui
+package com.iwelogic.portfolio.ui.main_activity
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.portfolio.domain.main_activity.ExistStatus
 import com.iwelogic.portfolio.domain.main_activity.UserExistUseCase
+import com.iwelogic.portfolio.domain.models.ExistStatus
 import com.iwelogic.portfolio.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineExceptionHandler

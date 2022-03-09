@@ -1,14 +1,15 @@
 package com.iwelogic.portfolio.data.login
 
 
-import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.data.models.SignInData
-import com.iwelogic.portfolio.data.models.User
 import com.iwelogic.portfolio.data.source.DataSource
+import com.iwelogic.portfolio.domain.login.LoginRepository
+import com.iwelogic.portfolio.domain.models.SignInData
+import com.iwelogic.portfolio.domain.models.User
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import com.iwelogic.portfolio.domain.models.Result
 
 class LoginRepositoryImp(private val dataSource: DataSource) : LoginRepository {
 

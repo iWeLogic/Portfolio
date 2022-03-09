@@ -1,8 +1,8 @@
-package com.iwelogic.portfolio.ui.main
+package com.iwelogic.portfolio.ui.main_fragment
 
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.portfolio.data.models.Result
 import com.iwelogic.portfolio.domain.main_fragment.LogoutUseCase
+import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.ui.base.BaseViewModel
 import com.iwelogic.portfolio.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel

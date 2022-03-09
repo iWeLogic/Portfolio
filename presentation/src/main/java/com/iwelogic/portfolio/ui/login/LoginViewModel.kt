@@ -1,12 +1,10 @@
-package com.iwelogic.portfolio.ui.sign_in
+package com.iwelogic.portfolio.ui.login
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.R
-import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.data.models.SignInData
-import com.iwelogic.portfolio.domain.login.LoginUseCase
+import com.iwelogic.portfolio.domain.models.Result
+import com.iwelogic.portfolio.domain.models.SignInData
 import com.iwelogic.portfolio.ui.base.BaseViewModel
 import com.iwelogic.portfolio.ui.base.SingleLiveEvent
 import com.iwelogic.portfolio.utils.isEmail
@@ -17,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseViewModel() {
+class LoginViewModel @Inject constructor(var loginUseCase: com.iwelogic.portfolio.domain.login.LoginUseCase) : BaseViewModel() {
 
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
@@ -68,16 +66,12 @@ class SignInViewModel @Inject constructor(var loginUseCase: LoginUseCase) : Base
 
         viewModelScope.launch {
             loginUseCase.login(SignInData(email.value, password.value)).catch {
-                it.printStackTrace()
-                Log.w("myLog", "onClickSignIn: ERROR $it")
+                warning.postValue(it.message)
             }.collect { result ->
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> {
-                        Log.w("myLog", "openMain: ")
-                        openMain.postValue(true)
-                    }
+                    is Result.Success -> openMain.postValue(true)
                     is Result.Error -> {
                         when (result.code) {
                             Result.Error.Code.NOT_CONFIRMED -> warning.postValue(result.message)
