@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom"
+    app:startDestination="@id/apps">
+
+    <navigation
+        android:id="@+id/info"
+        app:startDestination="@id/infoFragment">
+        <fragment
+            android:id="@+id/infoFragment"
+            android:name="com.iwelogic.portfolio.ui.info.InfoFragment"
+            android:label="InfoFragment" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/chat"
+        app:startDestination="@id/chatFragment">
+        <fragment
+            android:id="@+id/chatFragment"
+            android:name="com.iwelogic.portfolio.ui.chat.ChatFragment"
+            android:label="ChatFragment" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/apps"
+        app:startDestination="@id/appsFragment">
+        <fragment
+            android:id="@+id/appsFragment"
+            android:name="com.iwelogic.portfolio.ui.apps.AppsFragment"
+            android:label="AppsFragment" />
+    </navigation>
+
+    <navigation
+        android:id="@+id/news"
+        app:startDestination="@id/newsFragment">
+        <fragment
+            android:id="@+id/newsFragment"
+            android:name="com.iwelogic.portfolio.ui.news.NewsFragment"
+            android:label="NewsFragment" >
+            <action
+                android:id="@+id/action_newsFragment_to_newsDetailsFragment"
+                app:destination="@id/newsDetailsFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/newsDetailsFragment"
+            android:name="com.iwelogic.portfolio.ui.news.news_details.NewsDetailsFragment"
+            android:label="NewsDetailsFragment" />
+    </navigation>
+
+</navigation>
