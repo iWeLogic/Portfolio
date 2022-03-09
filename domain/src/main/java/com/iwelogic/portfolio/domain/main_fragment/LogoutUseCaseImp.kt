@@ -1,7 +1,7 @@
 package com.iwelogic.portfolio.domain.main_fragment
 
-import com.iwelogic.portfolio.data.local_user.LocalUserRepository
-import com.iwelogic.portfolio.data.models.Result
+import com.iwelogic.portfolio.domain.LocalUserRepository
+import com.iwelogic.portfolio.domain.models.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -16,6 +16,5 @@ class LogoutUseCaseImp(var localUserRepository: LocalUserRepository) : LogoutUse
             emit(Result.Success(null))
             emit(Result.Finish)
         }.flowOn(Dispatchers.IO)
-
     }
 }

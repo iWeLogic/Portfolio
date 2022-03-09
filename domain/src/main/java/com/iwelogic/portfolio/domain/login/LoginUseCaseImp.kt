@@ -1,11 +1,9 @@
 package com.iwelogic.portfolio.domain.login
 
-
-import com.iwelogic.portfolio.data.login.LoginRepository
-import com.iwelogic.portfolio.data.local_user.LocalUserRepository
-import com.iwelogic.portfolio.data.models.Result
-import com.iwelogic.portfolio.data.models.SignInData
-import com.iwelogic.portfolio.data.models.User
+import com.iwelogic.portfolio.domain.models.Result
+import com.iwelogic.portfolio.domain.models.SignInData
+import com.iwelogic.portfolio.domain.models.User
+import com.iwelogic.portfolio.domain.LocalUserRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 
