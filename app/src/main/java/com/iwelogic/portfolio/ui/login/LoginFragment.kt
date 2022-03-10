@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentLoginBinding
 import com.iwelogic.portfolio.ui.base.BaseFragment
-import com.iwelogic.portfolio.ui.main_fragment.MainFragmentDirections
 import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,12 +31,12 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
         }
         viewModel.openRegister.observe(this) {
             if (findNavController().currentDestination?.id == R.id.loginFragment) {
-                findNavController().navigate(MainFragmentDirections.actionGlobalRegisterFragment())
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
             }
         }
         viewModel.openForgotPassword.observe(this) {
             if (findNavController().currentDestination?.id == R.id.loginFragment) {
-                findNavController().navigate(MainFragmentDirections.actionGlobalForgotPasswordFragment(it))
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment(it))
             }
         }
     }
