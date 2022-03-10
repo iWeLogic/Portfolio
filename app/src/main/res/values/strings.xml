@@ -14,4 +14,10 @@
     <string name="logo">Logo</string>
     <string name="back">Back</string>
     <string name="profile">Profile</string>
+    <string name="apps">Apps</string>
+    <string name="news">News</string>
+    <string name="chat">Chat</string>
+    <string name="info">Info</string>
+    <string name="news_image">News image</string>
+    <string name="make_sure_internet_is_turned_on">Make sure Wi-Fi or cellular data is turned on</string>
 </resources>

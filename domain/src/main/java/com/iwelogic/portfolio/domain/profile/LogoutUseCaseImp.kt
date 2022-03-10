@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.main_fragment
+package com.iwelogic.portfolio.domain.profile
 
 import com.iwelogic.portfolio.domain.LocalUserRepository
 import com.iwelogic.portfolio.domain.models.Result

@@ -1,8 +1,8 @@
-package com.iwelogic.portfolio.ui.main_fragment
+package com.iwelogic.portfolio.ui.profile
 
 import com.iwelogic.portfolio.domain.LocalUserRepository
-import com.iwelogic.portfolio.domain.main_fragment.LogoutUseCase
-import com.iwelogic.portfolio.domain.main_fragment.LogoutUseCaseImp
+import com.iwelogic.portfolio.domain.profile.LogoutUseCase
+import com.iwelogic.portfolio.domain.profile.LogoutUseCaseImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

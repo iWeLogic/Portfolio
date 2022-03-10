@@ -7,4 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface LoginRepository {
     fun login(data: SignInData): Flow<Result<User>>
+
+    suspend fun resendConfirmation(login: String?)
 }

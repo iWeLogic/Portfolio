@@ -1,12 +1,8 @@
 package com.iwelogic.portfolio.data
 
-import com.iwelogic.portfolio.domain.models.RegisterData
-import com.iwelogic.portfolio.domain.models.SignInData
-import com.iwelogic.portfolio.domain.models.User
+import com.iwelogic.portfolio.domain.models.*
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface Api {
 
@@ -18,4 +14,10 @@ interface Api {
 
     @POST("/api/users/resendconfirmation/{email}")
     suspend fun resendEmailConfirmation(@Path("email") email: String?): Response<Void>
+
+    @GET("/api/data/apps")
+    suspend fun getApps(): Response<List<App>>
+
+    @GET("/api/data/news")
+    suspend fun getNews(@Query("pageSize") pageSize: Int, @Query("offset") offset: Int): Response<List<News>>
 }
