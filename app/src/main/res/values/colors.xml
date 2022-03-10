@@ -5,6 +5,7 @@
     <color name="error">#F45656</color>
     <color name="gray">#D5D5D5</color>
     <color name="buttonTextColor">#FFFFFF</color>
+    <color name="white">#FFFFFF</color>
     <color name="buttonColor">#0148A4</color>
     <color name="buttonPressedColor">#0158CA</color>
     <color name="blockInside">#FFFFFF</color>

@@ -21,6 +21,8 @@ sealed class Result<out T> {
 
             UNKNOWN,
 
+            NO_CONNECTION,
+
             AUTH;
         }
     }

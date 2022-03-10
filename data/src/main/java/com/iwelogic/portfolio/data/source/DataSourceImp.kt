@@ -1,12 +1,16 @@
 package com.iwelogic.portfolio.data.source
 
+import android.content.Context
 import com.google.gson.Gson
 import com.iwelogic.portfolio.data.Api
+import com.iwelogic.portfolio.data.R
 import com.iwelogic.portfolio.domain.models.*
+import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
+import java.net.UnknownHostException
 import javax.inject.Inject
 
-class DataSourceImp @Inject constructor(private val api: Api) : DataSource {
+class DataSourceImp (private val api: Api, val context: Context) : DataSource {
 
     override suspend fun register(data: RegisterData): Result<User> {
         return getResponse(request = { api.register(data) })
@@ -18,6 +22,14 @@ class DataSourceImp @Inject constructor(private val api: Api) : DataSource {
 
     override suspend fun resendEmailConfirmation(email: String?): Result<Void> {
         return getResponse(request = { api.resendEmailConfirmation(email) })
+    }
+
+    override suspend fun getNews(pageSize: Int, offset: Int): Result<List<News>> {
+        return getResponse(request = { api.getNews(pageSize, offset) })
+    }
+
+    override suspend fun getApps(): Result<List<App>> {
+        return getResponse(request = { api.getApps() })
     }
 
     @Suppress("BlockingMethodInNonBlockingContext")
@@ -36,8 +48,10 @@ class DataSourceImp @Inject constructor(private val api: Api) : DataSource {
                 }
             }
         } catch (e: Throwable) {
-            e.printStackTrace()
-            Result.Error(Result.Error.Code.UNKNOWN, e.message)
+            when (e) {
+                is UnknownHostException -> Result.Error(Result.Error.Code.NO_CONNECTION, context.getString(R.string.make_sure_internet_is_turned_on))
+                else -> Result.Error(Result.Error.Code.UNKNOWN, e.message)
+            }
         }
     }
 }

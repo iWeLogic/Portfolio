@@ -1,9 +1,6 @@
 package com.iwelogic.portfolio.data.source
 
-import com.iwelogic.portfolio.domain.models.RegisterData
-import com.iwelogic.portfolio.domain.models.SignInData
-import com.iwelogic.portfolio.domain.models.User
-import com.iwelogic.portfolio.domain.models.Result
+import com.iwelogic.portfolio.domain.models.*
 
 interface DataSource {
 
@@ -12,4 +9,8 @@ interface DataSource {
     suspend fun login(data: SignInData): Result<User>
 
     suspend fun resendEmailConfirmation(email: String?): Result<Void>
+
+    suspend fun getNews(pageSize: Int, offset: Int): Result<List<News>>
+
+    suspend fun getApps(): Result<List<App>>
 }

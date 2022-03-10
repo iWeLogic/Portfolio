@@ -26,7 +26,7 @@ inline fun <reified T> List<T>?.deepCopy(): List<T>? {
     this?.forEach {
         temp.add(gson.fromJson(gson.toJson(it), T::class.java))
     }
-    return if(this == null) null else temp.toList()
+    return if (this == null) null else temp.toList()
 }
 
 fun Boolean?.isTrue(action: () -> Unit) {
@@ -37,6 +37,10 @@ fun Boolean?.isTrue(action: () -> Unit) {
 
 fun Boolean?.isTrue(): Boolean {
     return this == true
+}
+
+fun Int?.value(): Int {
+    return this ?: 0
 }
 
 suspend inline fun <T> Flow<T>.safeCollect(crossinline action: suspend (T) -> Unit) {
@@ -80,11 +84,11 @@ fun View.accessibilityStatus(status: Boolean) {
     }
 }
 
-inline fun <reified T> ViewGroup.getFirstChildByType() : T? {
+inline fun <reified T> ViewGroup.getFirstChildByType(): T? {
     val foundChild: T? = null
     val childrenCount = childCount
     Log.w("myLog", "getFirstChildByType: 0")
-    for (i in 0..childrenCount){
+    for (i in 0..childrenCount) {
         val view = getChildAt(i)
         Log.w("myLog", "getFirstChildByType: 1")
         return null
