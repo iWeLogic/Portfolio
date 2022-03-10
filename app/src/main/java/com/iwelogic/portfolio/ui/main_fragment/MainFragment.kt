@@ -1,7 +1,6 @@
 package com.iwelogic.portfolio.ui.main_fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentMainBinding
 import com.iwelogic.portfolio.ui.base.BaseFragment
-import com.iwelogic.portfolio.ui.main_activity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,16 +28,16 @@ class MainFragment : BaseFragment<MainViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.openLogin.observe(this) {
-            (activity as MainActivity).openLogin()
+        viewModel.openProfile.observe(this) {
+            if (findNavController().currentDestination?.id == R.id.mainFragment) {
+                findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
+            }
         }
-
     }
 
     override fun onStart() {
         super.onStart()
-        Log.w("myLog", "onViewCreated: 1")
         val navHostFragment = childFragmentManager.findFragmentById(R.id.bottomNavigationContainer)
-        NavigationUI.setupWithNavController(view!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView), (navHostFragment  as NavHostFragment).navController)
+        NavigationUI.setupWithNavController(view!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView), (navHostFragment as NavHostFragment).navController)
     }
 }

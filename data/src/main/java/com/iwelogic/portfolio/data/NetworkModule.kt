@@ -27,8 +27,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(api: Api): DataSource {
-        return DataSourceImp(api)
+    fun provideDataSource(api: Api, @ApplicationContext context: Context): DataSource {
+        return DataSourceImp(api, context)
     }
 
     @Provides
@@ -74,7 +74,7 @@ object NetworkModule {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         val builder = OkHttpClient.Builder()
-        builder.addInterceptor(com.iwelogic.portfolio.data.HeaderInterceptor(appContext))
+        builder.addInterceptor(HeaderInterceptor(appContext))
         builder.addInterceptor(logging)
         builder.connectTimeout(30, TimeUnit.SECONDS)
         builder.writeTimeout(30, TimeUnit.SECONDS)

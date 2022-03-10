@@ -7,18 +7,26 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.iwelogic.portfolio.ui.login.LoginFragment"
-        android:label="LoginFragment" />
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.iwelogic.portfolio.ui.main_fragment.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.iwelogic.portfolio.ui.register.RegisterFragment"
         android:label="RegisterFragment" />
-    <action
-        android:id="@+id/action_global_registerFragment"
-        app:destination="@id/registerFragment" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
         android:name="com.iwelogic.portfolio.ui.forgot_password.ForgotPasswordFragment"
@@ -28,8 +36,9 @@
             app:argType="string"
             app:nullable="true" />
     </fragment>
-    <action
-        android:id="@+id/action_global_forgotPasswordFragment"
-        app:destination="@id/forgotPasswordFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.iwelogic.portfolio.ui.profile.ProfileFragment"
+        android:label="ProfileFragment" />
 
 </navigation>
