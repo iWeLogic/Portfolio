@@ -20,11 +20,16 @@ class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase) : 
     val apps: MutableLiveData<List<App>> = MutableLiveData(ArrayList())
 
     init {
-        load()
+        onReload()
     }
 
-    private fun load() {
+    val onClick: (App) -> Unit = {
+
+    }
+
+    override fun onReload() {
         error.postValue(null)
+        apps.postValue(ArrayList())
         viewModelScope.launch {
             appsUseCase.getApps().catch {
                 error.postValue(it.message)

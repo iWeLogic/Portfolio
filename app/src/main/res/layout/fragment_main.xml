@@ -28,7 +28,7 @@
                 android:layout_marginEnd="@dimen/default_size"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
-                android:text="@string/apps"
+                android:text="@{viewModel.title}"
                 android:textColor="@color/white"
                 android:textSize="20sp" />
 
@@ -67,4 +67,5 @@
             app:menu="@menu/bottom" />
 
     </LinearLayout>
+
 </layout>

@@ -33,11 +33,17 @@ class MainFragment : BaseFragment<MainViewModel>() {
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
             }
         }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val navHostFragment = childFragmentManager.findFragmentById(R.id.bottomNavigationContainer)
-        NavigationUI.setupWithNavController(view!!.findViewById<BottomNavigationView>(R.id.bottomNavigationView), (navHostFragment as NavHostFragment).navController)
+        val navController = (childFragmentManager.findFragmentById(R.id.bottomNavigationContainer) as NavHostFragment).navController
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            viewModel.title.postValue(
+                when (destination.id) {
+                    R.id.appsFragment -> view.context.getString(R.string.apps)
+                    R.id.newsFragment -> view.context.getString(R.string.news)
+                    R.id.chatFragment -> view.context.getString(R.string.chat)
+                    else -> view.context.getString(R.string.info)
+                }
+            )
+        }
+        NavigationUI.setupWithNavController(view.findViewById<BottomNavigationView>(R.id.bottomNavigationView), navController)
     }
 }

@@ -11,12 +11,7 @@ import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.ItemNewsBinding
 import com.iwelogic.portfolio.domain.models.News
 
-class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, RecyclerView.ViewHolder>(
-    object : DiffUtil.ItemCallback<News>() {
-        override fun areItemsTheSame(oldItem: News, newItem: News): Boolean = oldItem.id == newItem.id
-        override fun areContentsTheSame(oldItem: News, newItem: News): Boolean = oldItem == newItem
-    }
-) {
+class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, RecyclerView.ViewHolder>(ComparatorNews) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == 0) {
@@ -47,4 +42,9 @@ class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, Recyc
     override fun getItemViewType(position: Int): Int {
         return if (getItem(position) == News.getLoadingItem()) 0 else 1
     }
+}
+
+object ComparatorNews : DiffUtil.ItemCallback<News>() {
+    override fun areItemsTheSame(oldItem: News, newItem: News): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: News, newItem: News): Boolean = oldItem == newItem
 }
