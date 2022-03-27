@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -40,5 +43,13 @@
         android:id="@+id/profileFragment"
         android:name="com.iwelogic.portfolio.ui.profile.ProfileFragment"
         android:label="ProfileFragment" />
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.iwelogic.portfolio.ui.news.news_details.NewsDetailsFragment"
+        android:label="NewsDetailsFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.iwelogic.portfolio.domain.models.News" />
+    </fragment>
 
 </navigation>

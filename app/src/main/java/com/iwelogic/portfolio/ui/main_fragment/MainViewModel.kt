@@ -12,10 +12,6 @@ class MainViewModel @Inject constructor() : BaseViewModel() {
     val openProfile: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val title: MutableLiveData<String> = MutableLiveData()
 
-    val onMenuItemChangeListener: (String) -> Unit = {
-        title.postValue(it)
-    }
-
     fun onClickProfile() {
         openProfile.postValue(true)
     }

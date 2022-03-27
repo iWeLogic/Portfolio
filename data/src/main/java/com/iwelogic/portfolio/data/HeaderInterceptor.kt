@@ -14,13 +14,13 @@ class HeaderInterceptor constructor(context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var versionName: String? = null
         var versionCode: Long? = null
-        try {
+     /*   try {
             val pInfo: PackageInfo? = context.get()?.packageManager?.getPackageInfo(context.get()?.packageName ?: "", 0)
             versionName = pInfo?.versionName?.toString()
             versionCode = getLongVersionCode(pInfo!!)
         } catch (e: Exception) {
             e.printStackTrace()
-        }
+        }*/
 
         val request = chain.request().newBuilder()
             .header("CLIENT_APP_PLATFORM", "Android")

@@ -1,8 +1,13 @@
 package com.iwelogic.portfolio.domain.models
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class News(
+
+    var type: CellType = CellType.SIMPLE,
 
     @field:SerializedName("id")
     val id: Int? = null,
@@ -14,11 +19,10 @@ data class News(
     val description: String? = null,
 
     @field:SerializedName("image")
-    val image: String? = null,
-) {
-    companion object {
-        const val LOADING = -1
+    val image: String? = null
 
-        fun getLoadingItem() = News(id = LOADING)
+) : Parcelable {
+    companion object {
+        fun getProgressItem() = News().apply { type = CellType.PROGRESS }
     }
 }

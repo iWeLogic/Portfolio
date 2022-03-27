@@ -21,7 +21,8 @@ fun Context.fromDpToPx(value: Int): Int {
     return (value.toFloat() * resources.displayMetrics.density).toInt()
 }
 
-fun Int.dp(context: Context?): Int {
+fun Int?.dp(context: Context?): Int {
+    if (this == null) return 0
     return (toFloat() * (context?.resources?.displayMetrics?.density ?: 1f)).toInt()
 }
 
@@ -43,7 +44,7 @@ fun Context.getUserCountry(): String {
 }
 
 @SuppressLint("PackageManagerGetSignatures")
-fun Context.getSHA1FingerPrint(){
+fun Context.getSHA1FingerPrint() {
     val info: PackageInfo
     try {
         info = packageManager.getPackageInfo(applicationContext.packageName, PackageManager.GET_SIGNATURES)
@@ -62,8 +63,8 @@ fun Context.getSHA1FingerPrint(){
     }
 }
 
-fun Context.copyToClipboard(text: CharSequence){
+fun Context.copyToClipboard(text: CharSequence) {
     val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-    val clip = ClipData.newPlainText("label",text)
+    val clip = ClipData.newPlainText("label", text)
     clipboard.setPrimaryClip(clip)
 }

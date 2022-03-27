@@ -2,6 +2,7 @@ package com.iwelogic.portfolio.ui.news
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.iwelogic.portfolio.domain.models.CellType
 import com.iwelogic.portfolio.domain.models.News
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.domain.news.NewsUseCase
@@ -23,7 +24,7 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
         const val PAGE_SIZE = 8
     }
 
-    val openDetails: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val openDetails: SingleLiveEvent<News> = SingleLiveEvent()
     val news: MutableLiveData<MutableList<News>> = MutableLiveData(ArrayList())
     var canLoadMore = true
 
@@ -64,7 +65,7 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
     }
 
     val onClickItem: (News) -> Unit = {
-        openDetails.postValue(true)
+        openDetails.postValue(it)
     }
 
     override fun onReload() {
@@ -75,19 +76,19 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
         load()
     }
 
-    private fun getOffset() = news.value?.filter { it != News.getLoadingItem() }?.size ?: 0
+    private fun getOffset() = news.value?.filter { it.type == CellType.SIMPLE }?.size ?: 0
 
     private fun showProgress(status: Boolean) {
         if (status) {
             if (news.value.isNullOrEmpty()) {
                 progress.postValue(true)
             } else {
-                news.value?.add(News.getLoadingItem())
+                news.value?.add(News.getProgressItem())
                 news.postValue(news.value)
             }
         } else {
             progress.postValue(false)
-            news.value?.remove(News.getLoadingItem())
+            news.value?.remove(News.getProgressItem())
             news.postValue(news.value)
         }
     }

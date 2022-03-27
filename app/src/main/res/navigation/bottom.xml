@@ -38,16 +38,8 @@
         <fragment
             android:id="@+id/newsFragment"
             android:name="com.iwelogic.portfolio.ui.news.NewsFragment"
-            android:label="NewsFragment" >
-            <action
-                android:id="@+id/action_newsFragment_to_newsDetailsFragment"
-                app:destination="@id/newsDetailsFragment" />
-        </fragment>
+            android:label="NewsFragment" />
 
-        <fragment
-            android:id="@+id/newsDetailsFragment"
-            android:name="com.iwelogic.portfolio.ui.news.news_details.NewsDetailsFragment"
-            android:label="NewsDetailsFragment" />
     </navigation>
 
 </navigation>

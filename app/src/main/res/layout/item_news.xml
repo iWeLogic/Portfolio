@@ -24,7 +24,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:contentDescription="@string/news_image"
-                android:scaleType="centerCrop"
                 app:layout_constraintDimensionRatio="34:19"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

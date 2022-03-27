@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.FragmentNewsBinding
 import com.iwelogic.portfolio.ui.base.BaseFragment
+import com.iwelogic.portfolio.ui.main_fragment.MainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -26,7 +27,8 @@ class NewsFragment : BaseFragment<NewsViewModel>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.openDetails.observe(this) {
-            findNavController().navigate(NewsFragmentDirections.actionNewsFragmentToNewsDetailsFragment())
+            if (parentFragment?.parentFragment?.findNavController()?.currentDestination?.id == R.id.mainFragment)
+                parentFragment?.parentFragment?.findNavController()?.navigate(MainFragmentDirections.actionMainFragmentToNewsDetailsFragment(it))
         }
     }
 }

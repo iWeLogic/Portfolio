@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="com.iwelogic.portfolio.bind.BaseBind.ScaleType"/>
+
         <variable
             name="item"
             type="com.iwelogic.portfolio.domain.models.App" />
@@ -23,7 +25,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/news_image"
-            android:scaleType="centerCrop"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/title"

@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iwelogic.portfolio.R
 import com.iwelogic.portfolio.databinding.ItemNewsBinding
+import com.iwelogic.portfolio.domain.models.CellType
 import com.iwelogic.portfolio.domain.models.News
 
 class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, RecyclerView.ViewHolder>(ComparatorNews) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return if (viewType == 0) {
-            ProgressViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_progress, parent, false))
-        } else {
-            NewsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_news, parent, false))
+        return when (viewType) {
+            CellType.PROGRESS.id -> ProgressViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_progress, parent, false))
+            else -> NewsViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_news, parent, false))
         }
     }
 
@@ -39,9 +39,7 @@ class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, Recyc
 
     internal inner class ProgressViewHolder(view: View) : RecyclerView.ViewHolder(view)
 
-    override fun getItemViewType(position: Int): Int {
-        return if (getItem(position) == News.getLoadingItem()) 0 else 1
-    }
+    override fun getItemViewType(position: Int) = getItem(position).type.id
 }
 
 object ComparatorNews : DiffUtil.ItemCallback<News>() {
