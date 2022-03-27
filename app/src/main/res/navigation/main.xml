@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.iwelogic.portfolio.ui.login.LoginFragment"
+        android:name="com.iwelogic.portfolio.ui.sign_in.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.iwelogic.portfolio.ui.main_fragment.MainFragment"
+        android:name="com.iwelogic.portfolio.ui.main.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
@@ -28,11 +28,11 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.iwelogic.portfolio.ui.register.RegisterFragment"
+        android:name="com.iwelogic.portfolio.ui.sign_in.register.RegisterFragment"
         android:label="RegisterFragment" />
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.iwelogic.portfolio.ui.forgot_password.ForgotPasswordFragment"
+        android:name="com.iwelogic.portfolio.ui.sign_in.forgot_password.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment">
         <argument
             android:name="email"
@@ -41,11 +41,11 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.iwelogic.portfolio.ui.profile.ProfileFragment"
+        android:name="com.iwelogic.portfolio.ui.main.profile.ProfileFragment"
         android:label="ProfileFragment" />
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.iwelogic.portfolio.ui.news.news_details.NewsDetailsFragment"
+        android:name="com.iwelogic.portfolio.ui.main.news.news_details.NewsDetailsFragment"
         android:label="NewsDetailsFragment" >
         <argument
             android:name="data"

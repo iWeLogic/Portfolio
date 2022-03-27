@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.ui.chat.ChatViewModel" />
+            type="com.iwelogic.portfolio.ui.main.chat.ChatViewModel" />
     </data>
 
     <FrameLayout

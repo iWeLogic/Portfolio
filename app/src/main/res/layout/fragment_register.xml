@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.ui.register.RegisterViewModel" />
+            type="com.iwelogic.portfolio.ui.sign_in.register.RegisterViewModel" />
     </data>
 
     <LinearLayout

@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.ui.news.news_details.NewsDetailsViewModel" />
+            type="com.iwelogic.portfolio.ui.main.news.news_details.NewsDetailsViewModel" />
     </data>
 
     <LinearLayout

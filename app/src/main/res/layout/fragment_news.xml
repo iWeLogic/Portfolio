@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.ui.news.NewsViewModel" />
+            type="com.iwelogic.portfolio.ui.main.news.NewsViewModel" />
     </data>
 
     <FrameLayout
