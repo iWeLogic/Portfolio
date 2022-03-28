@@ -23,12 +23,12 @@
     </navigation>
 
     <navigation
-        android:id="@+id/chat"
-        app:startDestination="@id/chatFragment">
+        android:id="@+id/feedbacks"
+        app:startDestination="@id/feedbacksFragment">
         <fragment
-            android:id="@+id/chatFragment"
-            android:name="com.iwelogic.portfolio.ui.main.chat.ChatFragment"
-            android:label="ChatFragment" />
+            android:id="@+id/feedbacksFragment"
+            android:name="com.iwelogic.portfolio.ui.main.feedbacks.FeedbacksFragment"
+            android:label="FeedbacksFragment" />
     </navigation>
 
     <navigation

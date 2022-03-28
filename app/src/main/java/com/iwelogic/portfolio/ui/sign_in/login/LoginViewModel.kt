@@ -3,6 +3,7 @@ package com.iwelogic.portfolio.ui.sign_in.login
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.R
+import com.iwelogic.portfolio.domain.login.LoginUseCase
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.domain.models.SignInData
 import com.iwelogic.portfolio.ui.base.BaseViewModel
@@ -15,7 +16,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(var loginUseCase: com.iwelogic.portfolio.domain.login.LoginUseCase) : BaseViewModel() {
+class LoginViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseViewModel() {
 
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()

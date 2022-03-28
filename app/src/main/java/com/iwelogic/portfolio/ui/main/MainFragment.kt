@@ -39,7 +39,7 @@ class MainFragment : BaseFragment<MainViewModel>() {
                 when (destination.id) {
                     R.id.appsFragment -> view.context.getString(R.string.apps)
                     R.id.newsFragment -> view.context.getString(R.string.news)
-                    R.id.chatFragment -> view.context.getString(R.string.chat)
+                    R.id.feedbacksFragment -> view.context.getString(R.string.feedbacks)
                     else -> view.context.getString(R.string.info)
                 }
             )
