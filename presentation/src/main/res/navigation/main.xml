@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.iwelogic.portfolio.presentation.sign_in.login.LoginFragment"
+        android:label="LoginFragment" >
+        <action
+            android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
+            app:destination="@id/forgotPasswordFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.iwelogic.portfolio.presentation.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_newsDetailsFragment"
+            app:destination="@id/newsDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.iwelogic.portfolio.presentation.sign_in.register.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment_to_choosePictureSourceDialog"
+            app:destination="@id/choosePictureSourceDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/forgotPasswordFragment"
+        android:name="com.iwelogic.portfolio.presentation.sign_in.forgot_password.ForgotPasswordFragment"
+        android:label="ForgotPasswordFragment">
+        <argument
+            android:name="email"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.iwelogic.portfolio.presentation.main.profile.ProfileFragment"
+        android:label="ProfileFragment" >
+        <action
+            android:id="@+id/action_profileFragment_to_choosePictureSourceDialog"
+            app:destination="@id/choosePictureSourceDialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/newsDetailsFragment"
+        android:name="com.iwelogic.portfolio.presentation.main.news.news_details.NewsDetailsFragment"
+        android:label="NewsDetailsFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.iwelogic.portfolio.domain.models.News" />
+    </fragment>
+    <dialog
+        android:id="@+id/choosePictureSourceDialog"
+        android:name="com.iwelogic.portfolio.presentation.main.choose_picture_source.ChoosePictureSourceDialog"
+        android:label="ChoosePictureSourceDialog" />
+
+</navigation>

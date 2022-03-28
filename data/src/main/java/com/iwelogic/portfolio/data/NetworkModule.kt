@@ -1,12 +1,12 @@
-package com.iwelogic.portfolio.data
+package com.iwelogic.portfolio.presentation
 
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.iwelogic.portfolio.data.BuildConfig.BACKEND_URL
-import com.iwelogic.portfolio.data.source.DataSource
-import com.iwelogic.portfolio.data.source.DataSourceImp
+import com.iwelogic.portfolio.presentation.source.DataSource
+import com.iwelogic.portfolio.presentation.source.DataSourceImp
 import com.iwelogic.portfolio.domain.LocalUserRepository
 import dagger.Module
 import dagger.Provides
@@ -65,7 +65,7 @@ object NetworkModule {
     @Singleton
     fun provideGson(): Gson? {
         return GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            .excludeFieldsWithoutExposeAnnotation()
             .create()
     }
 

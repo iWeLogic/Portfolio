@@ -3,7 +3,7 @@
     package="com.iwelogic.portfolio">
 
     <application
-        android:name=".App"
+        android:name=".app.App"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IWeLogic">
         <activity
-            android:name=".ui.MainActivity"
+            android:name="com.iwelogic.portfolio.presentation.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
