@@ -23,6 +23,12 @@ sealed class Result<out T> {
 
             NO_CONNECTION,
 
+            WRONG_EMAIL,
+
+            PASSWORD_TOO_SHORT,
+
+            PASSWORDS_DONT_MATCH,
+
             AUTH;
         }
     }

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.iwelogic.portfolio.presentation.sign_in.register.RegisterViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/toolbar"
+            android:layout_height="@dimen/toolbar"
+            android:background="?attr/actionBarItemBackground"
+            android:contentDescription="@string/back"
+            android:onClick="@{() -> viewModel.onClickClose()}"
+            android:scaleType="centerInside"
+            android:src="@drawable/back" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:overScrollMode="never">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_size">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@{viewModel.emailError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
+                        android:contentDescription="@string/email_address"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.email}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/double_default_size"
+                        android:text="@{viewModel.emailError}"
+                        android:textColor="@color/error" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/first_name"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@drawable/background_edit_field"
+                        android:contentDescription="@string/first_name"
+                        android:inputType="textPersonName"
+                        android:text="@={viewModel.email}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:text="@string/last_name"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@drawable/background_edit_field"
+                        android:contentDescription="@string/last_name"
+                        android:inputType="textPersonName"
+                        android:text="@={viewModel.email}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:text="@string/password"
+                        android:textSize="14sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditField"
+                            android:background="@{viewModel.passwordTwoError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
+                            android:inputType="textPassword"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:text="@={viewModel.passwordTwo}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/default_size"
+                        android:text="@{viewModel.passwordOneError}"
+                        android:textColor="@color/error" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/half_default_size"
+
+                        android:text="@string/password"
+                        android:textSize="14sp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditField"
+                            android:background="@{viewModel.passwordTwoError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
+                            android:inputType="textPassword"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:text="@={viewModel.passwordTwo}" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="@dimen/default_size"
+                        android:text="@{viewModel.passwordTwoError}"
+                        android:textColor="@color/error" />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Register" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</layout>

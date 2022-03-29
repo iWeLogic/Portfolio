@@ -1,12 +1,13 @@
-package com.iwelogic.portfolio.data
+package com.iwelogic.portfolio.presentation
 
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.iwelogic.portfolio.data.BuildConfig.BACKEND_URL
-import com.iwelogic.portfolio.data.source.DataSource
-import com.iwelogic.portfolio.data.source.DataSourceImp
+import com.iwelogic.portfolio.presentation.source.DataSource
+import com.iwelogic.portfolio.presentation.source.DataSourceImp
+import com.iwelogic.portfolio.domain.LocalUserRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -64,17 +65,23 @@ object NetworkModule {
     @Singleton
     fun provideGson(): Gson? {
         return GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'")
+            .excludeFieldsWithoutExposeAnnotation()
             .create()
     }
 
     @Provides
     @Singleton
-    fun provideOkHttpClient(@ApplicationContext appContext: Context): OkHttpClient {
+    fun provideHeaderInterceptor(@ApplicationContext applicationContext: Context, localUserRepository: LocalUserRepository): HeaderInterceptor {
+        return HeaderInterceptor(applicationContext, localUserRepository)
+    }
+
+    @Provides
+    @Singleton
+    fun provideOkHttpClient(headerInterceptor: HeaderInterceptor): OkHttpClient {
         val logging = HttpLoggingInterceptor()
         logging.level = HttpLoggingInterceptor.Level.BODY
         val builder = OkHttpClient.Builder()
-        builder.addInterceptor(HeaderInterceptor(appContext))
+        builder.addInterceptor(headerInterceptor)
         builder.addInterceptor(logging)
         builder.connectTimeout(30, TimeUnit.SECONDS)
         builder.writeTimeout(30, TimeUnit.SECONDS)

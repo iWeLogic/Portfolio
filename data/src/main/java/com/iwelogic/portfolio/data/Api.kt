@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.data
+package com.iwelogic.portfolio.presentation
 
 import com.iwelogic.portfolio.domain.models.*
 import retrofit2.Response
