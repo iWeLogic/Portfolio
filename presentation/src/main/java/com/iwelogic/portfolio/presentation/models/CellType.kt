@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.domain.models
+package com.iwelogic.portfolio.data.models
 
 enum class CellType(val id: Int) {
     SIMPLE(0),

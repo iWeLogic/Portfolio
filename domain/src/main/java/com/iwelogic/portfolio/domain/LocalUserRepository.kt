@@ -1,13 +1,13 @@
 package com.iwelogic.portfolio.domain
 
-import com.iwelogic.portfolio.domain.models.User
+import com.iwelogic.portfolio.domain.models.DomainUser
 import kotlinx.coroutines.flow.Flow
 
 interface LocalUserRepository {
 
-    val userFlow: Flow<User>
+    val userFlow: Flow<DomainUser>
 
-    suspend fun updateUserPreference(user: User)
+    suspend fun updateUserPreference(user: DomainUser)
 
     suspend fun clearData()
 }

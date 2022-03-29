@@ -1,6 +1,7 @@
-package com.iwelogic.portfolio.presentation.sign_in.login
+package com.iwelogic.portfolio.data.sign_in.login
 
-import com.iwelogic.portfolio.presentation.source.DataSource
+import com.iwelogic.portfolio.data.sign_in.login.LoginRepositoryImp
+import com.iwelogic.portfolio.data.source.DataSource
 import com.iwelogic.portfolio.domain.sign_in.login.LoginRepository
 import dagger.Module
 import dagger.Provides

@@ -3,7 +3,7 @@ package com.iwelogic.portfolio.domain.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class SignInData(
+data class DomainSignIn(
 
     @field:SerializedName("login")
     @Expose

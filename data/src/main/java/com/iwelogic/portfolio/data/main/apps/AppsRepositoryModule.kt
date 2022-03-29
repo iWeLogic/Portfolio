@@ -1,6 +1,6 @@
-package com.iwelogic.portfolio.presentation.main.apps
+package com.iwelogic.portfolio.data.main.apps
 
-import com.iwelogic.portfolio.presentation.source.DataSource
+import com.iwelogic.portfolio.data.source.DataSource
 import com.iwelogic.portfolio.domain.main.apps.AppsRepository
 import dagger.Module
 import dagger.Provides
@@ -15,6 +15,6 @@ object AppsRepositoryModule {
     @Provides
     @Singleton
     fun provideAppsRepository(dataSource: DataSource): AppsRepository {
-        return AppsRepositoryImp(dataSource)
+        return AppsRepositoryImp(dataSource, AppDataDomainMapper())
     }
 }

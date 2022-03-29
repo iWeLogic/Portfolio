@@ -6,9 +6,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.iwelogic.portfolio.data.models.App
 import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.presentation.databinding.ItemAppBinding
-import com.iwelogic.portfolio.domain.models.App
 
 class AppAdapter(private val onClick: (App) -> Unit) : ListAdapter<App, RecyclerView.ViewHolder>(ComparatorApp) {
 

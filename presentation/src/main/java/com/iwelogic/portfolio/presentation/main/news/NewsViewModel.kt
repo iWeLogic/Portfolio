@@ -2,20 +2,21 @@ package com.iwelogic.portfolio.presentation.main.news
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.portfolio.domain.models.CellType
-import com.iwelogic.portfolio.domain.models.News
-import com.iwelogic.portfolio.domain.main.news.NewsUseCase
-import com.iwelogic.portfolio.presentation.base.BaseViewModel
-import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
 import com.iwelogic.portfolio.core.utils.isTrue
 import com.iwelogic.portfolio.core.utils.value
+import com.iwelogic.portfolio.data.models.CellType
+import com.iwelogic.portfolio.data.models.News
+import com.iwelogic.portfolio.domain.main.news.NewsUseCase
+import com.iwelogic.portfolio.domain.models.DomainNews
+import com.iwelogic.portfolio.domain.models.Result
+import com.iwelogic.portfolio.presentation.base.BaseViewModel
+import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.iwelogic.portfolio.domain.models.Result
 
 
 @HiltViewModel
@@ -51,10 +52,15 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
                 when (result) {
                     is Result.Loading -> showProgress(true)
                     is Result.Finish -> showProgress(false)
-                    is Result.Success -> result.data?.let {
-                        news.value?.addAll(it)
-                        news.postValue(news.value)
-                        if (it.size < PAGE_SIZE) canLoadMore = false
+                    is Result.Success -> {
+
+                        result.data?.map {
+                            News(type = CellType.SIMPLE, id = it.id, title = it.title, description = it.description)
+                        }?.let {
+                            news.value?.addAll(it)
+                            news.postValue(news.value)
+                            if (it.size < PAGE_SIZE) canLoadMore = false
+                        }
                     }
                     is Result.Error -> {
                         canLoadMore = false

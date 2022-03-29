@@ -7,10 +7,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.iwelogic.portfolio.data.models.CellType
+import com.iwelogic.portfolio.data.models.News
 import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.presentation.databinding.ItemNewsBinding
-import com.iwelogic.portfolio.domain.models.CellType
-import com.iwelogic.portfolio.domain.models.News
 
 class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, RecyclerView.ViewHolder>(ComparatorNews) {
 

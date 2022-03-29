@@ -6,7 +6,7 @@ import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
 import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.domain.models.Result
-import com.iwelogic.portfolio.domain.models.SignInData
+import com.iwelogic.portfolio.domain.models.DomainSignIn
 import com.iwelogic.portfolio.domain.sign_in.login.LoginUseCase
 import com.iwelogic.portfolio.core.utils.isEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -66,7 +66,7 @@ class LoginViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseV
         if (!allFieldsCorrect) return
 
         viewModelScope.launch {
-            loginUseCase.login(SignInData(email.value, password.value)).catch {
+            loginUseCase.login(DomainSignIn(email.value, password.value)).catch {
                 warning.postValue(it.message)
             }.collect { result ->
                 when (result) {

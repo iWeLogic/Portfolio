@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.presentation
+package com.iwelogic.portfolio.data
 
 import androidx.datastore.core.CorruptionException
 import androidx.datastore.core.Serializer

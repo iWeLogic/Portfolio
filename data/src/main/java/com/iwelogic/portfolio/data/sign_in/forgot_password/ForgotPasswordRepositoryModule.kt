@@ -1,6 +1,6 @@
-package com.iwelogic.portfolio.presentation.sign_in.forgot_password
+package com.iwelogic.portfolio.data.sign_in.forgot_password
 
-import com.iwelogic.portfolio.presentation.source.DataSource
+import com.iwelogic.portfolio.data.source.DataSource
 import com.iwelogic.portfolio.domain.sign_in.forgot_password.ForgotPasswordRepository
 import dagger.Module
 import dagger.Provides

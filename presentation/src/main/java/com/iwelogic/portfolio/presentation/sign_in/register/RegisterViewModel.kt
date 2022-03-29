@@ -3,7 +3,7 @@ package com.iwelogic.portfolio.presentation.sign_in.register
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
-import com.iwelogic.portfolio.domain.models.RegisterData
+import com.iwelogic.portfolio.domain.models.DomainRegister
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.domain.sign_in.register.RegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -50,7 +50,7 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
 
     fun register() {
         viewModelScope.launch {
-            registerUseCase.register(RegisterData(email.value, image.value, firstName.value, lastName.value, passwordOne.value, passwordTwo.value)).catch {
+            registerUseCase.register(DomainRegister(email.value, image.value, firstName.value, lastName.value, passwordOne.value, passwordTwo.value)).catch {
                 error.postValue(it.message)
             }.collect { result ->
                 when (result) {

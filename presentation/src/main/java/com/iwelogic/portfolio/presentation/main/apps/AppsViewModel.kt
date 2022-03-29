@@ -2,8 +2,10 @@ package com.iwelogic.portfolio.presentation.main.apps
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.iwelogic.portfolio.data.models.App
 import com.iwelogic.portfolio.domain.main.apps.AppsUseCase
-import com.iwelogic.portfolio.domain.models.App
+import com.iwelogic.portfolio.domain.models.DomainApp
+import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +13,6 @@ import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.iwelogic.portfolio.domain.models.Result
 
 @HiltViewModel
 class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase) : BaseViewModel() {
@@ -37,7 +38,9 @@ class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase) : 
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> apps.postValue(result.data)
+                    is Result.Success -> apps.postValue(result.data?.map {
+                        App(id = it.id, icon = it.icon, title = it.title, description = it.description)
+                    })
                     is Result.Error -> error.postValue(result.message)
                 }
             }

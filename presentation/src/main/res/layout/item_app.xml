@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.iwelogic.portfolio.domain.models.App" />
+            type="com.iwelogic.portfolio.data.models.App" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

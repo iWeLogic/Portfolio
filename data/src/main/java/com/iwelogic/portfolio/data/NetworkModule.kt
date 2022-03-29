@@ -1,13 +1,14 @@
-package com.iwelogic.portfolio.presentation
+package com.iwelogic.portfolio.data
 
 import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.iwelogic.portfolio.data.BuildConfig.BACKEND_URL
-import com.iwelogic.portfolio.presentation.source.DataSource
-import com.iwelogic.portfolio.presentation.source.DataSourceImp
+import com.iwelogic.portfolio.data.source.DataSource
+import com.iwelogic.portfolio.data.source.DataSourceImp
 import com.iwelogic.portfolio.domain.LocalUserRepository
+import com.iwelogic.portfolio.presentation.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -2,7 +2,7 @@ package com.iwelogic.portfolio.presentation.main.apps
 
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iwelogic.portfolio.domain.models.App
+import com.iwelogic.portfolio.data.models.App
 
 object AppsBind {
 

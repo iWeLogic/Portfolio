@@ -1,4 +1,5 @@
 plugins {
+    id 'java'
     id 'kotlin'
 }
 
@@ -13,4 +14,8 @@ dependencies {
 
     //Coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
