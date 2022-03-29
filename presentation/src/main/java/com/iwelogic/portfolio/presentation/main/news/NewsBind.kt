@@ -3,7 +3,7 @@ package com.iwelogic.portfolio.presentation.main.news
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iwelogic.portfolio.data.models.News
+import com.iwelogic.portfolio.presentation.models.News
 
 object NewsBind {
 

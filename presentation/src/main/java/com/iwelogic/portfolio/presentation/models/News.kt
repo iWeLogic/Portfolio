@@ -1,29 +1,15 @@
-package com.iwelogic.portfolio.data.models
+package com.iwelogic.portfolio.presentation.models
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
+import com.iwelogic.portfolio.data.models.CellType
 
 data class News(
 
     var type: CellType = CellType.SIMPLE,
-
-    @field:SerializedName("id")
-    @Expose
     val id: Int? = null,
-
-    @field:SerializedName("title")
-    @Expose
     val title: String? = null,
-
-    @field:SerializedName("description")
-    @Expose
     val description: String? = null,
-
-    @field:SerializedName("image")
-    @Expose
     val image: String? = null
-
-)  {
+) {
     companion object {
         fun getProgressItem() = News().apply { type = CellType.PROGRESS }
     }

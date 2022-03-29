@@ -1,13 +1,13 @@
 package com.iwelogic.portfolio.presentation.main.news
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.core.utils.isTrue
 import com.iwelogic.portfolio.core.utils.value
 import com.iwelogic.portfolio.data.models.CellType
-import com.iwelogic.portfolio.data.models.News
+import com.iwelogic.portfolio.presentation.models.News
 import com.iwelogic.portfolio.domain.main.news.NewsUseCase
-import com.iwelogic.portfolio.domain.models.DomainNews
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
@@ -49,13 +49,13 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
             newsUseCase.getNews(PAGE_SIZE, getOffset()).catch {
                 error.postValue(it.message)
             }.collect { result ->
+                Log.w("myLog", "load: collect")
                 when (result) {
                     is Result.Loading -> showProgress(true)
                     is Result.Finish -> showProgress(false)
                     is Result.Success -> {
-
                         result.data?.map {
-                            News(type = CellType.SIMPLE, id = it.id, title = it.title, description = it.description)
+                            News(type = CellType.SIMPLE, id = it.id, title = it.title, description = it.description, image = it.image)
                         }?.let {
                             news.value?.addAll(it)
                             news.postValue(news.value)
@@ -86,17 +86,18 @@ class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : 
     private fun getOffset() = news.value?.filter { it.type == CellType.SIMPLE }?.size ?: 0
 
     private fun showProgress(status: Boolean) {
-        if (status) {
-            if (news.value.isNullOrEmpty()) {
-                progress.postValue(true)
-            } else {
-                news.value?.add(News.getProgressItem())
-                news.postValue(news.value)
-            }
-        } else {
-            progress.postValue(false)
-            news.value?.remove(News.getProgressItem())
-            news.postValue(news.value)
-        }
+        Log.w("myLog", "showProgress: " + status)
+         if (status) {
+             if (news.value.isNullOrEmpty()) {
+                 progress.postValue(true)
+             } else {
+                 news.value?.add(News.getProgressItem())
+                 news.postValue(news.value)
+             }
+         } else {
+             progress.postValue(false)
+             news.value?.remove(News.getProgressItem())
+             news.postValue(news.value)
+         }
     }
 }

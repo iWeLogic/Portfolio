@@ -23,7 +23,7 @@ class NewsRepositoryImp(private val dataSource: DataSource, private val mapper: 
                 is Result.Success -> Result.Success(result.data?.map { news -> mapper.map(news) })
                 is Result.Error -> Result.Error(result.code, result.message)
                 is Result.Loading -> Result.Loading
-                is Result.Finish -> Result.Loading
+                is Result.Finish -> Result.Finish
             }
         }.flowOn(Dispatchers.IO)
     }

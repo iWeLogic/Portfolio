@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="com.iwelogic.portfolio.data.models.News" />
+            type="com.iwelogic.portfolio.presentation.models.News" />
     </data>
 
     <LinearLayout
