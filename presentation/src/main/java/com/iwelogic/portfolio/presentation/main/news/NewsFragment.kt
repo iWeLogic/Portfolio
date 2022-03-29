@@ -28,7 +28,7 @@ class NewsFragment : BaseFragment<NewsViewModel>() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.openDetails.observe(this) {
             if (parentFragment?.parentFragment?.findNavController()?.currentDestination?.id == R.id.mainFragment)
-                parentFragment?.parentFragment?.findNavController()?.navigate(MainFragmentDirections.actionMainFragmentToNewsDetailsFragment(it))
+                parentFragment?.parentFragment?.findNavController()?.navigate(MainFragmentDirections.actionMainFragmentToNewsDetailsFragment())
         }
     }
 }

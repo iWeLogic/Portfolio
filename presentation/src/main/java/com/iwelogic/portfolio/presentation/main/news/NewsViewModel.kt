@@ -7,8 +7,8 @@ import com.iwelogic.portfolio.domain.models.News
 import com.iwelogic.portfolio.domain.main.news.NewsUseCase
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
-import com.iwelogic.portfolio.domain.utils.isTrue
-import com.iwelogic.portfolio.domain.utils.value
+import com.iwelogic.portfolio.core.utils.isTrue
+import com.iwelogic.portfolio.core.utils.value
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.catch

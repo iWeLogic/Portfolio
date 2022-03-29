@@ -8,7 +8,7 @@ import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.domain.models.SignInData
 import com.iwelogic.portfolio.domain.sign_in.login.LoginUseCase
-import com.iwelogic.portfolio.domain.utils.isEmail
+import com.iwelogic.portfolio.core.utils.isEmail
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect

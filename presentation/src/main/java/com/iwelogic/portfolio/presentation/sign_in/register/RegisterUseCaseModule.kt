@@ -15,7 +15,7 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 object RegisterUseCaseModule {
 
     @Provides
-    fun provideRegisterUseCase(@ApplicationContext applicationContext: Context, registerRepository: RegisterRepository): RegisterUseCase {
-        return RegisterUseCaseImp(applicationContext, registerRepository)
+    fun provideRegisterUseCase(registerRepository: RegisterRepository): RegisterUseCase {
+        return RegisterUseCaseImp(registerRepository)
     }
 }

@@ -55,9 +55,7 @@
         android:id="@+id/newsDetailsFragment"
         android:name="com.iwelogic.portfolio.presentation.main.news.news_details.NewsDetailsFragment"
         android:label="NewsDetailsFragment" >
-        <argument
-            android:name="data"
-            app:argType="com.iwelogic.portfolio.domain.models.News" />
+
     </fragment>
     <dialog
         android:id="@+id/choosePictureSourceDialog"
