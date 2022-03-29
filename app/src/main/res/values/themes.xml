@@ -1,12 +1,11 @@
 <resources>
     <style name="Theme.IWeLogic" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:windowBackground">@drawable/background_splash</item>
-        <item name="android:colorAccent">@color/textColor</item>
+<!--        <item name="android:colorAccent">@color/textColor</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:statusBarColor">@color/buttonColor</item>
         <item name="statusBarBackground">@color/buttonColor</item>
         <item name="colorPrimary">@color/error</item>
         <item name="colorPrimaryVariant">@color/error</item>
-        <item name="colorOnPrimary">@color/error</item>
+        <item name="colorOnPrimary">@color/error</item>-->
     </style>
 </resources>

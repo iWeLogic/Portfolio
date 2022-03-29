@@ -1,34 +1,28 @@
-package com.iwelogic.portfolio.data
+package com.iwelogic.portfolio.presentation
 
 import android.content.Context
-import android.content.pm.PackageInfo
-import androidx.core.content.pm.PackageInfoCompat.getLongVersionCode
+import com.iwelogic.portfolio.domain.LocalUserRepository
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.lang.ref.WeakReference
 
-class HeaderInterceptor constructor(context: Context) : Interceptor {
+class HeaderInterceptor constructor(applicationContext: Context, val localUserRepository: LocalUserRepository) : Interceptor {
 
-    var context: WeakReference<Context> = WeakReference(context)
+    var context: WeakReference<Context> = WeakReference(applicationContext)
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        var versionName: String? = null
-        var versionCode: Long? = null
-        try {
-            val pInfo: PackageInfo? = context.get()?.packageManager?.getPackageInfo(context.get()?.packageName ?: "", 0)
-            versionName = pInfo?.versionName?.toString()
-            versionCode = getLongVersionCode(pInfo!!)
-        } catch (e: Exception) {
-            e.printStackTrace()
+        var token: String?
+        runBlocking {
+            token = localUserRepository.userFlow.first().userToken
         }
-
         val request = chain.request().newBuilder()
-            .header("CLIENT_APP_PLATFORM", "Android")
-            .header("CLIENT_APP_VERSION", "$versionName ($versionCode)")
             .header("Accept", "application/json")
-        /*context.get()?.readObject(USER, User::class.java)?.token?.let {
-            request.header("Authorization", "Bearer $it")
-        }*/
+        token?.let {
+            if (it.isNotEmpty())
+                request.header("user-token", it)
+        }
         return chain.proceed(request.build())
     }
 }

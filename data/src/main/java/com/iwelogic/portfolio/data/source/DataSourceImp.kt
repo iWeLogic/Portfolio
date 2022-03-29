@@ -1,14 +1,12 @@
-package com.iwelogic.portfolio.data.source
+package com.iwelogic.portfolio.presentation.source
 
 import android.content.Context
 import com.google.gson.Gson
-import com.iwelogic.portfolio.data.Api
 import com.iwelogic.portfolio.data.R
+import com.iwelogic.portfolio.presentation.Api
 import com.iwelogic.portfolio.domain.models.*
-import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
 import java.net.UnknownHostException
-import javax.inject.Inject
 
 class DataSourceImp (private val api: Api, val context: Context) : DataSource {
 
