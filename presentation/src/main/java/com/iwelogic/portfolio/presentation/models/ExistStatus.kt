@@ -1,4 +1,4 @@
-package com.iwelogic.portfolio.data.models
+package com.iwelogic.portfolio.presentation.models
 
 sealed class ExistStatus {
 

@@ -2,9 +2,8 @@ package com.iwelogic.portfolio.presentation.main.apps
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.portfolio.data.models.App
+import com.iwelogic.portfolio.presentation.models.App
 import com.iwelogic.portfolio.domain.main.apps.AppsUseCase
-import com.iwelogic.portfolio.domain.models.DomainApp
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent

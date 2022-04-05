@@ -13,9 +13,8 @@ class HeaderInterceptor constructor(applicationContext: Context, val localUserRe
     var context: WeakReference<Context> = WeakReference(applicationContext)
 
     override fun intercept(chain: Interceptor.Chain): Response {
-        var token: String?
-        runBlocking {
-            token = localUserRepository.userFlow.first().userToken
+        val token = runBlocking {
+            localUserRepository.userFlow.first().userToken
         }
         val request = chain.request().newBuilder()
             .header("Accept", "application/json")

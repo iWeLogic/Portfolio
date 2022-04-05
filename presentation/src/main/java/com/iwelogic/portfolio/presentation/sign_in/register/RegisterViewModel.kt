@@ -2,10 +2,12 @@ package com.iwelogic.portfolio.presentation.sign_in.register
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.domain.models.DomainRegister
 import com.iwelogic.portfolio.domain.models.Result
 import com.iwelogic.portfolio.domain.sign_in.register.RegisterUseCase
+import com.iwelogic.portfolio.presentation.base.BaseViewModel
+import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
+import com.iwelogic.portfolio.presentation.models.SignIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -24,6 +26,7 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
     val emailError: MutableLiveData<String> = MutableLiveData()
     val passwordOneError: MutableLiveData<String> = MutableLiveData()
     val passwordTwoError: MutableLiveData<String> = MutableLiveData()
+    val returnRegisteredUser: SingleLiveEvent<SignIn> = SingleLiveEvent()
 
     private val emailObserver: (String) -> Unit = {
         emailError.postValue(null)
@@ -45,10 +48,6 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
     }
 
     fun onClickRegister() {
-
-    }
-
-    fun register() {
         viewModelScope.launch {
             registerUseCase.register(DomainRegister(email.value, image.value, firstName.value, lastName.value, passwordOne.value, passwordTwo.value)).catch {
                 error.postValue(it.message)
@@ -57,7 +56,8 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> {
-                        //openMain.postValue(true)
+                        returnRegisteredUser.postValue(SignIn(email.value, passwordOne.value))
+                        close.postValue(true)
                     }
                     is Result.Error -> {
                         when (result.code) {

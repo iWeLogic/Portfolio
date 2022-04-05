@@ -7,7 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iwelogic.portfolio.data.models.CellType
+import com.iwelogic.portfolio.presentation.models.CellType
 import com.iwelogic.portfolio.presentation.models.News
 import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.presentation.databinding.ItemNewsBinding

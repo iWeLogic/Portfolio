@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.portfolio.core.utils.isTrue
 import com.iwelogic.portfolio.core.utils.value
-import com.iwelogic.portfolio.data.models.CellType
+import com.iwelogic.portfolio.presentation.models.CellType
 import com.iwelogic.portfolio.presentation.models.News
 import com.iwelogic.portfolio.domain.main.news.NewsUseCase
 import com.iwelogic.portfolio.domain.models.Result

@@ -1,7 +1,5 @@
 package com.iwelogic.portfolio.presentation.models
 
-import com.iwelogic.portfolio.data.models.CellType
-
 data class News(
 
     var type: CellType = CellType.SIMPLE,

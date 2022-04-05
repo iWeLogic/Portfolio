@@ -2,13 +2,15 @@ package com.iwelogic.portfolio.presentation.sign_in.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.iwelogic.portfolio.core.utils.isEmail
+import com.iwelogic.portfolio.domain.models.DomainSignIn
+import com.iwelogic.portfolio.domain.models.Result
+import com.iwelogic.portfolio.domain.sign_in.login.LoginUseCase
+import com.iwelogic.portfolio.presentation.R
 import com.iwelogic.portfolio.presentation.base.BaseViewModel
 import com.iwelogic.portfolio.presentation.base.SingleLiveEvent
-import com.iwelogic.portfolio.presentation.R
-import com.iwelogic.portfolio.domain.models.Result
-import com.iwelogic.portfolio.domain.models.DomainSignIn
-import com.iwelogic.portfolio.domain.sign_in.login.LoginUseCase
-import com.iwelogic.portfolio.core.utils.isEmail
+import com.iwelogic.portfolio.presentation.base.StringHolder
+import com.iwelogic.portfolio.presentation.models.SignIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -16,7 +18,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseViewModel() {
+class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
 
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
@@ -47,20 +49,28 @@ class LoginViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseV
         openForgotPassword.postValue(email.value)
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        email.removeObserver(emailObserver)
-        password.removeObserver(passwordObserver)
+    fun loginWithRegisteredUser(signIn: SignIn?) {
+        signIn?.let {
+            password.value = signIn.password
+            email.value = signIn.login
+            password.postValue(password.value)
+            email.postValue(email.value)
+            login()
+        }
     }
 
     fun onClickSignIn() {
+        login()
+    }
+
+    private fun login() {
         var allFieldsCorrect = true
         if (!email.value.isEmail()) {
-            emailError.postValue(R.string.wrong_email)
+            emailError.postValue(stringHolder.getString(R.string.wrong_email))
             allFieldsCorrect = false
         }
         if (password.value.isNullOrEmpty() || password.value!!.length < 8) {
-            passwordError.postValue(R.string.wrong_password)
+            passwordError.postValue(stringHolder.getString(R.string.wrong_password))
             allFieldsCorrect = false
         }
         if (!allFieldsCorrect) return
@@ -83,5 +93,11 @@ class LoginViewModel @Inject constructor(var loginUseCase: LoginUseCase) : BaseV
                 }
             }
         }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        email.removeObserver(emailObserver)
+        password.removeObserver(passwordObserver)
     }
 }

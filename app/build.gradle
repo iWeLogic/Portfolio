@@ -23,11 +23,13 @@ android {
     buildTypes {
         release {
             minifyEnabled true
+            manifestPlaceholders = [ statusCrashlytics: true ]
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         debug {
             minifyEnabled false
+            manifestPlaceholders = [statusCrashlytics: false]
             debuggable true
             firebaseCrashlytics {
                 mappingFileUploadEnabled false

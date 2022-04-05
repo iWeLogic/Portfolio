@@ -73,7 +73,7 @@
                         android:background="@drawable/background_edit_field"
                         android:contentDescription="@string/first_name"
                         android:inputType="textPersonName"
-                        android:text="@={viewModel.email}" />
+                        android:text="@={viewModel.firstName}" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -87,7 +87,7 @@
                         android:background="@drawable/background_edit_field"
                         android:contentDescription="@string/last_name"
                         android:inputType="textPersonName"
-                        android:text="@={viewModel.email}" />
+                        android:text="@={viewModel.lastName}" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -162,11 +162,16 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:onClick="@{() -> viewModel.onClickRegister()}"
                         android:text="Register" />
 
                 </LinearLayout>
 
             </androidx.core.widget.NestedScrollView>
+
+            <include
+                layout="@layout/layout_progress"
+                app:progress="@{viewModel.progress}" />
 
         </FrameLayout>
 
