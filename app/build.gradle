@@ -11,7 +11,7 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.iwelogic.portfolio"
+        applicationId "com.iwelogic"
         minSdk 23
         targetSdk 31
         versionCode 3
@@ -25,11 +25,13 @@ android {
             minifyEnabled true
             manifestPlaceholders = [ statusCrashlytics: true ]
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BACKEND_URL", '"https://chosencable.backendless.app"'
         }
 
         debug {
             minifyEnabled false
             manifestPlaceholders = [statusCrashlytics: false]
+            buildConfigField "String", "BACKEND_URL", '"https://chosencable.backendless.app"'
             debuggable true
             firebaseCrashlytics {
                 mappingFileUploadEnabled false
@@ -71,7 +73,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:20.1.0'
 
     //DI Hilt
-    implementation "com.google.dagger:hilt-android:2.39"
-    kapt "com.google.dagger:hilt-android-compiler:2.39"
+    implementation "com.google.dagger:hilt-android:2.39.1"
+    kapt "com.google.dagger:hilt-android-compiler:2.39.1"
 }
 

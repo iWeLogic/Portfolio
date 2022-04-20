@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.presentation.main.profile.ProfileViewModel" />
+            type="com.iwelogic.presentation.main.profile.ProfileViewModel" />
     </data>
 
     <LinearLayout

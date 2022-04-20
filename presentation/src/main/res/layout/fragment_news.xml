@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.presentation.main.news.NewsViewModel" />
+            type="com.iwelogic.presentation.main.news.NewsViewModel" />
     </data>
 
     <FrameLayout
@@ -14,7 +14,7 @@
         android:layout_height="match_parent"
         android:background="@color/background">
 
-        <com.iwelogic.portfolio.presentation.views.SwipeRefreshLayoutWithoutIndicator
+        <com.iwelogic.presentation.views.SwipeRefreshLayoutWithoutIndicator
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:onRefreshListener="@{() -> viewModel.onReload()}">
@@ -32,7 +32,7 @@
                 android:paddingTop="@dimen/default_size"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-        </com.iwelogic.portfolio.presentation.views.SwipeRefreshLayoutWithoutIndicator>
+        </com.iwelogic.presentation.views.SwipeRefreshLayoutWithoutIndicator>
 
         <include
             layout="@layout/layout_progress"

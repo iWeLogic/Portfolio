@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.presentation.main.MainViewModel" />
+            type="com.iwelogic.presentation.main.MainViewModel" />
     </data>
 
     <LinearLayout

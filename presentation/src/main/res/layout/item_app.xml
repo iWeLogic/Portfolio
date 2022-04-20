@@ -4,11 +4,11 @@
 
     <data>
 
-        <import type="com.iwelogic.portfolio.presentation.base.BaseBind.ScaleType" />
+        <import type="com.iwelogic.presentation.base.BaseBind.ScaleType" />
 
         <variable
             name="item"
-            type="com.iwelogic.portfolio.presentation.models.App" />
+            type="com.iwelogic.presentation.models.App" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -11,7 +11,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.presentation.base.BaseViewModel" />
+            type="com.iwelogic.presentation.base.BaseViewModel" />
     </data>
 
     <LinearLayout

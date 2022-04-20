@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.portfolio.presentation.main.feedbacks.FeedbacksViewModel" />
+            type="com.iwelogic.presentation.main.feedbacks.FeedbacksViewModel" />
     </data>
 
     <FrameLayout

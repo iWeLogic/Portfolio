@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.iwelogic.portfolio.presentation.sign_in.login.LoginFragment"
+        android:name="com.iwelogic.presentation.sign_in.login.LoginFragment"
         android:label="LoginFragment" >
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.iwelogic.portfolio.presentation.main.MainFragment"
+        android:name="com.iwelogic.presentation.main.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.iwelogic.portfolio.presentation.sign_in.register.RegisterFragment"
+        android:name="com.iwelogic.presentation.sign_in.register.RegisterFragment"
         android:label="RegisterFragment" >
         <action
             android:id="@+id/action_registerFragment_to_choosePictureSourceDialog"
@@ -36,7 +36,7 @@
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.iwelogic.portfolio.presentation.sign_in.forgot_password.ForgotPasswordFragment"
+        android:name="com.iwelogic.presentation.sign_in.forgot_password.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment">
         <argument
             android:name="email"
@@ -45,7 +45,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.iwelogic.portfolio.presentation.main.profile.ProfileFragment"
+        android:name="com.iwelogic.presentation.main.profile.ProfileFragment"
         android:label="ProfileFragment" >
         <action
             android:id="@+id/action_profileFragment_to_choosePictureSourceDialog"
@@ -53,13 +53,13 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.iwelogic.portfolio.presentation.main.news.news_details.NewsDetailsFragment"
+        android:name="com.iwelogic.presentation.main.news.news_details.NewsDetailsFragment"
         android:label="NewsDetailsFragment" >
 
     </fragment>
     <dialog
         android:id="@+id/choosePictureSourceDialog"
-        android:name="com.iwelogic.portfolio.presentation.main.choose_picture_source.ChoosePictureSourceDialog"
+        android:name="com.iwelogic.presentation.main.choose_picture_source.ChoosePictureSourceDialog"
         android:label="ChoosePictureSourceDialog" />
 
 </navigation>
