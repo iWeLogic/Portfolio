@@ -1,8 +1,7 @@
 package com.iwelogic.data.source
 
-import android.content.Context
+import android.util.Log
 import com.google.gson.Gson
-import com.iwelogic.data.R
 import com.iwelogic.data.models.DataApp
 import com.iwelogic.data.models.DataNews
 import com.iwelogic.data.models.DataRegister
@@ -14,10 +13,14 @@ import retrofit2.Response
 import java.net.UnknownHostException
 import com.iwelogic.domain.models.Result
 
-class DataSourceImp (private val api: Api, val context: Context) : DataSource {
+class DataSourceImp (private val api: Api) : DataSource {
 
-    override suspend fun register(data: DataRegister): Result<DataUser> {
+    override suspend fun register(data: DataRegister): Result<Any> {
         return getResponse(request = { api.register(data) })
+    }
+
+    override suspend fun remember(email: String): Result<Void> {
+        return getResponse(request = { api.remember(email) })
     }
 
     override suspend fun login(data: DataSignIn): Result<DataUser> {
@@ -41,7 +44,7 @@ class DataSourceImp (private val api: Api, val context: Context) : DataSource {
         return try {
             val result = request.invoke()
             if (result.isSuccessful) {
-                com.iwelogic.domain.models.Result.Success(result.body())
+                Result.Success(result.body())
             } else {
                 return try {
                     val responseError = Gson().fromJson(result.errorBody()?.string(), BaseResponse::class.java)
@@ -52,8 +55,9 @@ class DataSourceImp (private val api: Api, val context: Context) : DataSource {
                 }
             }
         } catch (e: Throwable) {
+            e.printStackTrace()
             when (e) {
-                is UnknownHostException -> Result.Error(Result.Error.Code.NO_CONNECTION, context.getString(R.string.make_sure_internet_is_turned_on))
+                is UnknownHostException -> Result.Error(Result.Error.Code.NO_CONNECTION)
                 else -> Result.Error(Result.Error.Code.UNKNOWN, e.message)
             }
         }

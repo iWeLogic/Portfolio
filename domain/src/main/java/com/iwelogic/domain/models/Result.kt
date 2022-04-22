@@ -19,6 +19,9 @@ sealed class Result<out T> {
             @SerializedName("3003")
             INVALID_CREDENTIALS,
 
+            @SerializedName("3020")
+            UNABLE_TO_FIND_USER,
+
             UNKNOWN,
 
             NO_CONNECTION,
@@ -28,12 +31,6 @@ sealed class Result<out T> {
             WRONG_PASSWORD,
 
             PASSWORD_TWO_DOESNT_MATCH,
-
-            PASSWORD_TOO_SHORT,
-
-            PASSWORDS_DONT_MATCH,
-
-            AUTH;
         }
     }
 
