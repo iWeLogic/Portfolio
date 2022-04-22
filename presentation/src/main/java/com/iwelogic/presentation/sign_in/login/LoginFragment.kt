@@ -20,6 +20,7 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
 
     companion object {
         const val REGISTER_RESULT = "REGISTER_RESULT"
+        const val FORGOT_RESULT = "FORGOT_RESULT"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
@@ -47,6 +48,10 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
         }
         setFragmentResultListener(REGISTER_RESULT) { _, bundle ->
             viewModel.loginWithRegisteredUser(bundle.getParcelable(VALUE))
+        }
+
+        setFragmentResultListener(FORGOT_RESULT) { _, bundle ->
+            viewModel.email.postValue(bundle.getString(VALUE))
         }
     }
 }

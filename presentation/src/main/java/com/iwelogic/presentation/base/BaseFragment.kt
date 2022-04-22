@@ -3,9 +3,10 @@ package com.iwelogic.presentation.base
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.iwelogic.core.utils.hideKeyboard
+import com.iwelogic.presentation.MainActivity
 import com.iwelogic.presentation.R
 
 open class BaseFragment<VM : BaseViewModel> : Fragment() {
@@ -16,6 +17,10 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
         viewModel.close.observe(this) {
             activity?.onBackPressed()
+        }
+
+        viewModel.hideKeyboard.observe(viewLifecycleOwner) {
+            (activity as MainActivity).hideKeyboard(true)
         }
 
         viewModel.showPopup.observe(this) { popup ->

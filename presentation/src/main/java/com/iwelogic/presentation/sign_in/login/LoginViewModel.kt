@@ -68,7 +68,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
                 showPopup.postValue(PopupData(text = it.message))
             }.collect { result ->
                 when (result) {
-                    is Result.Loading -> progress.postValue(true)
+                    is Result.Loading -> {
+                        progress.postValue(true)
+                        hideKeyboard.postValue(true)
+                    }
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> openMain.postValue(true)
                     is Result.Error -> when (result.code) {

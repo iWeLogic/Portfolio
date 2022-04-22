@@ -55,7 +55,10 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
                 showPopup.postValue(PopupData(text = it.message))
             }.collect { result ->
                 when (result) {
-                    is Result.Loading -> progress.postValue(true)
+                    is Result.Loading -> {
+                        progress.postValue(true)
+                        hideKeyboard.postValue(true)
+                    }
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> {
                         showPopup.postValue(

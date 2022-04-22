@@ -34,7 +34,10 @@ class ForgotPasswordViewModel @Inject constructor(private val forgotPasswordUseC
                 showPopup.postValue(PopupData(text = it.message))
             }.collect { result ->
                 when (result) {
-                    is Result.Loading -> progress.postValue(true)
+                    is Result.Loading -> {
+                        progress.postValue(true)
+                        hideKeyboard.postValue(true)
+                    }
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> showPopup.postValue(PopupData(
                         text = stringHolder.getString(R.string.new_password_was_sent),
