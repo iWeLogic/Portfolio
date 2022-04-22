@@ -17,7 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ForgotPasswordViewModel @Inject constructor(private val forgotPasswordUseCase: ForgotPasswordUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
 
-    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
+    var email: MutableLiveData<String> = MutableLiveData()
     val emailError: MutableLiveData<String> = MutableLiveData()
 
     private val emailObserver: (String) -> Unit = {

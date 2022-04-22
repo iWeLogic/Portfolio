@@ -20,11 +20,11 @@ import javax.inject.Inject
 class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
 
     val image: MutableLiveData<String> = MutableLiveData()
-    val email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
-    val firstName: MutableLiveData<String> = MutableLiveData("Nazar")
-    val lastName: MutableLiveData<String> = MutableLiveData("Novak")
-    val passwordOne: MutableLiveData<String> = MutableLiveData("kleo2304")
-    val passwordTwo: MutableLiveData<String> = MutableLiveData("kleo2304")
+    val email: MutableLiveData<String> = MutableLiveData()
+    val firstName: MutableLiveData<String> = MutableLiveData()
+    val lastName: MutableLiveData<String> = MutableLiveData()
+    val passwordOne: MutableLiveData<String> = MutableLiveData()
+    val passwordTwo: MutableLiveData<String> = MutableLiveData()
     val emailError: MutableLiveData<String> = MutableLiveData()
     val passwordOneError: MutableLiveData<String> = MutableLiveData()
     val passwordTwoError: MutableLiveData<String> = MutableLiveData()
