@@ -2,12 +2,11 @@ package com.iwelogic.presentation.sign_in.login
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.core.utils.isEmail
-import com.iwelogic.domain.models.DomainSignIn
 import com.iwelogic.domain.models.Result
 import com.iwelogic.domain.sign_in.login.LoginUseCase
 import com.iwelogic.presentation.R
 import com.iwelogic.presentation.base.BaseViewModel
+import com.iwelogic.presentation.base.PopupData
 import com.iwelogic.presentation.base.SingleLiveEvent
 import com.iwelogic.presentation.base.StringHolder
 import com.iwelogic.presentation.models.SignIn
@@ -23,10 +22,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
     val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
-    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
-    var password: MutableLiveData<String> = MutableLiveData("kleo2304")
-    val emailError: MutableLiveData<Any> = MutableLiveData()
-    val passwordError: MutableLiveData<Any> = MutableLiveData()
+    var email: MutableLiveData<String> = MutableLiveData()
+    var password: MutableLiveData<String> = MutableLiveData()
+    val emailError: MutableLiveData<String> = MutableLiveData()
+    val passwordError: MutableLiveData<String> = MutableLiveData()
     private val emailObserver: (String) -> Unit = {
         passwordError.postValue(null)
         emailError.postValue(null)
@@ -64,31 +63,26 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
     }
 
     private fun login() {
-        var allFieldsCorrect = true
-        if (!email.value.isEmail()) {
-            emailError.postValue(stringHolder.getString(R.string.wrong_email))
-            allFieldsCorrect = false
-        }
-        if (password.value.isNullOrEmpty() || password.value!!.length < 8) {
-            passwordError.postValue(stringHolder.getString(R.string.wrong_password))
-            allFieldsCorrect = false
-        }
-        if (!allFieldsCorrect) return
-
         viewModelScope.launch {
-            loginUseCase.login(DomainSignIn(email.value, password.value)).catch {
-                warning.postValue(it.message)
+            loginUseCase.login(email.value, password.value).catch {
+                showPopup.postValue(PopupData(text = it.message))
             }.collect { result ->
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> openMain.postValue(true)
-                    is Result.Error -> {
-                        when (result.code) {
-                            Result.Error.Code.NOT_CONFIRMED -> warning.postValue(result.message)
-                            Result.Error.Code.WRONG_EMAIL_OR_PASSWORD -> passwordError.postValue(result.message)
-                            else -> warning.postValue(result.message)
-                        }
+                    is Result.Error -> when (result.code) {
+                        Result.Error.Code.NOT_CONFIRMED -> showPopup.postValue(
+                            PopupData(
+                                text = result.message,
+                                btnOkTitle = stringHolder.getString(R.string.retry),
+                                btnCancelTitle = stringHolder.getString(R.string.cancel),
+                                btnOkCallBack = { login() })
+                        )
+                        Result.Error.Code.INVALID_CREDENTIALS -> passwordError.postValue(result.message)
+                        Result.Error.Code.WRONG_EMAIL -> emailError.postValue(stringHolder.getString(R.string.wrong_email))
+                        Result.Error.Code.WRONG_PASSWORD -> passwordError.postValue(stringHolder.getString(R.string.wrong_password))
+                        else -> showPopup.postValue(PopupData(result.message))
                     }
                 }
             }

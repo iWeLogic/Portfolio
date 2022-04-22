@@ -15,14 +15,27 @@
         android:background="@color/background"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="@dimen/toolbar"
-            android:layout_height="@dimen/toolbar"
-            android:background="?attr/actionBarItemBackground"
-            android:contentDescription="@string/back"
-            android:onClick="@{() -> viewModel.onClickClose()}"
-            android:scaleType="centerInside"
-            android:src="@drawable/back" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/toolbar"
+                android:layout_height="@dimen/toolbar"
+                android:background="?attr/actionBarItemBackground"
+                android:contentDescription="@string/back"
+                android:onClick="@{() -> viewModel.onClickClose()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/back" />
+
+            <TextView
+                style="@style/Header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar"
+                android:layout_marginEnd="@dimen/toolbar"
+                android:text="@string/registration_form" />
+
+        </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -58,7 +71,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:minHeight="@dimen/double_default_size"
+                        android:minHeight="@dimen/default_size"
                         android:text="@{viewModel.emailError}"
                         android:textColor="@color/error" />
 
@@ -110,7 +123,7 @@
                             android:inputType="textPassword"
                             android:paddingTop="0dp"
                             android:paddingBottom="0dp"
-                            android:text="@={viewModel.passwordTwo}" />
+                            android:text="@={viewModel.passwordOne}" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -160,10 +173,11 @@
                         android:layout_weight="1" />
 
                     <Button
+                        style="@style/Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:onClick="@{() -> viewModel.onClickRegister()}"
-                        android:text="Register" />
+                        android:text="@string/register" />
 
                 </LinearLayout>
 

@@ -3,6 +3,7 @@ package com.iwelogic.presentation.base
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.iwelogic.presentation.R
@@ -17,13 +18,24 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
             activity?.onBackPressed()
         }
 
-        viewModel.warning.observe(this) { warning ->
+        viewModel.showPopup.observe(this) { popup ->
             context?.let {
                 val builder = AlertDialog.Builder(it, R.style.CustomAlertDialog).create()
                 val dialogView = layoutInflater.inflate(R.layout.dialog_warning, null)
-                dialogView.findViewById<TextView>(R.id.message).text = warning
+                dialogView.findViewById<TextView>(R.id.message).text = popup.text
                 builder.setView(dialogView)
-                dialogView.findViewById<View>(R.id.btnOk).setOnClickListener {
+                val btnCancel = dialogView.findViewById<TextView>(R.id.btnCancel)
+                val btnOk = dialogView.findViewById<TextView>(R.id.btnOk)
+                btnCancel.visibility = if (popup.btnCancelTitle.isNullOrEmpty()) View.GONE else View.VISIBLE
+                btnOk.visibility = if (popup.btnOkTitle.isNullOrEmpty()) View.GONE else View.VISIBLE
+                btnCancel.text = popup.btnCancelTitle
+                btnOk.text = popup.btnOkTitle
+                btnCancel.setOnClickListener {
+                    popup.btnCancelCallBack?.invoke()
+                    builder.dismiss()
+                }
+                btnOk.setOnClickListener {
+                    popup.btnOkCallBack?.invoke()
                     builder.dismiss()
                 }
                 builder.setCanceledOnTouchOutside(false)
