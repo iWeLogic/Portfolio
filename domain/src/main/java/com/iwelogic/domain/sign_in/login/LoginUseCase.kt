@@ -7,5 +7,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface LoginUseCase {
 
-    fun login(data: DomainSignIn): Flow<Result<DomainUser>>
+    fun login(email: String?, password: String?): Flow<Result<DomainUser>>
 }

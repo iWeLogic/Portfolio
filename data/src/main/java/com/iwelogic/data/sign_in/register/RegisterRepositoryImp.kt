@@ -19,6 +19,4 @@ class RegisterRepositoryImp constructor(private val dataSource: DataSource) : Re
             emit(Result.Finish)
         }.flowOn(Dispatchers.IO)
     }
-
-
 }
