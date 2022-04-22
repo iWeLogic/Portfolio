@@ -85,7 +85,7 @@
                         style="@style/EditField"
                         android:background="@drawable/background_edit_field"
                         android:contentDescription="@string/first_name"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
                         android:text="@={viewModel.firstName}" />
 
                     <TextView
@@ -99,7 +99,7 @@
                         style="@style/EditField"
                         android:background="@drawable/background_edit_field"
                         android:contentDescription="@string/last_name"
-                        android:inputType="textPersonName"
+                        android:inputType="textPersonName|textCapWords"
                         android:text="@={viewModel.lastName}" />
 
                     <TextView
