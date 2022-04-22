@@ -9,9 +9,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.ViewModelProvider
 import com.iwelogic.presentation.R
-import com.iwelogic.presentation.databinding.FragmentRegisterBinding
 import com.iwelogic.presentation.base.BaseFragment
 import com.iwelogic.presentation.base.Const.VALUE
+import com.iwelogic.presentation.databinding.FragmentRegisterBinding
 import com.iwelogic.presentation.sign_in.login.LoginFragment.Companion.REGISTER_RESULT
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +28,7 @@ class RegisterFragment : BaseFragment<RegisterViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.returnRegisteredUser.observe(viewLifecycleOwner) {
+        viewModel.returnRegisteredUser.observe(this) {
             setFragmentResult(REGISTER_RESULT, bundleOf(VALUE to it))
         }
     }

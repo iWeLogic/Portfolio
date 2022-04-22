@@ -9,7 +9,8 @@ open class BaseViewModel : ViewModel() {
     var progress: MutableLiveData<Boolean> = MutableLiveData(false)
     var error: MutableLiveData<String> = MutableLiveData()
     val close: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    val warning: SingleLiveEvent<String> = SingleLiveEvent()
+    val hideKeyboard: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val showPopup: SingleLiveEvent<PopupData> = SingleLiveEvent()
 
     fun onClickClose() {
         close.postValue(true)
@@ -23,5 +24,5 @@ open class BaseViewModel : ViewModel() {
         Log.w("myLog", "onReload: ")
     }
 
-    fun getBaseViewModel() : BaseViewModel = this
+    fun getBaseViewModel(): BaseViewModel = this
 }

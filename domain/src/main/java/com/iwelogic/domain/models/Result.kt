@@ -6,7 +6,7 @@ sealed class Result<out T> {
 
     data class Success<out R>(val data: R?) : Result<R>()
 
-    data class Error(val code: Code, val message: String?) : Result<Nothing>() {
+    data class Error(val code: Code, val message: String? = null) : Result<Nothing>() {
 
         enum class Code {
 
@@ -17,7 +17,10 @@ sealed class Result<out T> {
             NOT_CONFIRMED,
 
             @SerializedName("3003")
-            WRONG_EMAIL_OR_PASSWORD,
+            INVALID_CREDENTIALS,
+
+            @SerializedName("3020")
+            UNABLE_TO_FIND_USER,
 
             UNKNOWN,
 
@@ -25,11 +28,11 @@ sealed class Result<out T> {
 
             WRONG_EMAIL,
 
-            PASSWORD_TOO_SHORT,
+            PASSWORD_IS_TOO_SHORT,
 
-            PASSWORDS_DONT_MATCH,
+            WRONG_PASSWORD,
 
-            AUTH;
+            PASSWORD_TWO_DOESNT_MATCH,
         }
     }
 

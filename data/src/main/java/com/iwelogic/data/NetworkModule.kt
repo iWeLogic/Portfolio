@@ -29,8 +29,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideDataSource(api: Api, @ApplicationContext context: Context): DataSource {
-        return DataSourceImp(api, context)
+    fun provideDataSource(api: Api): DataSource {
+        return DataSourceImp(api)
     }
 
     @Provides

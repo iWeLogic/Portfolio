@@ -9,7 +9,9 @@ import com.iwelogic.domain.models.Result
 
 interface DataSource {
 
-    suspend fun register(data: DataRegister): Result<DataUser>
+    suspend fun register(data: DataRegister): Result<Any>
+
+    suspend fun remember(email: String): Result<Void>
 
     suspend fun login(data: DataSignIn): Result<DataUser>
 

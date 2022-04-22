@@ -23,8 +23,5 @@ data class DomainRegister(
 
     @field:SerializedName("password")
     @Expose
-    val password: String? = null,
-
-
-    val passwordTwo: String? = null
+    val password: String? = null
 )

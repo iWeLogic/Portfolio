@@ -11,7 +11,10 @@ import retrofit2.http.*
 interface Api {
 
     @POST("/api/users/register")
-    suspend fun register(@Body registerData: DataRegister): Response<DataUser>
+    suspend fun register(@Body registerData: DataRegister): Response<Any>
+
+    @GET("/api/users/restorepassword/{email}")
+    suspend fun remember(@Path("email") email: String?): Response<Void>
 
     @POST("/api/users/login")
     suspend fun login(@Body registerData: DataSignIn): Response<DataUser>

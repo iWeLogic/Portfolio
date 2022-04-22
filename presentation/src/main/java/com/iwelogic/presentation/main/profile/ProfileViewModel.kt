@@ -1,10 +1,11 @@
 package com.iwelogic.presentation.main.profile
 
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.presentation.base.BaseViewModel
-import com.iwelogic.presentation.base.SingleLiveEvent
 import com.iwelogic.domain.main.profile.LogoutUseCase
 import com.iwelogic.domain.models.Result
+import com.iwelogic.presentation.base.BaseViewModel
+import com.iwelogic.presentation.base.PopupData
+import com.iwelogic.presentation.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -22,7 +23,7 @@ class ProfileViewModel @Inject constructor(var logoutUseCase: LogoutUseCase) : B
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> openLogin.postValue(true)
-                    is Result.Error -> warning.postValue(result.message)
+                    is Result.Error -> showPopup.postValue(PopupData(text = result.message))
                 }
             }
         }
