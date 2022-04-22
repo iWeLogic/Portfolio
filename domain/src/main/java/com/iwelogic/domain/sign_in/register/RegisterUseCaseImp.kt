@@ -13,7 +13,7 @@ class RegisterUseCaseImp(private val registerRepository: RegisterRepository) : R
 
         val errors: MutableList<Result.Error> = ArrayList()
         if (!email.isEmail()) errors.add(Result.Error(Result.Error.Code.WRONG_EMAIL))
-        if (passwordOne.isNullOrEmpty() || passwordOne.length < 8) errors.add(Result.Error(Result.Error.Code.WRONG_PASSWORD))
+        if (passwordOne.isNullOrEmpty() || passwordOne.length < 8) errors.add(Result.Error(Result.Error.Code.PASSWORD_IS_TOO_SHORT))
         if (passwordTwo != passwordOne) errors.add(Result.Error(Result.Error.Code.PASSWORD_TWO_DOESNT_MATCH))
         if (errors.isNotEmpty()) return errors.asFlow()
 

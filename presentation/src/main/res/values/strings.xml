@@ -7,6 +7,7 @@
     <string name="wrong_password">Wrong password</string>
     <string name="need_confirm_email">Before you login and begin working with the application, please confirm your email address by following instruction, that was sent on your email</string>
     <string name="password_does_not_match">Password does not match</string>
+    <string name="password_is_too_short">Password is too short</string>
     <string name="new_password_was_sent">New password was sent on your email</string>
     <string name="password">Password</string>
     <string name="ok">OK</string>

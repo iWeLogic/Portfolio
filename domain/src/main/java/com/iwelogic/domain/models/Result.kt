@@ -28,6 +28,8 @@ sealed class Result<out T> {
 
             WRONG_EMAIL,
 
+            PASSWORD_IS_TOO_SHORT,
+
             WRONG_PASSWORD,
 
             PASSWORD_TWO_DOESNT_MATCH,

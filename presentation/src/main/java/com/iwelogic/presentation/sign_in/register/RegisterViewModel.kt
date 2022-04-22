@@ -73,7 +73,7 @@ class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase
                     }
                     is Result.Error -> when (result.code) {
                         Result.Error.Code.WRONG_EMAIL -> emailError.postValue(stringHolder.getString(R.string.wrong_email))
-                        Result.Error.Code.WRONG_PASSWORD -> passwordOneError.postValue(stringHolder.getString(R.string.wrong_password))
+                        Result.Error.Code.PASSWORD_IS_TOO_SHORT -> passwordOneError.postValue(stringHolder.getString(R.string.password_is_too_short))
                         Result.Error.Code.PASSWORD_TWO_DOESNT_MATCH -> passwordTwoError.postValue(stringHolder.getString(R.string.password_does_not_match))
                         else -> showPopup.postValue(PopupData(text = result.message))
                     }

@@ -137,8 +137,6 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/half_default_size"
-
                         android:text="@string/password"
                         android:textSize="14sp" />
 
@@ -176,6 +174,7 @@
                         style="@style/Button"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
                         android:onClick="@{() -> viewModel.onClickRegister()}"
                         android:text="@string/register" />
 
