@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.IWeLogic">
         <activity
-            android:name="com.iwelogic.presentation.MainActivity"
+            android:name="com.iwelogic.presentation.ui.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>

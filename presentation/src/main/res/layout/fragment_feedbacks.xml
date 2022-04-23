@@ -7,11 +7,11 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.feedbacks.FeedbacksViewModel" />
+            type="com.iwelogic.presentation.ui.main.feedbacks.FeedbacksViewModel" />
 
         <variable
             name="mainViewModel"
-            type="com.iwelogic.presentation.MainViewModel" />
+            type="com.iwelogic.presentation.ui.MainViewModel" />
     </data>
 
     <FrameLayout

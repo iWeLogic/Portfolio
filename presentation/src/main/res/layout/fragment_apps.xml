@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.apps.AppsViewModel" />
+            type="com.iwelogic.presentation.ui.main.apps.AppsViewModel" />
     </data>
 
     <FrameLayout

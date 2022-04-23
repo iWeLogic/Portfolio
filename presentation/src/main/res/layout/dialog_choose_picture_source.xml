@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.choose_picture_source.ChoosePictureSourceViewModel" />
+            type="com.iwelogic.presentation.ui.main.choose_picture_source.ChoosePictureSourceViewModel" />
     </data>
 
     <FrameLayout
