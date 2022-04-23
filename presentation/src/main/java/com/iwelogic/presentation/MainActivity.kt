@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.NavHostFragment
 import com.iwelogic.presentation.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,28 +18,5 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         binding.viewModel = viewModel
-        viewModel.checkIsLogged()
-        subscribe()
-    }
-
-    private fun subscribe() {
-        viewModel.openMain.observe(this) { openMain() }
-        viewModel.openLogin.observe(this) { openLogin() }
-    }
-
-    fun openLogin() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-        val graphInflater = navHostFragment.navController.navInflater
-        val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.setStartDestination(R.id.loginFragment)
-        navHostFragment.navController.graph = navGraph
-    }
-
-    fun openMain() {
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.hostContainer) as NavHostFragment
-        val graphInflater = navHostFragment.navController.navInflater
-        val navGraph = graphInflater.inflate(R.navigation.main)
-        navGraph.setStartDestination(R.id.mainFragment)
-        navHostFragment.navController.graph = navGraph
     }
 }

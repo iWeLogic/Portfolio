@@ -22,6 +22,7 @@
         <ImageView
             android:id="@+id/icon"
             image="@{item.icon}"
+            radius="@{8}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/news_image"
@@ -34,8 +35,11 @@
 
         <TextView
             android:id="@+id/title"
+            style="@style/Title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_size"
+            android:includeFontPadding="false"
             android:text="@{item.title}"
             app:layout_constraintBottom_toTopOf="@+id/description"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,10 +50,14 @@
 
         <TextView
             android:id="@+id/description"
+            style="@style/RegularText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_size"
+            android:layout_marginTop="@dimen/half_default_size"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
+            android:includeFontPadding="false"
             android:text="@{item.description}"
             app:layout_constraintBottom_toBottomOf="@+id/icon"
             app:layout_constraintEnd_toEndOf="parent"

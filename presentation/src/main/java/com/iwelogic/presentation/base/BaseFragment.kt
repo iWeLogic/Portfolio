@@ -2,6 +2,7 @@ package com.iwelogic.presentation.base
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.close.observe(this) {
+            Log.w("myLog", "onViewCreated: XXX")
             activity?.onBackPressed()
         }
 

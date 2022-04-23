@@ -7,6 +7,7 @@ import com.iwelogic.domain.main.apps.AppsRepository
 import com.iwelogic.domain.models.DomainApp
 import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -17,6 +18,7 @@ class AppsRepositoryImp(private val dataSource: DataSource, private val mapper: 
     override fun getApps(): Flow<Result<List<DomainApp>>> {
         return flow {
             emit(Result.Loading)
+            delay(200)
             emit(dataSource.getApps())
             emit(Result.Finish)
         }.map { result ->

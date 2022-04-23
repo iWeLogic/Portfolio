@@ -13,132 +13,162 @@
             type="com.iwelogic.presentation.sign_in.login.LoginViewModel" />
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/background">
+        android:orientation="vertical">
 
-        <ScrollView
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="@dimen/toolbar"
+                android:layout_height="@dimen/toolbar"
+                android:background="?attr/actionBarItemBackground"
+                android:contentDescription="@string/back"
+                android:onClick="@{() -> viewModel.onClickClose()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/back" />
+
+            <TextView
+                style="@style/Header"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/toolbar"
+                android:layout_marginEnd="@dimen/toolbar"
+                android:text="@string/Login" />
+
+        </LinearLayout>
+
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:fillViewport="true"
-            android:overScrollMode="never"
-            android:scrollbars="none">
+            android:background="@color/background">
 
-            <LinearLayout
+            <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="@dimen/default_size">
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:scrollbars="none">
 
-                <androidx.legacy.widget.Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:contentDescription="@string/logo"
-                    android:src="@drawable/logo" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/double_default_size"
-                    android:text="@string/email"
-                    android:textSize="14sp" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    style="@style/EditField"
-                    android:background="@{viewModel.emailError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
-                    android:contentDescription="@string/email_address"
-                    android:inputType="textEmailAddress"
-                    android:text="@={viewModel.email}" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.emailError}"
-                    android:textColor="@color/error"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/half_default_size"
-                    android:text="@string/password"
-                    android:textSize="14sp" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/etPasswordLayout"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:boxStrokeWidth="0dp"
-                    app:boxStrokeWidthFocused="0dp"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true">
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_size">
 
-                    <com.google.android.material.textfield.TextInputEditText
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/logo"
+                        android:src="@drawable/logo" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/double_default_size"
+                        android:text="@string/email"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
                         style="@style/EditField"
-                        android:background="@{viewModel.passwordError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
-                        android:inputType="textPassword"
-                        android:paddingTop="0dp"
-                        android:paddingBottom="0dp"
-                        android:text="@={viewModel.password}" />
+                        android:background="@{viewModel.emailError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
+                        android:contentDescription="@string/email_address"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.email}" />
 
-                </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.emailError}"
+                        android:textColor="@color/error"
+                        android:textSize="12sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.passwordError}"
-                    android:textColor="@color/error"
-                    android:textSize="12sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/half_default_size"
+                        android:text="@string/password"
+                        android:textSize="14sp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    style="@style/Button"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/double_default_size"
-                    android:onClick="@{() -> viewModel.onClickSignIn()}"
-                    android:text="@string/sign_in" />
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/etPasswordLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false"
+                        app:passwordToggleEnabled="true">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/half_default_size"
-                    android:onClick="@{() -> viewModel.onClickForgotPassword()}"
-                    android:padding="@dimen/half_default_size"
-                    android:text="@string/forgot_password"
-                    android:textColor="@color/button"
-                    android:textSize="14sp" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            style="@style/EditField"
+                            android:background="@{viewModel.passwordError == null ? @drawable/background_edit_field : @drawable/background_edit_field_error}"
+                            android:inputType="textPassword"
+                            android:paddingTop="0dp"
+                            android:paddingBottom="0dp"
+                            android:text="@={viewModel.password}" />
 
-                <androidx.legacy.widget.Space
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="@dimen/default_size"
-                    android:onClick="@{() -> viewModel.onClickRegister()}"
-                    android:padding="@dimen/half_default_size"
-                    android:text="@string/create_new_account"
-                    android:textColor="@color/button"
-                    android:textSize="14sp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{viewModel.passwordError}"
+                        android:textColor="@color/error"
+                        android:textSize="12sp" />
 
-            </LinearLayout>
+                    <androidx.appcompat.widget.AppCompatButton
+                        style="@style/Button"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/double_default_size"
+                        android:onClick="@{() -> viewModel.onClickSignIn()}"
+                        android:text="@string/sign_in" />
 
-        </ScrollView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/half_default_size"
+                        android:onClick="@{() -> viewModel.onClickForgotPassword()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/forgot_password"
+                        android:textColor="@color/button"
+                        android:textSize="14sp" />
 
-        <include
-            layout="@layout/layout_progress"
-            app:progress="@{viewModel.progress}" />
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
 
-    </FrameLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/default_size"
+                        android:onClick="@{() -> viewModel.onClickRegister()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/create_new_account"
+                        android:textColor="@color/button"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <include
+                layout="@layout/layout_progress"
+                app:progress="@{viewModel.progress}" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
 </layout>

@@ -33,9 +33,6 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.openMain.observe(this) {
-            (activity as MainActivity).openMain()
-        }
         viewModel.openRegister.observe(this) {
             if (findNavController().currentDestination?.id == R.id.loginFragment) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
@@ -45,6 +42,9 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
             if (findNavController().currentDestination?.id == R.id.loginFragment) {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment(it))
             }
+        }
+        viewModel.changeUserExistStatus.observe(this) {
+            (activity as MainActivity).viewModel.userExistStatus.postValue(it)
         }
         setFragmentResultListener(REGISTER_RESULT) { _, bundle ->
             viewModel.loginWithRegisteredUser(bundle.getParcelable(VALUE))

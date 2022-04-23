@@ -19,8 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
 
-    val openMain: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    val changeUserExistStatus: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
     var email: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
@@ -73,7 +73,10 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
                         hideKeyboard.postValue(true)
                     }
                     is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> openMain.postValue(true)
+                    is Result.Success -> {
+                        changeUserExistStatus.postValue(true)
+                        close.postValue(true)
+                    }
                     is Result.Error -> when (result.code) {
                         Result.Error.Code.NOT_CONFIRMED -> showPopup.postValue(
                             PopupData(
