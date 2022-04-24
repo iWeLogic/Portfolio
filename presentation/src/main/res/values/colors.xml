@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FEFEFE</color>
+    <color name="background">#EEEEEE</color>
     <color name="titleTextColor">#000000</color>
     <color name="regularTextColor">#393838</color>
     <color name="headerTextColor">#1E88E5</color>
@@ -14,7 +14,7 @@
     <color name="borderColor">#00000000</color>
     <color name="borderFocusedColor">#1E88E5</color>
     <color name="transparent">#00000000</color>
-    <color name="background_navigation">#EDEDED</color>
+    <color name="background_navigation">#FFFFFF</color>
     <color name="divider">#C4C4C4</color>
     <color name="notActive">#B3B9C4</color>
 </resources>

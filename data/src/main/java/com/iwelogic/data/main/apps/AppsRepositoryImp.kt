@@ -1,5 +1,6 @@
 package com.iwelogic.data.main.apps
 
+import android.util.ArrayMap
 import com.iwelogic.core.Mapper
 import com.iwelogic.data.models.DataApp
 import com.iwelogic.data.source.DataSource

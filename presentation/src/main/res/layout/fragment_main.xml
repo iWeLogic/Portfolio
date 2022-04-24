@@ -24,19 +24,20 @@
             <TextView
                 style="@style/Header"
                 android:layout_width="0dp"
-                android:gravity="start"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_size"
                 android:layout_marginEnd="@dimen/default_size"
                 android:layout_weight="1"
+                android:gravity="start"
                 android:text="@{viewModel.title}" />
 
             <ImageView
                 android:layout_width="@dimen/toolbar"
                 android:layout_height="@dimen/toolbar"
+                android:background="?attr/actionBarItemBackground"
                 android:contentDescription="@string/profile"
                 android:onClick="@{() -> viewModel.onClickProfile()}"
-                android:padding="@dimen/half_default_size"
+                android:padding="12dp"
                 android:src="@drawable/profile" />
 
         </LinearLayout>

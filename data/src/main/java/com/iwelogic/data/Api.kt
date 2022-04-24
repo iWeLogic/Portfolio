@@ -1,10 +1,6 @@
-package com.iwelogic.presentation
+package com.iwelogic.data
 
-import com.iwelogic.data.models.DataApp
-import com.iwelogic.data.models.DataNews
-import com.iwelogic.data.models.DataRegister
-import com.iwelogic.data.models.DataSignIn
-import com.iwelogic.data.models.DataUser
+import com.iwelogic.data.models.*
 import retrofit2.Response
 import retrofit2.http.*
 
@@ -23,7 +19,7 @@ interface Api {
     suspend fun resendEmailConfirmation(@Path("email") email: String?): Response<Void>
 
     @GET("/api/data/apps")
-    suspend fun getApps(): Response<List<DataApp>>
+    suspend fun getApps(@Query("sortBy") sortBy: String = "id"): Response<List<DataApp>>
 
     @GET("/api/data/news")
     suspend fun getNews(@Query("pageSize") pageSize: Int, @Query("offset") offset: Int): Response<List<DataNews>>
