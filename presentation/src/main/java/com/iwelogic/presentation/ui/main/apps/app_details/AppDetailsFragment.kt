@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.iwelogic.core.utils.openUrl
 import com.iwelogic.presentation.R
 import com.iwelogic.presentation.ui.base.BaseFragment
 import com.iwelogic.presentation.databinding.FragmentAppDetailsBinding
@@ -21,5 +22,12 @@ class AppDetailsFragment : BaseFragment<AppDetailsViewModel>() {
         viewModel.app.postValue(AppDetailsFragmentArgs.fromBundle(requireArguments()).data)
         binding.viewModel = viewModel
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.openUrl.observe(this) {
+            activity?.openUrl(it)
+        }
     }
 }

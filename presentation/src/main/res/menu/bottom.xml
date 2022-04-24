@@ -3,22 +3,21 @@
 
     <item
         android:id="@+id/apps"
-        android:icon="@drawable/user"
+        android:icon="@drawable/apps"
         android:title="@string/apps" />
 
     <item
         android:id="@+id/news"
-        android:icon="@drawable/user"
+        android:icon="@drawable/news"
         android:title="@string/news" />
 
     <item
-        android:id="@+id/feedbacks"
-        android:icon="@drawable/user"
-        android:title="@string/feedbacks" />
-
-    <item
         android:id="@+id/info"
-        android:icon="@drawable/user"
+        android:icon="@drawable/info"
         android:title="@string/info" />
 
+    <item
+        android:id="@+id/feedbacks"
+        android:icon="@drawable/feedbacks"
+        android:title="@string/feedbacks" />
 </menu>

@@ -22,7 +22,7 @@ class AppAdapter(private val onClick: (PresentationApp) -> Unit) : ListAdapter<P
         }
     }
 
-    internal inner class AppViewHolder(private val binding: ItemAppBinding) : RecyclerView.ViewHolder(binding.root) {
+    private inner class AppViewHolder(private val binding: ItemAppBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: PresentationApp) {
             binding.item = item
             binding.root.setOnClickListener {

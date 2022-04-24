@@ -29,7 +29,7 @@
     </style>
 
     <style name="Header">
-        <item name="android:textColor">@color/buttonPressedColor</item>
+        <item name="android:textColor">@color/headerTextColor</item>
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">@font/open_sans_bold</item>
@@ -53,6 +53,8 @@
 
     <style name="BottomNavigationView" parent="@style/TextAppearance.AppCompat.Caption">
         <item name="android:textSize">10sp</item>
+        <item name="android:fontFamily">@font/open_sans_bold</item>
+        <item name="android:textColor">@color/bottom_nav_color_item</item>
     </style>
 
 </resources>

@@ -2,9 +2,9 @@ package com.iwelogic.presentation.ui.main.apps
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.presentation.models.PresentationApp
 import com.iwelogic.domain.main.apps.AppsUseCase
 import com.iwelogic.domain.models.Result
+import com.iwelogic.presentation.models.PresentationApp
 import com.iwelogic.presentation.ui.base.BaseViewModel
 import com.iwelogic.presentation.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase) : BaseViewModel() {
+class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase, private val mapper: AppDomainPresentationMapper) : BaseViewModel() {
 
     val openDetails: SingleLiveEvent<PresentationApp> = SingleLiveEvent()
     val apps: MutableLiveData<List<PresentationApp>> = MutableLiveData(ArrayList())
@@ -37,9 +37,7 @@ class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase) : 
                 when (result) {
                     is Result.Loading -> progress.postValue(true)
                     is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> apps.postValue(result.data?.map {
-                        PresentationApp(id = it.id, icon = it.icon, title = it.title, description = it.description)
-                    })
+                    is Result.Success -> apps.postValue(result.data?.map { app -> mapper.map(app) })
                     is Result.Error -> error.postValue(result.message)
                 }
             }

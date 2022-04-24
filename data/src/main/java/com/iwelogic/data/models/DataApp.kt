@@ -20,4 +20,12 @@ data class DataApp(
     @field:SerializedName("icon")
     @Expose
     val icon: String? = null,
+
+    @field:SerializedName("images")
+    @Expose
+    val images: List<String>? = null,
+
+    @field:SerializedName("url")
+    @Expose
+    val url: String? = null
 )

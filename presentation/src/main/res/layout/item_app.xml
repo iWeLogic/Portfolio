@@ -4,7 +4,7 @@
 
     <data>
 
-        <import type="com.iwelogic.presentation.ui.base.BaseBind.ScaleType" />
+        <import type="com.iwelogic.presentation.ui.base.ScaleType" />
 
         <variable
             name="item"

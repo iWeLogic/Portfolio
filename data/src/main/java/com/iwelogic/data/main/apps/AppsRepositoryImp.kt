@@ -23,7 +23,7 @@ class AppsRepositoryImp(private val dataSource: DataSource, private val mapper: 
             emit(Result.Finish)
         }.map { result ->
             when (result) {
-                is Result.Success -> Result.Success(result.data?.map { news -> mapper.map(news) })
+                is Result.Success -> Result.Success(result.data?.map { app -> mapper.map(app) })
                 is Result.Error -> Result.Error(result.code, result.message)
                 is Result.Loading -> Result.Loading
                 is Result.Finish -> Result.Finish

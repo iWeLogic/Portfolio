@@ -28,6 +28,8 @@ class MainFragment : BaseFragment<MainViewModel>() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val bottomNavigationView = view.findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        bottomNavigationView.itemIconTintList = null
         viewModel.openProfile.observe(this) {
             if (findNavController().currentDestination?.id == R.id.mainFragment) {
                 findNavController().navigate(MainFragmentDirections.actionMainFragmentToProfileFragment())
@@ -44,6 +46,6 @@ class MainFragment : BaseFragment<MainViewModel>() {
                 }
             )
         }
-        NavigationUI.setupWithNavController(view.findViewById<BottomNavigationView>(R.id.bottomNavigationView), navController)
+        NavigationUI.setupWithNavController(bottomNavigationView, navController)
     }
 }
