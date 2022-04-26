@@ -20,4 +20,18 @@ class AppDomainPresentationMapper @Inject constructor() : Mapper<AppDomain, AppP
             tags = input.tags
         )
     }
+
+    override fun reverseMap(input: AppPresentation): AppDomain {
+        return AppDomain(
+            id = input.id,
+            title = input.title,
+            description = input.description,
+            icon = input.icon,
+            images = input.images,
+            url = input.url,
+            releaseDate = input.releaseDate,
+            spendHours = input.spendHours,
+            tags = input.tags
+        )
+    }
 }

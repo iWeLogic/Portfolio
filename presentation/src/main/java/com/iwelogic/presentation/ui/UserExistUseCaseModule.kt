@@ -1,8 +1,8 @@
 package com.iwelogic.presentation.ui
 
 import com.iwelogic.domain.LocalUserRepository
-import com.iwelogic.domain.UserUseCase
-import com.iwelogic.domain.UserUseCaseImp
+import com.iwelogic.domain.LocalUserUseCase
+import com.iwelogic.domain.LocalUserUseCaseImp
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object UserExistUseCaseModule {
 
     @Provides
-    fun provideUserExistUseCase(localUserRepository: LocalUserRepository): UserUseCase {
-        return UserUseCaseImp(localUserRepository)
+    fun provideUserExistUseCase(localUserRepository: LocalUserRepository): LocalUserUseCase {
+        return LocalUserUseCaseImp(localUserRepository)
     }
 }

@@ -9,6 +9,12 @@ interface Api {
     @POST("/api/users/register")
     suspend fun register(@Body registerData: RegisterData): Response<Any>
 
+    @PUT("api/data/Users")
+    suspend fun updateUser(@Body userData: UserData): Response<UserData>
+
+    @GET("api/data/Users")
+    suspend fun getUser(@Query("where") where: String): Response<List<UserData>>
+
     @GET("/api/users/restorepassword/{email}")
     suspend fun remember(@Path("email") email: String?): Response<Void>
 

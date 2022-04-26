@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.iwelogic.core.utils.hideKeyboard
 import com.iwelogic.presentation.R
@@ -12,6 +13,7 @@ import com.iwelogic.presentation.ui.MainActivity
 open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
     lateinit var viewModel: VM
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -21,6 +23,10 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
         viewModel.hideKeyboard.observe(viewLifecycleOwner) {
             (activity as MainActivity).hideKeyboard(true)
+        }
+
+        viewModel.showToast.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.showPopup.observe(this) { popup ->

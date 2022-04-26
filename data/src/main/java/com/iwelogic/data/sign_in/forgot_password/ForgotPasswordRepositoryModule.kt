@@ -14,7 +14,7 @@ object ForgotPasswordRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRegisterRepository(dataSource: DataSource): ForgotPasswordRepository {
+    fun provide(dataSource: DataSource): ForgotPasswordRepository {
         return ForgotPasswordRepositoryImp(dataSource)
     }
 }

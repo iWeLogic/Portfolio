@@ -16,4 +16,15 @@ class UserDataDomainMapper : Mapper<UserData, UserDomain> {
             email = input.email
         )
     }
+
+    override fun reverseMap(input: UserDomain): UserData {
+        return UserData(
+            objectId = input.objectId,
+            firstName = input.firstName,
+            lastName = input.lastName,
+            image = input.image,
+            userToken = input.userToken,
+            email = input.email
+        )
+    }
 }

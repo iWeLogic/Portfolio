@@ -43,4 +43,5 @@
     <string name="linkedin">LinkedIn</string>
     <string name="resume">Resume</string>
     <string name="save">Save</string>
+    <string name="user_updated">User updated</string>
 </resources>

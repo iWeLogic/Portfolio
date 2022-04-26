@@ -7,6 +7,10 @@ interface DataSource {
 
     suspend fun register(data: RegisterData): Result<Any>
 
+    suspend fun updateUser(data: UserData): Result<UserData>
+
+    suspend fun getUser(objectId: String?): Result<List<UserData>>
+
     suspend fun remember(email: String): Result<Void>
 
     suspend fun login(data: SignInData): Result<UserData>

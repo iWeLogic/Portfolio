@@ -14,7 +14,7 @@ object LoginRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLocalUserRepository(dataSource: DataSource): LoginRepository {
+    fun provide(dataSource: DataSource): LoginRepository {
         return LoginRepositoryImp(dataSource, UserDataDomainMapper())
     }
 }

@@ -7,10 +7,10 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.iwelogic.presentation.ui.MainActivity
 import com.iwelogic.presentation.R
-import com.iwelogic.presentation.ui.base.BaseFragment
 import com.iwelogic.presentation.databinding.FragmentProfileBinding
+import com.iwelogic.presentation.ui.MainActivity
+import com.iwelogic.presentation.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,6 +21,7 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
         viewModel.user = (activity as MainActivity).viewModel.user
+        viewModel.onReload()
         binding.viewModel = viewModel
         return binding.root
     }

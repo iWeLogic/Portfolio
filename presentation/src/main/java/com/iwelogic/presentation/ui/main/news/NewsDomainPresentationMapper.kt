@@ -15,4 +15,13 @@ class NewsDomainPresentationMapper @Inject constructor() : Mapper<NewsDomain, Ne
             image = input.image
         )
     }
+
+    override fun reverseMap(input: NewsPresentation): NewsDomain {
+        return NewsDomain(
+            id = input.id,
+            title = input.title,
+            description = input.description,
+            image = input.image
+        )
+    }
 }

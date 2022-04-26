@@ -11,6 +11,7 @@ open class BaseViewModel : ViewModel() {
     val close: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val hideKeyboard: SingleLiveEvent<Boolean> = SingleLiveEvent()
     val showPopup: SingleLiveEvent<PopupData> = SingleLiveEvent()
+    val showToast: SingleLiveEvent<String> = SingleLiveEvent()
 
     fun onClickClose() {
         close.postValue(true)

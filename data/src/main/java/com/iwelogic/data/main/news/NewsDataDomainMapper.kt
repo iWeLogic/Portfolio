@@ -14,4 +14,13 @@ class NewsDataDomainMapper : Mapper<NewsData, NewsDomain> {
             image = input.image
         )
     }
+
+    override fun reverseMap(input: NewsDomain): NewsData {
+        return NewsData(
+            id = input.id,
+            title = input.title,
+            description = input.description,
+            image = input.image
+        )
+    }
 }

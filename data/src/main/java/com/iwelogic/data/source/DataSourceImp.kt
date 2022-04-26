@@ -14,6 +14,14 @@ class DataSourceImp(private val api: Api) : DataSource {
         return getResponse(request = { api.register(data) })
     }
 
+    override suspend fun updateUser(data: UserData): Result<UserData> {
+        return getResponse(request = { api.updateUser(data) })
+    }
+
+    override suspend fun getUser(objectId: String?): Result<List<UserData>> {
+        return getResponse(request = { api.getUser("objectId = '$objectId'") })
+    }
+
     override suspend fun remember(email: String): Result<Void> {
         return getResponse(request = { api.remember(email) })
     }

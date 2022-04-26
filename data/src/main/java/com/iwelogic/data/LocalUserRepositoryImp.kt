@@ -25,12 +25,12 @@ class LocalUserRepositoryImp(private val context: Context) : LocalUserRepository
             }
         }.map {
             UserDomain(
-                objectId = it.objectId,
-                firstName = it.firstName,
-                lastName = it.lastName,
-                image = it.image,
-                email = it.email,
-                userToken = it.userToken
+                objectId = if(it.objectId.isEmpty()) null else it.objectId,
+                firstName = if(it.firstName.isEmpty()) null else it.firstName,
+                lastName =if(it.lastName.isEmpty()) null else it.lastName,
+                image = if(it.image.isEmpty()) null else it.image,
+                email = if(it.email.isEmpty()) null else it.email,
+                userToken = if(it.userToken.isEmpty()) null else it.userToken,
             )
         }
 
@@ -51,6 +51,7 @@ class LocalUserRepositoryImp(private val context: Context) : LocalUserRepository
         context.userPreferencesStore.updateData { preferences ->
             val builder = preferences.toBuilder()
             builder.userToken = ""
+            builder.objectId = ""
             builder.build()
         }
     }

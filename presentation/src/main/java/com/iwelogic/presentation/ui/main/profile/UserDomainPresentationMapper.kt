@@ -17,4 +17,15 @@ class UserDomainPresentationMapper @Inject constructor() : Mapper<UserDomain, Us
             email = input.email
         )
     }
+
+    override fun reverseMap(input: UserPresentation): UserDomain {
+        return UserDomain(
+            objectId = input.objectId,
+            firstName = input.firstName,
+            lastName = input.lastName,
+            image = input.image,
+            userToken = input.userToken,
+            email = input.email
+        )
+    }
 }

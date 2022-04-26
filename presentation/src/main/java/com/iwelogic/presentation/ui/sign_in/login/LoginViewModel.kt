@@ -19,7 +19,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val stringHolder: StringHolder, val mapper: UserDomainPresentationMapper) : BaseViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val stringHolder: StringHolder,
+    private val mapper: UserDomainPresentationMapper
+) : BaseViewModel() {
 
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
     var user: MutableLiveData<UserPresentation> = MutableLiveData()
