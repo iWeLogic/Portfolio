@@ -11,7 +11,7 @@ class NewsDataDomainMapper : Mapper<NewsData, NewsDomain> {
             id = input.id,
             title = input.title,
             description = input.description,
-            image = input.image,
+            image = input.image
         )
     }
 }

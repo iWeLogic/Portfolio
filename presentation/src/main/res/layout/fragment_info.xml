@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
+        <import type="com.iwelogic.presentation.ui.base.ScaleType" />
 
         <variable
             name="viewModel"
@@ -10,8 +13,150 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:background="#DD0A0A"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/background">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <ImageView
+                    image="@{viewModel.info.avatar}"
+                    scaleType="@{ScaleType.CIRCLE_CROP}"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/double_default_size"
+                    android:contentDescription="@string/avatar" />
+
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/double_default_size"
+                    android:text="@{viewModel.info.firstName + ` ` + viewModel.info.lastName + ` (` + viewModel.info.nickName +`)`}" />
+
+                <TextView
+                    style="@style/RegularText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_size"
+                    android:layout_marginTop="@dimen/half_default_size"
+                    android:layout_marginEnd="@dimen/default_size"
+                    android:gravity="center"
+                    android:text="@{viewModel.info.description}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_size"
+                    android:layout_marginTop="@dimen/default_size"
+                    android:layout_marginEnd="@dimen/default_size"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickPhone()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@{viewModel.info.phone}"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/phone" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickEmail()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@{viewModel.info.email}"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/email" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickTelegram()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@{`@`+ viewModel.info.telegram}"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/telegram" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickSkype()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@{viewModel.info.skype}"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/skype" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickLinkedin()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/linkedin"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/linkedin" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickUpWork()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/upwork"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/upwork" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickResume()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/resume"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/resume" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <include
+            layout="@layout/layout_progress"
+            app:progress="@{viewModel.progress}" />
+
+        <include
+            layout="@layout/layout_error"
+            app:viewModel="@{viewModel.getBaseViewModel()}" />
+
 
     </FrameLayout>
 </layout>

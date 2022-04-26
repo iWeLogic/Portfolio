@@ -23,4 +23,8 @@ interface Api {
 
     @GET("/api/data/news")
     suspend fun getNews(@Query("pageSize") pageSize: Int, @Query("offset") offset: Int, @Query("sortBy") sortBy: String = "id"): Response<List<NewsData>>
+
+    @GET("/api/services/data/info")
+    suspend fun getInfo(): Response<InfoData>
+
 }

@@ -1,10 +1,6 @@
 package com.iwelogic.data.source
 
-import com.iwelogic.data.models.AppData
-import com.iwelogic.data.models.NewsData
-import com.iwelogic.data.models.RegisterData
-import com.iwelogic.data.models.SignInData
-import com.iwelogic.data.models.UserData
+import com.iwelogic.data.models.*
 import com.iwelogic.domain.models.Result
 
 interface DataSource {
@@ -20,4 +16,6 @@ interface DataSource {
     suspend fun getNews(pageSize: Int, offset: Int): Result<List<NewsData>>
 
     suspend fun getApps(): Result<List<AppData>>
+
+    suspend fun getInfo(): Result<InfoData>
 }

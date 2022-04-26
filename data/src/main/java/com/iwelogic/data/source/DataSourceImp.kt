@@ -1,18 +1,14 @@
 package com.iwelogic.data.source
 
 import com.google.gson.Gson
-import com.iwelogic.data.models.AppData
-import com.iwelogic.data.models.NewsData
-import com.iwelogic.data.models.RegisterData
-import com.iwelogic.data.models.SignInData
-import com.iwelogic.data.models.UserData
-import com.iwelogic.domain.models.BaseResponse
 import com.iwelogic.data.Api
+import com.iwelogic.data.models.*
+import com.iwelogic.domain.models.BaseResponse
+import com.iwelogic.domain.models.Result
 import retrofit2.Response
 import java.net.UnknownHostException
-import com.iwelogic.domain.models.Result
 
-class DataSourceImp (private val api: Api) : DataSource {
+class DataSourceImp(private val api: Api) : DataSource {
 
     override suspend fun register(data: RegisterData): Result<Any> {
         return getResponse(request = { api.register(data) })
@@ -36,6 +32,10 @@ class DataSourceImp (private val api: Api) : DataSource {
 
     override suspend fun getApps(): Result<List<AppData>> {
         return getResponse(request = { api.getApps() })
+    }
+
+    override suspend fun getInfo(): Result<InfoData> {
+        return getResponse(request = { api.getInfo() })
     }
 
     @Suppress("BlockingMethodInNonBlockingContext")

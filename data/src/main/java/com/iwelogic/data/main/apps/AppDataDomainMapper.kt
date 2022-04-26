@@ -16,7 +16,7 @@ class AppDataDomainMapper : Mapper<AppData, AppDomain> {
             url = input.url,
             releaseDate = input.releaseDate,
             spendHours = input.spendHours,
-            tags = input.tags,
+            tags = input.tags
         )
     }
 }
