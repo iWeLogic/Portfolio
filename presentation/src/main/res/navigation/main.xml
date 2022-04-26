@@ -65,6 +65,9 @@
         android:name="com.iwelogic.presentation.ui.main.news.news_details.NewsDetailsFragment"
         android:label="NewsDetailsFragment">
 
+        <argument
+            android:name="data"
+            app:argType="com.iwelogic.presentation.models.NewsPresentation" />
     </fragment>
     <dialog
         android:id="@+id/choosePictureSourceDialog"
@@ -76,7 +79,7 @@
         android:label="AppDetailsFragment" >
         <argument
             android:name="data"
-            app:argType="com.iwelogic.presentation.models.PresentationApp" />
+            app:argType="com.iwelogic.presentation.models.AppPresentation" />
     </fragment>
 
 </navigation>

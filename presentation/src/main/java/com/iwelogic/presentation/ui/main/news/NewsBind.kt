@@ -3,13 +3,13 @@ package com.iwelogic.presentation.ui.main.news
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.iwelogic.presentation.models.News
+import com.iwelogic.presentation.models.NewsPresentation
 
 object NewsBind {
 
     @BindingAdapter("news", "onClick", "onScroll")
     @JvmStatic
-    fun showNews(view: RecyclerView, news: List<News>?, onClick: (News) -> Unit, onScroll: (Int) -> Unit) {
+    fun showNews(view: RecyclerView, news: List<NewsPresentation>?, onClick: (NewsPresentation) -> Unit, onScroll: (Int) -> Unit) {
         view.adapter ?: run {
             view.adapter = NewsAdapter(onClick)
             view.addOnScrollListener(object : RecyclerView.OnScrollListener() {

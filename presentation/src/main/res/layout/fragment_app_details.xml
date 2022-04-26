@@ -36,8 +36,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_size"
                 android:layout_marginEnd="@dimen/default_size"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:text="@{viewModel.app.title}"
+                android:lines="1"
+                android:text="@{viewModel.appPresentation.title}"
                 android:textColor="@color/headerTextColor" />
 
         </LinearLayout>
@@ -53,7 +55,7 @@
                 android:layout_height="wrap_content">
 
                 <com.smarteist.autoimageslider.SliderView
-                    images="@{viewModel.app.images}"
+                    images="@{viewModel.appPresentation.images}"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     app:layout_constraintDimensionRatio="1024:500"
@@ -77,7 +79,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.iwelogic.presentation.views.CollapseTextView
-                body="@{viewModel.app.description}"
+                body="@{viewModel.appPresentation.description}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_size"
@@ -92,7 +94,7 @@
                 android:text="@string/tags" />
 
             <com.google.android.flexbox.FlexboxLayout
-                tags="@{viewModel.app.tags}"
+                tags="@{viewModel.appPresentation.tags}"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_size"
@@ -115,7 +117,7 @@
                 android:layout_marginStart="@dimen/default_size"
                 android:layout_marginTop="@dimen/quarter_default_size"
                 android:layout_marginEnd="@dimen/default_size"
-                android:text="@{`` + viewModel.app.spendHours + ` hours`}" />
+                android:text="@{`` + viewModel.appPresentation.spendHours + ` hours`}" />
 
             <ImageView
                 android:layout_width="wrap_content"

@@ -1,9 +1,9 @@
-package com.iwelogic.data.models
+package com.iwelogic.domain.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DataSignIn(
+data class SignInDomain(
 
     @field:SerializedName("login")
     @Expose

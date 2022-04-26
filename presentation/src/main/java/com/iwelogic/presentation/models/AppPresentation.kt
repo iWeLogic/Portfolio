@@ -4,7 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class PresentationApp(
+data class AppPresentation(
 
     val id: Int? = null,
     val title: String? = null,

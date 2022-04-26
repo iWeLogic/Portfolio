@@ -8,7 +8,7 @@
 
         <variable
             name="item"
-            type="com.iwelogic.presentation.models.PresentationApp" />
+            type="com.iwelogic.presentation.models.AppPresentation" />
     </data>
 
     <androidx.cardview.widget.CardView

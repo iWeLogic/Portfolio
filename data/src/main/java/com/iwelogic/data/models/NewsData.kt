@@ -3,7 +3,7 @@ package com.iwelogic.data.models
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DataNews(
+data class NewsData(
 
     @field:SerializedName("id")
     @Expose

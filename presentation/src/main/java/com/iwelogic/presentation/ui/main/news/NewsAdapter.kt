@@ -8,11 +8,11 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.iwelogic.presentation.models.CellType
-import com.iwelogic.presentation.models.News
 import com.iwelogic.presentation.R
 import com.iwelogic.presentation.databinding.ItemNewsBinding
+import com.iwelogic.presentation.models.NewsPresentation
 
-class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, RecyclerView.ViewHolder>(ComparatorNews) {
+class NewsAdapter(private val onClick: (NewsPresentation) -> Unit) : ListAdapter<NewsPresentation, RecyclerView.ViewHolder>(ComparatorNews) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -28,7 +28,7 @@ class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, Recyc
     }
 
     internal inner class NewsViewHolder(private val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: News) {
+        fun bind(item: NewsPresentation) {
             binding.item = item
             binding.root.setOnClickListener {
                 onClick.invoke(item)
@@ -42,7 +42,7 @@ class NewsAdapter(private val onClick: (News) -> Unit) : ListAdapter<News, Recyc
     override fun getItemViewType(position: Int) = getItem(position).type.id
 }
 
-object ComparatorNews : DiffUtil.ItemCallback<News>() {
-    override fun areItemsTheSame(oldItem: News, newItem: News): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: News, newItem: News): Boolean = oldItem == newItem
+object ComparatorNews : DiffUtil.ItemCallback<NewsPresentation>() {
+    override fun areItemsTheSame(oldItem: NewsPresentation, newItem: NewsPresentation): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: NewsPresentation, newItem: NewsPresentation): Boolean = oldItem == newItem
 }

@@ -2,7 +2,7 @@ package com.iwelogic.domain.sign_in.register
 
 
 import com.iwelogic.core.utils.isEmail
-import com.iwelogic.domain.models.DomainRegister
+import com.iwelogic.domain.models.RegisterDomain
 import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -17,6 +17,6 @@ class RegisterUseCaseImp(private val registerRepository: RegisterRepository) : R
         if (passwordTwo != passwordOne) errors.add(Result.Error(Result.Error.Code.PASSWORD_TWO_DOESNT_MATCH))
         if (errors.isNotEmpty()) return errors.asFlow()
 
-        return registerRepository.register(DomainRegister(email = email, firstName = firstName, lastName = lastName, password = passwordOne))
+        return registerRepository.register(RegisterDomain(email = email, firstName = firstName, lastName = lastName, password = passwordOne))
     }
 }

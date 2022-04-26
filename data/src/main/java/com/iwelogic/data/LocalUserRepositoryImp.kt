@@ -5,7 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.dataStore
 import com.codelab.android.datastore.UserPreferences
 import com.iwelogic.domain.LocalUserRepository
-import com.iwelogic.domain.models.DomainUser
+import com.iwelogic.domain.models.UserDomain
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.map
@@ -16,16 +16,16 @@ class LocalUserRepositoryImp(val context: Context) : LocalUserRepository {
 
     private val Context.userPreferencesStore: DataStore<UserPreferences> by dataStore(fileName = "settings", serializer = UserPreferencesSerializer)
 
-    override val userFlow: Flow<DomainUser>
+    override val userFlow: Flow<UserDomain>
         get() = context.userPreferencesStore.data.catch {
             if (it is IOException) {
                 emit(UserPreferences.getDefaultInstance())
             } else {
                 throw it
             }
-        }.map { DomainUser(it.name, it.userToken, it.email) }
+        }.map { UserDomain(it.name, it.userToken, it.email) }
 
-    override suspend fun updateUserPreference(user: DomainUser) {
+    override suspend fun updateUserPreference(user: UserDomain) {
         context.userPreferencesStore.updateData { preferences ->
             val builder = preferences.toBuilder()
             user.name?.let { builder.setName(it) }

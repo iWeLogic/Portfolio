@@ -1,11 +1,11 @@
 package com.iwelogic.data.source
 
 import com.google.gson.Gson
-import com.iwelogic.data.models.DataApp
-import com.iwelogic.data.models.DataNews
-import com.iwelogic.data.models.DataRegister
-import com.iwelogic.data.models.DataSignIn
-import com.iwelogic.data.models.DataUser
+import com.iwelogic.data.models.AppData
+import com.iwelogic.data.models.NewsData
+import com.iwelogic.data.models.RegisterData
+import com.iwelogic.data.models.SignInData
+import com.iwelogic.data.models.UserData
 import com.iwelogic.domain.models.BaseResponse
 import com.iwelogic.data.Api
 import retrofit2.Response
@@ -14,7 +14,7 @@ import com.iwelogic.domain.models.Result
 
 class DataSourceImp (private val api: Api) : DataSource {
 
-    override suspend fun register(data: DataRegister): Result<Any> {
+    override suspend fun register(data: RegisterData): Result<Any> {
         return getResponse(request = { api.register(data) })
     }
 
@@ -22,7 +22,7 @@ class DataSourceImp (private val api: Api) : DataSource {
         return getResponse(request = { api.remember(email) })
     }
 
-    override suspend fun login(data: DataSignIn): Result<DataUser> {
+    override suspend fun login(data: SignInData): Result<UserData> {
         return getResponse(request = { api.login(data) })
     }
 
@@ -30,11 +30,11 @@ class DataSourceImp (private val api: Api) : DataSource {
         return getResponse(request = { api.resendEmailConfirmation(email) })
     }
 
-    override suspend fun getNews(pageSize: Int, offset: Int): Result<List<DataNews>> {
+    override suspend fun getNews(pageSize: Int, offset: Int): Result<List<NewsData>> {
         return getResponse(request = { api.getNews(pageSize, offset) })
     }
 
-    override suspend fun getApps(): Result<List<DataApp>> {
+    override suspend fun getApps(): Result<List<AppData>> {
         return getResponse(request = { api.getApps() })
     }
 

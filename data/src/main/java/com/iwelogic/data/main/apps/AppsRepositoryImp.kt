@@ -1,11 +1,10 @@
 package com.iwelogic.data.main.apps
 
-import android.util.ArrayMap
 import com.iwelogic.core.Mapper
-import com.iwelogic.data.models.DataApp
+import com.iwelogic.data.models.AppData
 import com.iwelogic.data.source.DataSource
 import com.iwelogic.domain.main.apps.AppsRepository
-import com.iwelogic.domain.models.DomainApp
+import com.iwelogic.domain.models.AppDomain
 import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -14,9 +13,9 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class AppsRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<DataApp, DomainApp>) : AppsRepository {
+class AppsRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<AppData, AppDomain>) : AppsRepository {
 
-    override fun getApps(): Flow<Result<List<DomainApp>>> {
+    override fun getApps(): Flow<Result<List<AppDomain>>> {
         return flow {
             emit(Result.Loading)
             delay(200)

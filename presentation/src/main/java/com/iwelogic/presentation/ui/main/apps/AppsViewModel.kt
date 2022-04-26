@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.iwelogic.domain.main.apps.AppsUseCase
 import com.iwelogic.domain.models.Result
-import com.iwelogic.presentation.models.PresentationApp
+import com.iwelogic.presentation.models.AppPresentation
 import com.iwelogic.presentation.ui.base.BaseViewModel
 import com.iwelogic.presentation.ui.base.SingleLiveEvent
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,14 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase, private val mapper: AppDomainPresentationMapper) : BaseViewModel() {
 
-    val openDetails: SingleLiveEvent<PresentationApp> = SingleLiveEvent()
-    val apps: MutableLiveData<List<PresentationApp>> = MutableLiveData(ArrayList())
+    val openDetails: SingleLiveEvent<AppPresentation> = SingleLiveEvent()
+    val apps: MutableLiveData<List<AppPresentation>> = MutableLiveData(ArrayList())
 
     init {
         onReload()
     }
 
-    val onClick: (PresentationApp) -> Unit = {
+    val onClick: (AppPresentation) -> Unit = {
         openDetails.postValue(it)
     }
 

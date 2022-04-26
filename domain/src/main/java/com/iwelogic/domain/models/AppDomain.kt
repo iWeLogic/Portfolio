@@ -1,6 +1,6 @@
 package com.iwelogic.domain.models
 
-data class DomainApp(
+data class AppDomain(
 
     val id: Int? = null,
     val title: String? = null,

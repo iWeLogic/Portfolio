@@ -21,7 +21,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list"
-                news="@{viewModel.news}"
+                news="@{viewModel.newsPresentation}"
                 onClick="@{viewModel.onClickItem}"
                 onScroll="@{viewModel.onScroll}"
                 android:layout_width="match_parent"
