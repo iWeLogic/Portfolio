@@ -14,7 +14,7 @@ object NewsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(dataSource: DataSource): NewsRepository {
+    fun provide(dataSource: DataSource): NewsRepository {
         return NewsRepositoryImp(dataSource, NewsDataDomainMapper())
     }
 }

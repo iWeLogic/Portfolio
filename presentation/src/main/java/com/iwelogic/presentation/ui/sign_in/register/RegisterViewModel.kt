@@ -5,11 +5,11 @@ import androidx.lifecycle.viewModelScope
 import com.iwelogic.domain.models.Result
 import com.iwelogic.domain.sign_in.register.RegisterUseCase
 import com.iwelogic.presentation.R
+import com.iwelogic.presentation.models.SignIn
 import com.iwelogic.presentation.ui.base.BaseViewModel
 import com.iwelogic.presentation.ui.base.PopupData
 import com.iwelogic.presentation.ui.base.SingleLiveEvent
 import com.iwelogic.presentation.ui.base.StringHolder
-import com.iwelogic.presentation.models.SignIn
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -17,7 +17,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(var registerUseCase: RegisterUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
+class RegisterViewModel @Inject constructor(
+    private val registerUseCase: RegisterUseCase,
+    private val stringHolder: StringHolder
+) : BaseViewModel() {
 
     val image: MutableLiveData<String> = MutableLiveData()
     val email: MutableLiveData<String> = MutableLiveData()

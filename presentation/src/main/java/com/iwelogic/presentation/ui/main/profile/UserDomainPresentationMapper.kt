@@ -1,13 +1,14 @@
-package com.iwelogic.data.sign_in.login
+package com.iwelogic.presentation.ui.main.profile
 
 import com.iwelogic.core.Mapper
-import com.iwelogic.data.models.UserData
 import com.iwelogic.domain.models.UserDomain
+import com.iwelogic.presentation.models.UserPresentation
+import javax.inject.Inject
 
-class UserDataDomainMapper : Mapper<UserData, UserDomain> {
+class UserDomainPresentationMapper @Inject constructor() : Mapper<UserDomain, UserPresentation> {
 
-    override fun map(input: UserData): UserDomain {
-        return UserDomain(
+    override fun map(input: UserDomain): UserPresentation {
+        return UserPresentation(
             objectId = input.objectId,
             firstName = input.firstName,
             lastName = input.lastName,
@@ -17,8 +18,8 @@ class UserDataDomainMapper : Mapper<UserData, UserDomain> {
         )
     }
 
-    override fun reverseMap(input: UserDomain): UserData {
-        return UserData(
+    override fun reverseMap(input: UserPresentation): UserDomain {
+        return UserDomain(
             objectId = input.objectId,
             firstName = input.firstName,
             lastName = input.lastName,

@@ -27,6 +27,7 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
         val binding: FragmentLoginBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
+        viewModel.user = (activity as MainActivity).viewModel.user
         binding.viewModel = viewModel
         return binding.root
     }
@@ -43,9 +44,7 @@ class LoginFragment : BaseFragment<LoginViewModel>() {
                 findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToForgotPasswordFragment(it))
             }
         }
-        viewModel.changeUserExistStatus.observe(this) {
-            (activity as MainActivity).viewModel.userExistStatus.postValue(it)
-        }
+
         setFragmentResultListener(REGISTER_RESULT) { _, bundle ->
             viewModel.loginWithRegisteredUser(bundle.getParcelable(VALUE))
         }

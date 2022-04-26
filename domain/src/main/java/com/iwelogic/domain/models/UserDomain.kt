@@ -1,19 +1,11 @@
 package com.iwelogic.domain.models
 
-import com.google.gson.annotations.Expose
-import com.google.gson.annotations.SerializedName
-
 data class UserDomain(
 
-	@field:SerializedName("name")
-	@Expose
-	val name: String? = null,
-
-	@field:SerializedName("user-token")
-	@Expose
-	val userToken: String? = null,
-
-	@field:SerializedName("email")
-	@Expose
-	val email: String? = null
+    val objectId: String? = null,
+    val firstName: String? = null,
+    val lastName: String? = null,
+    val image: String? = null,
+    val email: String? = null,
+    val userToken: String? = null
 )

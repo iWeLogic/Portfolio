@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onEach
 
-class LoginUseCaseImp(var loginRepository: LoginRepository, var localUserRepository: LocalUserRepository) : LoginUseCase {
+class LoginUseCaseImp(private val loginRepository: LoginRepository, private val localUserRepository: LocalUserRepository) : LoginUseCase {
 
     override fun login(email: String?, password: String?): Flow<Result<UserDomain>> {
 

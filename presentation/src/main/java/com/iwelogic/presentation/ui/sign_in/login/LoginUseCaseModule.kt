@@ -15,7 +15,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object LoginUseCaseModule {
 
     @Provides
-    fun provideLoginUseCase(loginRepository: LoginRepository, localUserRepository: LocalUserRepository): LoginUseCase {
+    fun provide(loginRepository: LoginRepository, localUserRepository: LocalUserRepository): LoginUseCase {
         return LoginUseCaseImp(loginRepository, localUserRepository)
     }
 }

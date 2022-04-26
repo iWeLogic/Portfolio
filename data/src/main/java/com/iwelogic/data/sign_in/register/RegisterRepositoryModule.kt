@@ -14,7 +14,7 @@ object RegisterRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRegisterRepository(dataSource: DataSource): RegisterRepository {
+    fun provide(dataSource: DataSource): RegisterRepository {
         return RegisterRepositoryImp(dataSource)
     }
 }

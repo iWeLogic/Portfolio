@@ -14,7 +14,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class InfoViewModel @Inject constructor(private val infoUseCase: InfoUseCase, private val mapper: InfoDomainPresentationMapper) : BaseViewModel() {
+class InfoViewModel @Inject constructor(
+    private val infoUseCase: InfoUseCase,
+    private val mapper: InfoDomainPresentationMapper
+) : BaseViewModel() {
 
     val info: MutableLiveData<InfoPresentation> = MutableLiveData()
     val dial: SingleLiveEvent<String> = SingleLiveEvent()

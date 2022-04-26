@@ -14,7 +14,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AppsViewModel @Inject constructor(private val appsUseCase: AppsUseCase, private val mapper: AppDomainPresentationMapper) : BaseViewModel() {
+class AppsViewModel @Inject constructor(
+    private val appsUseCase: AppsUseCase,
+    private val mapper: AppDomainPresentationMapper
+) : BaseViewModel() {
 
     val openDetails: SingleLiveEvent<AppPresentation> = SingleLiveEvent()
     val apps: MutableLiveData<List<AppPresentation>> = MutableLiveData(ArrayList())

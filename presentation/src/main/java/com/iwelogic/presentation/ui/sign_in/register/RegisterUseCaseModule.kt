@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object RegisterUseCaseModule {
 
     @Provides
-    fun provideRegisterUseCase(registerRepository: RegisterRepository): RegisterUseCase {
+    fun provide(registerRepository: RegisterRepository): RegisterUseCase {
         return RegisterUseCaseImp(registerRepository)
     }
 }

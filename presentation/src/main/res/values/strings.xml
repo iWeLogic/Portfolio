@@ -1,7 +1,7 @@
 <resources>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="email_address">Email address</string>
-    <string name="Login">Login</string>
+    <string name="login">Login</string>
     <string name="sign_in">Sign In</string>
     <string name="wrong_email">Wrong email</string>
     <string name="wrong_password">Wrong password</string>
@@ -42,4 +42,7 @@
     <string name="upwork">upWork</string>
     <string name="linkedin">LinkedIn</string>
     <string name="resume">Resume</string>
+    <string name="save">Save</string>
+    <string name="user_updated">User updated</string>
+    <string name="you_are_not_login_yet">You are not login yet</string>
 </resources>

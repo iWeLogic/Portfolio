@@ -3,8 +3,9 @@ package com.iwelogic.presentation.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.iwelogic.domain.UserExistUseCase
-import com.iwelogic.domain.models.ExistStatus
+import com.iwelogic.domain.LocalUserUseCase
+import com.iwelogic.presentation.models.UserPresentation
+import com.iwelogic.presentation.ui.main.profile.UserDomainPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -12,9 +13,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(var userExistUseCase: UserExistUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val localUserUseCase: LocalUserUseCase,
+    private val mapper: UserDomainPresentationMapper
+) : ViewModel() {
 
-    val userExistStatus: MutableLiveData<Boolean> = MutableLiveData()
+    val user: MutableLiveData<UserPresentation> = MutableLiveData()
 
     init {
         checkIsLogged()
@@ -22,10 +26,10 @@ class MainViewModel @Inject constructor(var userExistUseCase: UserExistUseCase) 
 
     private fun checkIsLogged() {
         viewModelScope.launch {
-            userExistUseCase.checkIsUserExist().catch {
+            localUserUseCase.getUser().catch {
                 it.printStackTrace()
             }.collect {
-                userExistStatus.postValue(it == ExistStatus.True)
+                user.postValue(mapper.map(it))
             }
         }
     }

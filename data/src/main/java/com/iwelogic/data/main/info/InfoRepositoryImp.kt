@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class InfoRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<InfoData, InfoDomain>) : InfoRepository {
+
     override fun getInfo(): Flow<Result<InfoDomain>> {
         return flow {
             emit(Result.Loading)

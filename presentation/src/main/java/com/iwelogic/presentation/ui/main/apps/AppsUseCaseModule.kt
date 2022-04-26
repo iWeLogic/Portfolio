@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object AppsUseCaseModule {
 
     @Provides
-    fun provideAppsUseCase(appsRepository: AppsRepository): AppsUseCase {
+    fun provide(appsRepository: AppsRepository): AppsUseCase {
         return AppsUseCaseImp(appsRepository)
     }
 }

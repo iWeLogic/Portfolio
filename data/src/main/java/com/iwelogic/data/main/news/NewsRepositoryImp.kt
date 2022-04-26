@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
 class NewsRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<NewsData, NewsDomain>) : NewsRepository {
+
     override fun getNews(pageSize: Int, offset: Int): Flow<Result<List<NewsDomain>>> {
         return flow {
             emit(Result.Loading)

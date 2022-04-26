@@ -5,11 +5,13 @@ import androidx.lifecycle.viewModelScope
 import com.iwelogic.domain.models.Result
 import com.iwelogic.domain.sign_in.login.LoginUseCase
 import com.iwelogic.presentation.R
+import com.iwelogic.presentation.models.SignIn
+import com.iwelogic.presentation.models.UserPresentation
 import com.iwelogic.presentation.ui.base.BaseViewModel
 import com.iwelogic.presentation.ui.base.PopupData
 import com.iwelogic.presentation.ui.base.SingleLiveEvent
 import com.iwelogic.presentation.ui.base.StringHolder
-import com.iwelogic.presentation.models.SignIn
+import com.iwelogic.presentation.ui.main.profile.UserDomainPresentationMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
@@ -17,13 +19,17 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
+class LoginViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase,
+    private val stringHolder: StringHolder,
+    private val mapper: UserDomainPresentationMapper
+) : BaseViewModel() {
 
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
-    val changeUserExistStatus: SingleLiveEvent<Boolean> = SingleLiveEvent()
+    var user: MutableLiveData<UserPresentation> = MutableLiveData()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
-    var email: MutableLiveData<String> = MutableLiveData()
-    var password: MutableLiveData<String> = MutableLiveData()
+    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
+    var password: MutableLiveData<String> = MutableLiveData("12345678")
     val emailError: MutableLiveData<String> = MutableLiveData()
     val passwordError: MutableLiveData<String> = MutableLiveData()
     private val emailObserver: (String) -> Unit = {
@@ -74,7 +80,7 @@ class LoginViewModel @Inject constructor(private val loginUseCase: LoginUseCase,
                     }
                     is Result.Finish -> progress.postValue(false)
                     is Result.Success -> {
-                        changeUserExistStatus.postValue(true)
+                        user.postValue(result.data?.let { mapper.map(it) })
                         close.postValue(true)
                     }
                     is Result.Error -> when (result.code) {

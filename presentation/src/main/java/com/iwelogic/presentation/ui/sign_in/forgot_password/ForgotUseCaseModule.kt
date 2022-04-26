@@ -14,7 +14,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object ForgotUseCaseModule {
 
     @Provides
-    fun provideForgotPasswordUseCase(forgotPasswordRepository: ForgotPasswordRepository): ForgotPasswordUseCase {
+    fun provide(forgotPasswordRepository: ForgotPasswordRepository): ForgotPasswordUseCase {
         return ForgotPasswordUseCaseImp(forgotPasswordRepository)
     }
 }
