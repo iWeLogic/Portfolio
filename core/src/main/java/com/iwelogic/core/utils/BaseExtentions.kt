@@ -71,30 +71,3 @@ fun View.getAllChildren(): List<View> {
     }
     return result
 }
-
-fun View.removeAccessibilityFocus() {
-    getAllChildren().forEach {
-        it.performAccessibilityAction(AccessibilityNodeInfo.ACTION_CLEAR_ACCESSIBILITY_FOCUS, null)
-    }
-}
-
-fun View.accessibilityStatus(status: Boolean) {
-    getAllChildren().forEach {
-        it.importantForAccessibility = if (status) View.IMPORTANT_FOR_ACCESSIBILITY_YES else View.IMPORTANT_FOR_ACCESSIBILITY_NO
-    }
-}
-
-inline fun <reified T> ViewGroup.getFirstChildByType(): T? {
-    val foundChild: T? = null
-    val childrenCount = childCount
-    Log.w("myLog", "getFirstChildByType: 0")
-    for (i in 0..childrenCount) {
-        val view = getChildAt(i)
-        Log.w("myLog", "getFirstChildByType: 1")
-        return null
-    }
-    Log.w("myLog", "getFirstChildByType: 2")
-    return foundChild
-}
-
-

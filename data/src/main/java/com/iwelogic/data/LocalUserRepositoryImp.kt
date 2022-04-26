@@ -23,7 +23,16 @@ class LocalUserRepositoryImp(private val context: Context) : LocalUserRepository
             } else {
                 throw it
             }
-        }.map { UserDomain(it.firstName, it.userToken, it.email) }
+        }.map {
+            UserDomain(
+                objectId = it.objectId,
+                firstName = it.firstName,
+                lastName = it.lastName,
+                image = it.image,
+                email = it.email,
+                userToken = it.userToken
+            )
+        }
 
     override suspend fun updateUserPreference(user: UserDomain) {
         context.userPreferencesStore.updateData { preferences ->

@@ -2,13 +2,12 @@ package com.iwelogic.presentation.ui.base
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.iwelogic.core.utils.hideKeyboard
-import com.iwelogic.presentation.ui.MainActivity
 import com.iwelogic.presentation.R
+import com.iwelogic.presentation.ui.MainActivity
 
 open class BaseFragment<VM : BaseViewModel> : Fragment() {
 
@@ -17,7 +16,6 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.close.observe(this) {
-            Log.w("myLog", "onViewCreated: XXX")
             activity?.onBackPressed()
         }
 
@@ -50,26 +48,4 @@ open class BaseFragment<VM : BaseViewModel> : Fragment() {
             }
         }
     }
-
-    /* override fun showToast(msg: String?) {
-         context?.let {
-             Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
-         }
-     }
-
-     override fun showToast(msg: Int) {
-         context?.let {
-             Toast.makeText(it, msg, Toast.LENGTH_LONG).show()
-         }
-     }
-
-
-     override fun openLogin() {
-
-     }
-
-     override fun openMain(isFirstLaunch: Boolean) {
-
-     }*/
-
 }

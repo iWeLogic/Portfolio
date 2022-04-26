@@ -36,7 +36,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/toolbar"
                 android:layout_marginEnd="@dimen/toolbar"
-                android:text="@string/Login" />
+                android:text="@string/login" />
 
         </LinearLayout>
 

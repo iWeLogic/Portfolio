@@ -20,16 +20,13 @@ class ProfileFragment : BaseFragment<ProfileViewModel>() {
         val binding: FragmentProfileBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_profile, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this)[ProfileViewModel::class.java]
+        viewModel.user = (activity as MainActivity).viewModel.user
         binding.viewModel = viewModel
-        binding.mainViewModel = (activity as MainActivity).viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.changeExistStatus.observe(this) {
-            (activity as MainActivity).viewModel.userExistStatus.postValue(it)
-        }
         viewModel.openLogin.observe(this) {
             if (findNavController().currentDestination?.id == R.id.profileFragment) {
                 findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToLoginFragment())
