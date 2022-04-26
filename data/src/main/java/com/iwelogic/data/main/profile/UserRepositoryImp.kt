@@ -7,6 +7,7 @@ import com.iwelogic.domain.main.profile.UserRepository
 import com.iwelogic.domain.models.Result
 import com.iwelogic.domain.models.UserDomain
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -17,6 +18,7 @@ class UserRepositoryImp(private val dataSource: DataSource, private val mapper: 
     override fun update(userData: UserDomain): Flow<Result<UserDomain>> {
         return flow {
             emit(Result.Loading)
+            delay(200)
             emit(dataSource.updateUser(mapper.reverseMap(userData)))
             emit(Result.Finish)
         }.map { result ->
@@ -32,6 +34,7 @@ class UserRepositoryImp(private val dataSource: DataSource, private val mapper: 
     override fun get(objectId: String?): Flow<Result<UserDomain>> {
         return flow {
             emit(Result.Loading)
+            delay(200)
             emit(dataSource.getUser(objectId))
             emit(Result.Finish)
         }.map { result ->

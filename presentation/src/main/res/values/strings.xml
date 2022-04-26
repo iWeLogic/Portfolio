@@ -44,4 +44,5 @@
     <string name="resume">Resume</string>
     <string name="save">Save</string>
     <string name="user_updated">User updated</string>
+    <string name="you_are_not_login_yet">You are not login yet</string>
 </resources>

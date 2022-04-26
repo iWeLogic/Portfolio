@@ -44,21 +44,23 @@ class ProfileViewModel @Inject constructor(
     }
 
     override fun onReload() {
-        viewModelScope.launch {
-            userUseCase.getUser(user.value?.objectId).collect { result ->
-                when (result) {
-                    is Result.Loading -> progress.postValue(true)
-                    is Result.Finish -> progress.postValue(false)
-                    is Result.Success -> user.postValue(result.data?.let { mapper.map(it) })
-                    is Result.Error -> showPopup.postValue(PopupData(text = result.message))
+        user.value?.objectId?.let { objectId ->
+            viewModelScope.launch {
+                userUseCase.getUser(objectId).collect { result ->
+                    when (result) {
+                        is Result.Loading -> progress.postValue(true)
+                        is Result.Finish -> progress.postValue(false)
+                        is Result.Success -> user.postValue(result.data?.let { mapper.map(it) })
+                        is Result.Error -> showPopup.postValue(PopupData(text = result.message))
+                    }
                 }
             }
         }
     }
 
     fun onClickSave() {
-        viewModelScope.launch {
-            user.value?.let { user ->
+        user.value?.let { user ->
+            viewModelScope.launch {
                 userUseCase.update(mapper.reverseMap(user)).collect { result ->
                     when (result) {
                         is Result.Loading -> {
