@@ -1,6 +1,5 @@
 package com.iwelogic.data.source
 
-import android.util.Log
 import com.google.gson.Gson
 import com.iwelogic.data.models.DataApp
 import com.iwelogic.data.models.DataNews
@@ -8,7 +7,7 @@ import com.iwelogic.data.models.DataRegister
 import com.iwelogic.data.models.DataSignIn
 import com.iwelogic.data.models.DataUser
 import com.iwelogic.domain.models.BaseResponse
-import com.iwelogic.presentation.Api
+import com.iwelogic.data.Api
 import retrofit2.Response
 import java.net.UnknownHostException
 import com.iwelogic.domain.models.Result

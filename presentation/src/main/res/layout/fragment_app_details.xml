@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.iwelogic.presentation.ui.main.apps.app_details.AppDetailsViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/toolbar"
+            android:background="@drawable/background_bottom_line"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/toolbar"
+                android:layout_height="@dimen/toolbar"
+                android:background="?attr/actionBarItemBackground"
+                android:contentDescription="@string/back"
+                android:onClick="@{() -> viewModel.onClickClose()}"
+                android:scaleType="centerInside"
+                android:src="@drawable/back" />
+
+            <TextView
+                style="@style/Header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:gravity="center_vertical"
+                android:text="@{viewModel.app.title}"
+                android:textColor="@color/headerTextColor" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/background"
+            android:orientation="vertical">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.smarteist.autoimageslider.SliderView
+                    images="@{viewModel.app.images}"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintDimensionRatio="1024:500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="right"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="600"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="1.8dp"
+                    app:sliderIndicatorSelectedColor="@color/headerTextColor"
+                    app:sliderIndicatorUnselectedColor="#D3D3D3"
+                    app:sliderScrollTimeInSec="4"
+                    app:sliderStartAutoCycle="true" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.iwelogic.presentation.views.CollapseTextView
+                body="@{viewModel.app.description}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginEnd="@dimen/default_size" />
+
+            <TextView
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@string/tags" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                tags="@{viewModel.app.tags}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/quarter_default_size"
+                android:layout_marginEnd="@dimen/default_size" />
+
+            <TextView
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/half_default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@string/development_time" />
+
+            <TextView
+                style="@style/RegularText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/quarter_default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@{`` + viewModel.app.spendHours + ` hours`}" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_size"
+                android:contentDescription="@string/google_play"
+                android:onClick="@{() -> viewModel.onClickGooglePlay()}"
+                android:src="@drawable/google_play" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

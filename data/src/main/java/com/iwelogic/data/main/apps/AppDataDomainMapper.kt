@@ -11,7 +11,12 @@ class AppDataDomainMapper : Mapper<DataApp, DomainApp> {
             id = input.id,
             title = input.title,
             description = input.description,
-            icon = input.icon
+            icon = input.icon,
+            images = input.images,
+            url = input.url,
+            releaseDate = input.releaseDate,
+            spendHours = input.spendHours,
+            tags = input.tags,
         )
     }
 }

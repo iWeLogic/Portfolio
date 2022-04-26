@@ -20,4 +20,24 @@ data class DataApp(
     @field:SerializedName("icon")
     @Expose
     val icon: String? = null,
+
+    @field:SerializedName("images")
+    @Expose
+    val images: List<String>? = null,
+
+    @field:SerializedName("url")
+    @Expose
+    val url: String? = null,
+
+    @field:SerializedName("releaseDate")
+    @Expose
+    val releaseDate: Long? = null,
+
+    @field:SerializedName("spendHours")
+    @Expose
+    val spendHours: Int? = null,
+
+    @field:SerializedName("tags")
+    @Expose
+    val tags: List<String>? = null
 )

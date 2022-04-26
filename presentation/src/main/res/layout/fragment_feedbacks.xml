@@ -3,14 +3,28 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.feedbacks.FeedbacksViewModel" />
+            type="com.iwelogic.presentation.ui.main.feedbacks.FeedbacksViewModel" />
+
+        <variable
+            name="mainViewModel"
+            type="com.iwelogic.presentation.ui.MainViewModel" />
     </data>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/Login"
+            android:onClick="@{() -> viewModel.onClickLogin()}"
+            android:visibility="@{mainViewModel.userExistStatus ? View.GONE : View.VISIBLE}" />
 
     </FrameLayout>
 </layout>
