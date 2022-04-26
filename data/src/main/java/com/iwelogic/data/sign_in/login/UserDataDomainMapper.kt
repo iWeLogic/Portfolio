@@ -8,7 +8,10 @@ class UserDataDomainMapper : Mapper<UserData, UserDomain> {
 
     override fun map(input: UserData): UserDomain {
         return UserDomain(
-            name = input.name,
+            objectId = input.objectId,
+            firstName = input.firstName,
+            lastName = input.lastName,
+            image = input.image,
             userToken = input.userToken,
             email = input.email
         )

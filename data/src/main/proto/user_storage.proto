@@ -4,7 +4,10 @@ option java_package = "com.codelab.android.datastore";
 option java_multiple_files = true;
 
 message UserPreferences{
-  string name = 1;
-  string userToken = 2;
-  string email = 3;
+  string objectId = 1;
+  string image = 2;
+  string firstName = 3;
+  string lastName = 4;
+  string userToken = 5;
+  string email = 6;
 }
