@@ -83,6 +83,40 @@
                 android:layout_marginStart="@dimen/default_size"
                 android:layout_marginEnd="@dimen/default_size" />
 
+            <TextView
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@string/tags" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                tags="@{viewModel.app.tags}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/quarter_default_size"
+                android:layout_marginEnd="@dimen/default_size" />
+
+            <TextView
+                style="@style/Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/half_default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@string/development_time" />
+
+            <TextView
+                style="@style/RegularText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/default_size"
+                android:layout_marginTop="@dimen/quarter_default_size"
+                android:layout_marginEnd="@dimen/default_size"
+                android:text="@{`` + viewModel.app.spendHours + ` hours`}" />
+
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

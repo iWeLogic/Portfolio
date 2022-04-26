@@ -19,7 +19,7 @@ interface Api {
     suspend fun resendEmailConfirmation(@Path("email") email: String?): Response<Void>
 
     @GET("/api/data/apps")
-    suspend fun getApps(@Query("sortBy") sortBy: String = "id"): Response<List<DataApp>>
+    suspend fun getApps(@Query("sortBy") sortBy: String = "id", @Query("pageSize") pageSize: String = "100"): Response<List<DataApp>>
 
     @GET("/api/data/news")
     suspend fun getNews(@Query("pageSize") pageSize: Int, @Query("offset") offset: Int): Response<List<DataNews>>

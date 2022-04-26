@@ -27,5 +27,17 @@ data class DataApp(
 
     @field:SerializedName("url")
     @Expose
-    val url: String? = null
+    val url: String? = null,
+
+    @field:SerializedName("releaseDate")
+    @Expose
+    val releaseDate: Long? = null,
+
+    @field:SerializedName("spendHours")
+    @Expose
+    val spendHours: Int? = null,
+
+    @field:SerializedName("tags")
+    @Expose
+    val tags: List<String>? = null
 )
