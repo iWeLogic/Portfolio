@@ -1,9 +1,9 @@
-package com.iwelogic.domain.models
+package com.iwelogic.data.models
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class DomainUser(
+data class UserData(
 
 	@field:SerializedName("name")
 	@Expose

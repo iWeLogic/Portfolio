@@ -1,6 +1,6 @@
 package com.iwelogic.domain.models
 
-data class DomainNews(
+data class NewsDomain(
 
     val id: Int? = null,
     val title: String? = null,

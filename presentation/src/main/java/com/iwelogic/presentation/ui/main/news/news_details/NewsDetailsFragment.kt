@@ -18,7 +18,7 @@ class NewsDetailsFragment : BaseFragment<NewsDetailsViewModel>() {
         val binding: FragmentNewsDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_news_details, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this)[NewsDetailsViewModel::class.java]
-//        viewModel.news.postValue(NewsDetailsFragmentArgs.fromBundle(requireArguments()).data)
+        viewModel.newsPresentation.postValue(NewsDetailsFragmentArgs.fromBundle(requireArguments()).data)
         binding.viewModel = viewModel
         return binding.root
     }

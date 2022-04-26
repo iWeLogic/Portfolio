@@ -38,4 +38,8 @@
     <string name="description">Description</string>
     <string name="tags">Tags</string>
     <string name="development_time">Development time</string>
+    <string name="avatar">Avatar</string>
+    <string name="upwork">upWork</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="resume">Resume</string>
 </resources>

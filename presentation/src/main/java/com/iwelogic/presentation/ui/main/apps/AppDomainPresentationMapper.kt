@@ -1,14 +1,14 @@
 package com.iwelogic.presentation.ui.main.apps
 
 import com.iwelogic.core.Mapper
-import com.iwelogic.domain.models.DomainApp
-import com.iwelogic.presentation.models.PresentationApp
+import com.iwelogic.domain.models.AppDomain
+import com.iwelogic.presentation.models.AppPresentation
 import javax.inject.Inject
 
-class AppDomainPresentationMapper @Inject constructor() : Mapper<DomainApp, PresentationApp> {
+class AppDomainPresentationMapper @Inject constructor() : Mapper<AppDomain, AppPresentation> {
 
-    override fun map(input: DomainApp): PresentationApp {
-        return PresentationApp(
+    override fun map(input: AppDomain): AppPresentation {
+        return AppPresentation(
             id = input.id,
             title = input.title,
             description = input.description,

@@ -1,11 +1,11 @@
 package com.iwelogic.data.sign_in.login
 
 import com.iwelogic.core.Mapper
-import com.iwelogic.data.models.DataSignIn
-import com.iwelogic.data.models.DataUser
+import com.iwelogic.data.models.SignInData
+import com.iwelogic.data.models.UserData
 import com.iwelogic.data.source.DataSource
-import com.iwelogic.domain.models.DomainSignIn
-import com.iwelogic.domain.models.DomainUser
+import com.iwelogic.domain.models.SignInDomain
+import com.iwelogic.domain.models.UserDomain
 import com.iwelogic.domain.models.Result
 import com.iwelogic.domain.sign_in.login.LoginRepository
 import kotlinx.coroutines.Dispatchers
@@ -14,16 +14,16 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 
-class LoginRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<DataUser, DomainUser>) : LoginRepository {
+class LoginRepositoryImp(private val dataSource: DataSource, private val mapper: Mapper<UserData, UserDomain>) : LoginRepository {
 
-    override fun login(data: DomainSignIn): Flow<Result<DomainUser>> {
+    override fun login(data: SignInDomain): Flow<Result<UserDomain>> {
         return flow {
             emit(Result.Loading)
-            emit(dataSource.login(DataSignIn(data.login, data.password)))
+            emit(dataSource.login(SignInData(data.login, data.password)))
             emit(Result.Finish)
         }.map { result ->
             when (result) {
-                is Result.Success -> Result.Success(mapper.map(result.data ?: DataUser() ))
+                is Result.Success -> Result.Success(mapper.map(result.data ?: UserData() ))
                 is Result.Error -> Result.Error(result.code, result.message)
                 is Result.Loading -> Result.Loading
                 is Result.Finish -> Result.Finish

@@ -19,7 +19,7 @@ class AppDetailsFragment : BaseFragment<AppDetailsViewModel>() {
         val binding: FragmentAppDetailsBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_app_details, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         viewModel = ViewModelProvider(this)[AppDetailsViewModel::class.java]
-        viewModel.app.postValue(AppDetailsFragmentArgs.fromBundle(requireArguments()).data)
+        viewModel.appPresentation.postValue(AppDetailsFragmentArgs.fromBundle(requireArguments()).data)
         binding.viewModel = viewModel
         return binding.root
     }

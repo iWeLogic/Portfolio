@@ -6,11 +6,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.iwelogic.presentation.models.PresentationApp
+import com.iwelogic.presentation.models.AppPresentation
 import com.iwelogic.presentation.R
 import com.iwelogic.presentation.databinding.ItemAppBinding
 
-class AppAdapter(private val onClick: (PresentationApp) -> Unit) : ListAdapter<PresentationApp, RecyclerView.ViewHolder>(ComparatorApp) {
+class AppAdapter(private val onClick: (AppPresentation) -> Unit) : ListAdapter<AppPresentation, RecyclerView.ViewHolder>(ComparatorApp) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return AppViewHolder(DataBindingUtil.inflate(LayoutInflater.from(parent.context), R.layout.item_app, parent, false))
@@ -23,7 +23,7 @@ class AppAdapter(private val onClick: (PresentationApp) -> Unit) : ListAdapter<P
     }
 
     private inner class AppViewHolder(private val binding: ItemAppBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item: PresentationApp) {
+        fun bind(item: AppPresentation) {
             binding.item = item
             binding.root.setOnClickListener {
                 onClick.invoke(item)
@@ -33,7 +33,7 @@ class AppAdapter(private val onClick: (PresentationApp) -> Unit) : ListAdapter<P
     }
 }
 
-object ComparatorApp : DiffUtil.ItemCallback<PresentationApp>() {
-    override fun areItemsTheSame(oldItem: PresentationApp, newItem: PresentationApp): Boolean = oldItem.id == newItem.id
-    override fun areContentsTheSame(oldItem: PresentationApp, newItem: PresentationApp): Boolean = oldItem == newItem
+object ComparatorApp : DiffUtil.ItemCallback<AppPresentation>() {
+    override fun areItemsTheSame(oldItem: AppPresentation, newItem: AppPresentation): Boolean = oldItem.id == newItem.id
+    override fun areContentsTheSame(oldItem: AppPresentation, newItem: AppPresentation): Boolean = oldItem == newItem
 }
