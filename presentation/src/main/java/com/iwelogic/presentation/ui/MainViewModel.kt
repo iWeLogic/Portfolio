@@ -13,7 +13,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(var localUserUseCase: LocalUserUseCase, val mapper: UserDomainPresentationMapper) : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val localUserUseCase: LocalUserUseCase,
+    private val mapper: UserDomainPresentationMapper
+) : ViewModel() {
 
     val user: MutableLiveData<UserPresentation> = MutableLiveData()
 

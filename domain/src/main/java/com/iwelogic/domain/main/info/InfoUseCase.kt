@@ -5,5 +5,6 @@ import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 
 interface InfoUseCase {
+
     fun getInfo(): Flow<Result<InfoDomain>>
 }

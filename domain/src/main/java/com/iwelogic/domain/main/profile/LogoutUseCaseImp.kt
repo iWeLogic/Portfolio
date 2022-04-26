@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 
-class LogoutUseCaseImp(var localUserRepository: LocalUserRepository) : LogoutUseCase {
+class LogoutUseCaseImp(private val localUserRepository: LocalUserRepository) : LogoutUseCase {
 
     override fun logout(): Flow<Result<Nothing>> {
         return flow {

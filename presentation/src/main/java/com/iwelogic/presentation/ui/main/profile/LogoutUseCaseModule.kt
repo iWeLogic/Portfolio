@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object LogoutUseCaseModule {
 
     @Provides
-    fun provideLogoutUseCase(localUserRepository: LocalUserRepository): LogoutUseCase {
+    fun provide(localUserRepository: LocalUserRepository): LogoutUseCase {
         return LogoutUseCaseImp(localUserRepository)
     }
 }

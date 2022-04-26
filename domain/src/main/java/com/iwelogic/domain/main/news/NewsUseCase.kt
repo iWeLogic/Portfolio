@@ -5,5 +5,6 @@ import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 
 interface NewsUseCase {
+
     fun getNews(pageSize: Int, offset: Int): Flow<Result<List<NewsDomain>>>
 }

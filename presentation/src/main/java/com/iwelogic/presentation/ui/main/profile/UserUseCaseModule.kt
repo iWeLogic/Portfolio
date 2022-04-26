@@ -14,7 +14,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object UserUseCaseModule {
 
     @Provides
-    fun provideUserUseCase(userRepository: UserRepository, localUserRepository: LocalUserRepository): UserUseCase {
+    fun provide(userRepository: UserRepository, localUserRepository: LocalUserRepository): UserUseCase {
         return UserUseCaseImp(userRepository, localUserRepository)
     }
 }

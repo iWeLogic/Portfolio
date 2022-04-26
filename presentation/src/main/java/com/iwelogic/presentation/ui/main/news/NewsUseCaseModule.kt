@@ -13,7 +13,7 @@ import dagger.hilt.android.components.ViewModelComponent
 object NewsUseCaseModule {
 
     @Provides
-    fun provideNewsUseCase(newsRepository: NewsRepository): NewsUseCase {
+    fun provide(newsRepository: NewsRepository): NewsUseCase {
         return NewsUseCaseImp(newsRepository)
     }
 }

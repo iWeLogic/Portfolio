@@ -15,7 +15,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ForgotPasswordViewModel @Inject constructor(private val forgotPasswordUseCase: ForgotPasswordUseCase, private val stringHolder: StringHolder) : BaseViewModel() {
+class ForgotPasswordViewModel @Inject constructor(
+    private val forgotPasswordUseCase: ForgotPasswordUseCase,
+    private val stringHolder: StringHolder
+) : BaseViewModel() {
 
     var email: MutableLiveData<String> = MutableLiveData()
     val emailError: MutableLiveData<String> = MutableLiveData()

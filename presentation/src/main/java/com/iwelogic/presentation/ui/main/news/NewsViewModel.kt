@@ -19,7 +19,9 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class NewsViewModel @Inject constructor(private var newsUseCase: NewsUseCase) : BaseViewModel() {
+class NewsViewModel @Inject constructor(
+    private var newsUseCase: NewsUseCase
+) : BaseViewModel() {
 
     companion object {
         const val PAGE_SIZE = 6

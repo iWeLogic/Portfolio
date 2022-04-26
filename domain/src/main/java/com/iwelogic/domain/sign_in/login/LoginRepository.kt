@@ -6,6 +6,7 @@ import com.iwelogic.domain.models.UserDomain
 import kotlinx.coroutines.flow.Flow
 
 interface LoginRepository {
+
     fun login(data: SignInDomain): Flow<Result<UserDomain>>
 
     suspend fun resendConfirmation(login: String?)
