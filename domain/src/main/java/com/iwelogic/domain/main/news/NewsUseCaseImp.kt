@@ -1,13 +1,12 @@
 package com.iwelogic.domain.main.news
 
-import com.iwelogic.domain.models.DomainNews
+import com.iwelogic.domain.models.NewsDomain
 import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 
-class NewsUseCaseImp(var newsRepository: NewsRepository) : NewsUseCase {
+class NewsUseCaseImp(private val newsRepository: NewsRepository) : NewsUseCase {
 
-    override fun getNews(pageSize: Int, offset: Int): Flow<Result<List<DomainNews>>> {
-        print("DOMAIN news:")
+    override fun getNews(pageSize: Int, offset: Int): Flow<Result<List<NewsDomain>>> {
         return newsRepository.getNews(pageSize, offset)
     }
 }

@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.profile.ProfileViewModel" />
+            type="com.iwelogic.presentation.ui.main.profile.ProfileViewModel" />
     </data>
 
     <LinearLayout
@@ -16,15 +19,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:background="@color/buttonColor"
+            android:layout_height="@dimen/toolbar"
+            android:background="@drawable/background_bottom_line"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <ImageView
-                app:tint="@color/white"
-                android:layout_width="?actionBarSize"
-                android:layout_height="?actionBarSize"
+                android:layout_width="@dimen/toolbar"
+                android:layout_height="@dimen/toolbar"
                 android:background="?attr/actionBarItemBackground"
                 android:contentDescription="@string/back"
                 android:onClick="@{() -> viewModel.onClickClose()}"
@@ -32,30 +34,136 @@
                 android:src="@drawable/back" />
 
             <TextView
-                android:layout_width="0dp"
+                style="@style/Header"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/default_size"
                 android:layout_marginEnd="@dimen/default_size"
-                android:layout_weight="1"
+                android:ellipsize="end"
                 android:gravity="center_vertical"
-                android:text="Profile"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+                android:lines="1"
+                android:text="@string/profile"
+                android:textColor="@color/headerTextColor" />
 
         </LinearLayout>
 
-
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/background">
+            android:layout_height="match_parent">
 
-            <Button
-                android:layout_width="wrap_content"
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:overScrollMode="never"
+                android:visibility="@{viewModel.user.objectId == null ? View.GONE : View.VISIBLE}">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_size">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/email"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@drawable/background_edit_field"
+                        android:contentDescription="@string/email_address"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="textEmailAddress"
+                        android:text="@={viewModel.user.email}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:text="@string/first_name"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@drawable/background_edit_field"
+                        android:contentDescription="@string/first_name"
+                        android:inputType="textPersonName|textCapWords"
+                        android:text="@={viewModel.user.firstName}" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:text="@string/last_name"
+                        android:textSize="14sp" />
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        style="@style/EditField"
+                        android:background="@drawable/background_edit_field"
+                        android:contentDescription="@string/last_name"
+                        android:inputType="textPersonName|textCapWords"
+                        android:text="@={viewModel.user.lastName}" />
+
+                    <androidx.legacy.widget.Space
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <Button
+                        style="@style/Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:onClick="@{() -> viewModel.onClickSave()}"
+                        android:text="@string/save" />
+
+                    <Button
+                        style="@style/Button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_size"
+                        android:onClick="@{() -> viewModel.onClickLogout()}"
+                        android:text="@string/logout" />
+
+                </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:onClick="@{() -> viewModel.onClickLogout()}"
-                android:text="Logout" />
+                android:layout_margin="@dimen/default_size"
+                android:orientation="vertical"
+                android:visibility="@{viewModel.user.objectId == null ? View.VISIBLE : View.GONE}"
+                tools:visibility="gone">
+
+                <TextView
+                    style="@style/Title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/you_are_not_login_yet" />
+
+                <Button
+                    style="@style/Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/double_default_size"
+                    android:onClick="@{() -> viewModel.onClickLogin()}"
+                    android:text="@string/login" />
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/layout_progress"
+                app:progress="@{viewModel.progress}" />
 
         </FrameLayout>
 

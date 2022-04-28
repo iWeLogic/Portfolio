@@ -1,29 +1,40 @@
 package com.iwelogic.data.source
 
-import android.util.Log
 import com.google.gson.Gson
-import com.iwelogic.data.models.DataApp
-import com.iwelogic.data.models.DataNews
-import com.iwelogic.data.models.DataRegister
-import com.iwelogic.data.models.DataSignIn
-import com.iwelogic.data.models.DataUser
+import com.iwelogic.data.Api
+import com.iwelogic.data.models.*
 import com.iwelogic.domain.models.BaseResponse
-import com.iwelogic.presentation.Api
+import com.iwelogic.domain.models.Result
 import retrofit2.Response
 import java.net.UnknownHostException
-import com.iwelogic.domain.models.Result
 
-class DataSourceImp (private val api: Api) : DataSource {
+class DataSourceImp(private val api: Api) : DataSource {
 
-    override suspend fun register(data: DataRegister): Result<Any> {
+    override suspend fun register(data: RegisterData): Result<Any> {
         return getResponse(request = { api.register(data) })
+    }
+
+    override suspend fun updateUser(data: UserData): Result<UserData> {
+        return getResponse(request = { api.updateUser(data) })
+    }
+
+    override suspend fun getUser(objectId: String?): Result<List<UserData>> {
+        return getResponse(request = { api.getUser("objectId = '$objectId'") })
+    }
+
+    override suspend fun getFeedbacks(pageSize: Int, offset: Int): Result<List<FeedbackData>> {
+        return getResponse(request = { api.getFeedbacks(pageSize, offset) })
+    }
+
+    override suspend fun addFeedback(data: FeedbackData): Result<FeedbackData> {
+        return getResponse(request = { api.addFeedback(data) })
     }
 
     override suspend fun remember(email: String): Result<Void> {
         return getResponse(request = { api.remember(email) })
     }
 
-    override suspend fun login(data: DataSignIn): Result<DataUser> {
+    override suspend fun login(data: SignInData): Result<UserData> {
         return getResponse(request = { api.login(data) })
     }
 
@@ -31,12 +42,16 @@ class DataSourceImp (private val api: Api) : DataSource {
         return getResponse(request = { api.resendEmailConfirmation(email) })
     }
 
-    override suspend fun getNews(pageSize: Int, offset: Int): Result<List<DataNews>> {
+    override suspend fun getNews(pageSize: Int, offset: Int): Result<List<NewsData>> {
         return getResponse(request = { api.getNews(pageSize, offset) })
     }
 
-    override suspend fun getApps(): Result<List<DataApp>> {
+    override suspend fun getApps(): Result<List<AppData>> {
         return getResponse(request = { api.getApps() })
+    }
+
+    override suspend fun getInfo(): Result<InfoData> {
+        return getResponse(request = { api.getInfo() })
     }
 
     @Suppress("BlockingMethodInNonBlockingContext")

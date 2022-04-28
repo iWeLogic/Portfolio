@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.iwelogic.presentation.main.news.NewsViewModel" />
+            type="com.iwelogic.presentation.ui.main.news.NewsViewModel" />
     </data>
 
     <FrameLayout
@@ -29,7 +29,7 @@
                 android:clipToPadding="false"
                 android:orientation="vertical"
                 android:overScrollMode="never"
-                android:paddingTop="@dimen/default_size"
+                android:paddingTop="@dimen/half_default_size"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </com.iwelogic.presentation.views.SwipeRefreshLayoutWithoutIndicator>

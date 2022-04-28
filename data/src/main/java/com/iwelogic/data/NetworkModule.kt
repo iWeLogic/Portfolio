@@ -1,6 +1,5 @@
 package com.iwelogic.data
 
-import android.content.Context
 import androidx.annotation.Nullable
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -8,11 +7,9 @@ import com.iwelogic.data.BuildConfig.BACKEND_URL
 import com.iwelogic.data.source.DataSource
 import com.iwelogic.data.source.DataSourceImp
 import com.iwelogic.domain.LocalUserRepository
-import com.iwelogic.presentation.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -72,8 +69,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHeaderInterceptor(@ApplicationContext applicationContext: Context, localUserRepository: LocalUserRepository): HeaderInterceptor {
-        return HeaderInterceptor(applicationContext, localUserRepository)
+    fun provideHeaderInterceptor(localUserRepository: LocalUserRepository): HeaderInterceptor {
+        return HeaderInterceptor(localUserRepository)
     }
 
     @Provides

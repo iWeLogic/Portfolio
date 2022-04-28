@@ -5,7 +5,7 @@ import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 
-class ForgotPasswordUseCaseImp(var forgotPasswordRepository: ForgotPasswordRepository) : ForgotPasswordUseCase {
+class ForgotPasswordUseCaseImp(private val forgotPasswordRepository: ForgotPasswordRepository) : ForgotPasswordUseCase {
 
     override fun remember(email: String?): Flow<Result<Any>> {
 

@@ -15,7 +15,7 @@ object LocalUserRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLocalUserRepository(@ApplicationContext context: Context): LocalUserRepository {
+    fun provide(@ApplicationContext context: Context): LocalUserRepository {
         return LocalUserRepositoryImp(context)
     }
 }

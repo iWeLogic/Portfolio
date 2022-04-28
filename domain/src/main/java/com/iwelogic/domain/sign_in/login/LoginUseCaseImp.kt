@@ -2,25 +2,25 @@ package com.iwelogic.domain.sign_in.login
 
 import com.iwelogic.core.utils.isEmail
 import com.iwelogic.domain.LocalUserRepository
-import com.iwelogic.domain.models.DomainSignIn
-import com.iwelogic.domain.models.DomainUser
+import com.iwelogic.domain.models.SignInDomain
+import com.iwelogic.domain.models.UserDomain
 import com.iwelogic.domain.models.Result
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.onEach
 
-class LoginUseCaseImp(var loginRepository: LoginRepository, var localUserRepository: LocalUserRepository) : LoginUseCase {
+class LoginUseCaseImp(private val loginRepository: LoginRepository, private val localUserRepository: LocalUserRepository) : LoginUseCase {
 
-    override fun login(email: String?, password: String?): Flow<Result<DomainUser>> {
+    override fun login(email: String?, password: String?): Flow<Result<UserDomain>> {
 
         val errors: MutableList<Result.Error> = ArrayList()
         if (!email.isEmail()) errors.add(Result.Error(Result.Error.Code.WRONG_EMAIL))
         if (password.isNullOrEmpty() || password.length < 8) errors.add(Result.Error(Result.Error.Code.WRONG_PASSWORD))
         if (errors.isNotEmpty()) return errors.asFlow()
 
-        val data = DomainSignIn(email, password)
+        val data = SignInDomain(email, password)
         return loginRepository.login(data).onEach { result ->
-            if (result is Result.Success<DomainUser>) {
+            if (result is Result.Success<UserDomain>) {
                 result.data?.let { user ->
                     localUserRepository.updateUserPreference(user)
                 }

@@ -1,7 +1,7 @@
 <resources>
     <string name="something_went_wrong">Something went wrong</string>
     <string name="email_address">Email address</string>
-    <string name="Login">Login</string>
+    <string name="login">Login</string>
     <string name="sign_in">Sign In</string>
     <string name="wrong_email">Wrong email</string>
     <string name="wrong_password">Wrong password</string>
@@ -33,4 +33,19 @@
     <string name="register">Register</string>
     <string name="registration_form">Registration Form</string>
     <string name="reset">Reset</string>
+    <string name="logout">Logout</string>
+    <string name="google_play">Google play</string>
+    <string name="description">Description</string>
+    <string name="tags">Tags</string>
+    <string name="development_time">Development time</string>
+    <string name="avatar">Avatar</string>
+    <string name="upwork">upWork</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="resume">Resume</string>
+    <string name="save">Save</string>
+    <string name="user_updated">User updated</string>
+    <string name="you_are_not_login_yet">You are not login yet</string>
+    <string name="comment">Comment…</string>
+    <string name="add_feedback">Add feedback</string>
+    <string name="github">GitHub</string>
 </resources>

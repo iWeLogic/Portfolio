@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="background">#FEFEFE</color>
-    <color name="textColor">#000000</color>
+    <color name="background">#EEEEEE</color>
+    <color name="titleTextColor">#000000</color>
+    <color name="regularTextColor">#393838</color>
+    <color name="headerTextColor">#1E88E5</color>
     <color name="error">#F45656</color>
     <color name="gray">#D5D5D5</color>
     <color name="buttonTextColor">#FFFFFF</color>
     <color name="white">#FFFFFF</color>
-    <color name="buttonColor">#0148A4</color>
+    <color name="buttonColor">#1E88E5</color>
     <color name="buttonPressedColor">#0158CA</color>
     <color name="blockInside">#FFFFFF</color>
     <color name="borderColor">#00000000</color>
-    <color name="borderFocusedColor">#0158CA</color>
+    <color name="borderFocusedColor">#1E88E5</color>
     <color name="transparent">#00000000</color>
+    <color name="background_navigation">#FFFFFF</color>
+    <color name="divider">#C4C4C4</color>
+    <color name="notActive">#B3B9C4</color>
 </resources>

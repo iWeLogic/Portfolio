@@ -14,7 +14,7 @@ object AppsRepositoryModule {
 
     @Provides
     @Singleton
-    fun provideAppsRepository(dataSource: DataSource): AppsRepository {
+    fun provide(dataSource: DataSource): AppsRepository {
         return AppsRepositoryImp(dataSource, AppDataDomainMapper())
     }
 }

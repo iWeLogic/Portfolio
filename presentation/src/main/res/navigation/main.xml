@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/mainFragment">
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.iwelogic.presentation.sign_in.login.LoginFragment"
-        android:label="LoginFragment" >
+        android:name="com.iwelogic.presentation.ui.sign_in.login.LoginFragment"
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_forgotPasswordFragment"
             app:destination="@id/forgotPasswordFragment" />
@@ -17,26 +17,35 @@
     </fragment>
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.iwelogic.presentation.main.MainFragment"
-        android:label="MainFragment" >
+        android:name="com.iwelogic.presentation.ui.main.MainFragment"
+        android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
             android:id="@+id/action_mainFragment_to_newsDetailsFragment"
             app:destination="@id/newsDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_appDetailsFragment"
+            app:destination="@id/appDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addFeedbackDialog"
+            app:destination="@id/addFeedbackDialog" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.iwelogic.presentation.sign_in.register.RegisterFragment"
-        android:label="RegisterFragment" >
+        android:name="com.iwelogic.presentation.ui.sign_in.register.RegisterFragment"
+        android:label="RegisterFragment">
         <action
             android:id="@+id/action_registerFragment_to_choosePictureSourceDialog"
             app:destination="@id/choosePictureSourceDialog" />
     </fragment>
     <fragment
         android:id="@+id/forgotPasswordFragment"
-        android:name="com.iwelogic.presentation.sign_in.forgot_password.ForgotPasswordFragment"
+        android:name="com.iwelogic.presentation.ui.sign_in.forgot_password.ForgotPasswordFragment"
         android:label="ForgotPasswordFragment">
         <argument
             android:name="email"
@@ -45,21 +54,39 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.iwelogic.presentation.main.profile.ProfileFragment"
-        android:label="ProfileFragment" >
+        android:name="com.iwelogic.presentation.ui.main.profile.ProfileFragment"
+        android:label="ProfileFragment">
         <action
             android:id="@+id/action_profileFragment_to_choosePictureSourceDialog"
             app:destination="@id/choosePictureSourceDialog" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.iwelogic.presentation.main.news.news_details.NewsDetailsFragment"
-        android:label="NewsDetailsFragment" >
+        android:name="com.iwelogic.presentation.ui.main.news.news_details.NewsDetailsFragment"
+        android:label="NewsDetailsFragment">
 
+        <argument
+            android:name="data"
+            app:argType="com.iwelogic.presentation.models.NewsPresentation" />
     </fragment>
     <dialog
         android:id="@+id/choosePictureSourceDialog"
-        android:name="com.iwelogic.presentation.main.choose_picture_source.ChoosePictureSourceDialog"
+        android:name="com.iwelogic.presentation.ui.main.choose_picture_source.ChoosePictureSourceDialog"
         android:label="ChoosePictureSourceDialog" />
+    <fragment
+        android:id="@+id/appDetailsFragment"
+        android:name="com.iwelogic.presentation.ui.main.apps.app_details.AppDetailsFragment"
+        android:label="AppDetailsFragment" >
+        <argument
+            android:name="data"
+            app:argType="com.iwelogic.presentation.models.AppPresentation" />
+    </fragment>
+    <dialog
+        android:id="@+id/addFeedbackDialog"
+        android:name="com.iwelogic.presentation.ui.main.feedbacks.feedback.AddFeedbackDialog"
+        android:label="AddFeedbackDialog" />
 
 </navigation>

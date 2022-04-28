@@ -9,7 +9,7 @@
         app:startDestination="@id/appsFragment">
         <fragment
             android:id="@+id/appsFragment"
-            android:name="com.iwelogic.presentation.main.apps.AppsFragment"
+            android:name="com.iwelogic.presentation.ui.main.apps.AppsFragment"
             android:label="AppsFragment" />
     </navigation>
 
@@ -18,7 +18,7 @@
         app:startDestination="@id/infoFragment">
         <fragment
             android:id="@+id/infoFragment"
-            android:name="com.iwelogic.presentation.main.info.InfoFragment"
+            android:name="com.iwelogic.presentation.ui.main.info.InfoFragment"
             android:label="InfoFragment" />
     </navigation>
 
@@ -27,7 +27,7 @@
         app:startDestination="@id/feedbacksFragment">
         <fragment
             android:id="@+id/feedbacksFragment"
-            android:name="com.iwelogic.presentation.main.feedbacks.FeedbacksFragment"
+            android:name="com.iwelogic.presentation.ui.main.feedbacks.FeedbacksFragment"
             android:label="FeedbacksFragment" />
     </navigation>
 
@@ -37,7 +37,7 @@
 
         <fragment
             android:id="@+id/newsFragment"
-            android:name="com.iwelogic.presentation.main.news.NewsFragment"
+            android:name="com.iwelogic.presentation.ui.main.news.NewsFragment"
             android:label="NewsFragment" />
 
     </navigation>

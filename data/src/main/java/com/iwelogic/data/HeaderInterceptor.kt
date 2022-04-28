@@ -1,16 +1,12 @@
 package com.iwelogic.data
 
-import android.content.Context
 import com.iwelogic.domain.LocalUserRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
-import java.lang.ref.WeakReference
 
-class HeaderInterceptor constructor(applicationContext: Context, val localUserRepository: LocalUserRepository) : Interceptor {
-
-    var context: WeakReference<Context> = WeakReference(applicationContext)
+class HeaderInterceptor constructor(private val localUserRepository: LocalUserRepository) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val token = runBlocking {

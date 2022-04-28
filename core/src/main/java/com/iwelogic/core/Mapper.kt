@@ -1,5 +1,6 @@
 package com.iwelogic.core
 
-interface Mapper<in I, out O> {
+interface Mapper<I, O> {
     fun map(input: I): O
+    fun reverseMap(input: O): I
 }
