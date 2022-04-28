@@ -20,3 +20,5 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 -keep public class * extends com.google.protobuf.GeneratedMessageLite { *; }
+-keep class * extends androidx.fragment.app.Fragment{}
+-keep public class com.iwelogic.presentation.models.**
