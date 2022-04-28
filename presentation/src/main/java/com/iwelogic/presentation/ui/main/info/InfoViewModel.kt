@@ -65,6 +65,10 @@ class InfoViewModel @Inject constructor(
         openUrl.postValue(info.value?.linkedin)
     }
 
+    fun onClickGitHub() {
+        openUrl.postValue(info.value?.gitHub)
+    }
+
     fun onClickUpWork() {
         openUrl.postValue(info.value?.upWork)
     }

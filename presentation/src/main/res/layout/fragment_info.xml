@@ -113,6 +113,18 @@
                         android:layout_height="wrap_content"
                         android:drawablePadding="@dimen/half_default_size"
                         android:gravity="center"
+                        android:onClick="@{() -> viewModel.onClickGitHub()}"
+                        android:padding="@dimen/half_default_size"
+                        android:text="@string/github"
+                        android:textColor="@color/headerTextColor"
+                        app:drawableStartCompat="@drawable/github" />
+
+                    <TextView
+                        style="@style/Title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:drawablePadding="@dimen/half_default_size"
+                        android:gravity="center"
                         android:onClick="@{() -> viewModel.onClickLinkedin()}"
                         android:padding="@dimen/half_default_size"
                         android:text="@string/linkedin"
