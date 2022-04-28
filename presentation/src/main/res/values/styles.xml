@@ -47,6 +47,11 @@
         <item name="android:fontFamily">@font/open_sans_regular</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/gray</item>
+        <item name="colorControlActivated">@color/headerTextColor</item>
+    </style>
+
     <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:windowBackground">@color/transparent</item>
     </style>

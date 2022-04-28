@@ -15,6 +15,12 @@ interface Api {
     @GET("api/data/Users")
     suspend fun getUser(@Query("where") where: String): Response<List<UserData>>
 
+    @GET("api/data/feedbacks")
+    suspend fun getFeedbacks(@Query("pageSize") pageSize: Int, @Query("offset") offset: Int, @Query("sortBy") sortBy: String = "`created` desc"): Response<List<FeedbackData>>
+
+    @POST("api/data/feedbacks")
+    suspend fun addFeedback(@Body data: FeedbackData): Response<FeedbackData>
+
     @GET("/api/users/restorepassword/{email}")
     suspend fun remember(@Path("email") email: String?): Response<Void>
 

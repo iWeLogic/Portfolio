@@ -28,8 +28,8 @@ class LoginViewModel @Inject constructor(
     val openRegister: SingleLiveEvent<Boolean> = SingleLiveEvent()
     var user: MutableLiveData<UserPresentation> = MutableLiveData()
     val openForgotPassword: SingleLiveEvent<String> = SingleLiveEvent()
-    var email: MutableLiveData<String> = MutableLiveData("novaknazar@gmail.com")
-    var password: MutableLiveData<String> = MutableLiveData("12345678")
+    var email: MutableLiveData<String> = MutableLiveData()
+    var password: MutableLiveData<String> = MutableLiveData()
     val emailError: MutableLiveData<String> = MutableLiveData()
     val passwordError: MutableLiveData<String> = MutableLiveData()
     private val emailObserver: (String) -> Unit = {

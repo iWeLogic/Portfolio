@@ -45,4 +45,6 @@
     <string name="save">Save</string>
     <string name="user_updated">User updated</string>
     <string name="you_are_not_login_yet">You are not login yet</string>
+    <string name="comment">Comment…</string>
+    <string name="add_feedback">Add feedback</string>
 </resources>

@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mainFragment_to_appDetailsFragment"
             app:destination="@id/appDetailsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addFeedbackDialog"
+            app:destination="@id/addFeedbackDialog" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -81,5 +84,9 @@
             android:name="data"
             app:argType="com.iwelogic.presentation.models.AppPresentation" />
     </fragment>
+    <dialog
+        android:id="@+id/addFeedbackDialog"
+        android:name="com.iwelogic.presentation.ui.main.feedbacks.feedback.AddFeedbackDialog"
+        android:label="AddFeedbackDialog" />
 
 </navigation>

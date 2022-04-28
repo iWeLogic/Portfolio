@@ -20,7 +20,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NewsViewModel @Inject constructor(
-    private var newsUseCase: NewsUseCase
+    private var newsUseCase: NewsUseCase,
+    private val mapper: NewsDomainPresentationMapper
 ) : BaseViewModel() {
 
     companion object {
@@ -28,17 +29,16 @@ class NewsViewModel @Inject constructor(
     }
 
     val openDetails: SingleLiveEvent<NewsPresentation> = SingleLiveEvent()
-    val newsPresentation: MutableLiveData<MutableList<NewsPresentation>> = MutableLiveData(ArrayList())
-    var canLoadMore = true
-
-    var requestNewsLoading: Job? = null
+    val news: MutableLiveData<MutableList<NewsPresentation>> = MutableLiveData(ArrayList())
+    private var canLoadMore = true
+    private var requestNewsLoading: Job? = null
 
     init {
         load()
     }
 
     var onScroll: (Int) -> Unit = {
-        if (it > newsPresentation.value?.size.value() - 2) {
+        if (it > news.value?.size.value() - 2) {
             load()
         }
     }
@@ -54,11 +54,9 @@ class NewsViewModel @Inject constructor(
                     is Result.Loading -> showProgress(true)
                     is Result.Finish -> showProgress(false)
                     is Result.Success -> {
-                        result.data?.map {
-                            NewsPresentation(type = CellType.SIMPLE, id = it.id, title = it.title, description = it.description, image = it.image)
-                        }?.let {
-                            newsPresentation.value?.addAll(it)
-                            newsPresentation.postValue(newsPresentation.value)
+                        result.data?.map { news -> mapper.map(news) }?.let {
+                            news.value?.addAll(it)
+                            news.postValue(news.value)
                             if (it.size < PAGE_SIZE) canLoadMore = false
                         }
                     }
@@ -78,25 +76,25 @@ class NewsViewModel @Inject constructor(
     override fun onReload() {
         requestNewsLoading?.cancel()
         canLoadMore = true
-        newsPresentation.value?.clear()
-        newsPresentation.postValue(newsPresentation.value)
+        news.value?.clear()
+        news.postValue(news.value)
         load()
     }
 
-    private fun getOffset() = newsPresentation.value?.filter { it.type == CellType.SIMPLE }?.size ?: 0
+    private fun getOffset() = news.value?.filter { it.type == CellType.SIMPLE }?.size ?: 0
 
     private fun showProgress(status: Boolean) {
         if (status) {
-            if (newsPresentation.value.isNullOrEmpty()) {
+            if (news.value.isNullOrEmpty()) {
                 progress.postValue(true)
             } else {
-                newsPresentation.value?.add(NewsPresentation.getProgressItem())
-                newsPresentation.postValue(newsPresentation.value)
+                news.value?.add(NewsPresentation.getProgressItem())
+                news.postValue(news.value)
             }
         } else {
             progress.postValue(false)
-            newsPresentation.value?.remove(NewsPresentation.getProgressItem())
-            newsPresentation.postValue(newsPresentation.value)
+            news.value?.remove(NewsPresentation.getProgressItem())
+            news.postValue(news.value)
         }
     }
 }
