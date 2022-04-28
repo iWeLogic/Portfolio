@@ -26,7 +26,7 @@ fun Activity.hideKeyboard(clearFocus: Boolean) {
     }
 }
 
-fun Activity?.openUrl(url: String) {
+fun Activity?.openUrl(url: String?) {
     catchAll {
         this?.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
     }

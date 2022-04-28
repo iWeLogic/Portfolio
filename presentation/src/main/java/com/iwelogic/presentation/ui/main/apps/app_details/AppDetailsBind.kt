@@ -38,6 +38,7 @@ fun FlexboxLayout.setTags(tags: List<String>?) {
     removeAllViews()
     tags?.forEach { tag ->
         val tagView = TextView(context)
+        tagView.maxLines=1
         tagView.setTextColor(ContextCompat.getColor(context, R.color.regularTextColor))
         tagView.typeface = ResourcesCompat.getFont(context, R.font.open_sans_regular)
         tagView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14f)
