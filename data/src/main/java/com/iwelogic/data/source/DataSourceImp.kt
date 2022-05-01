@@ -72,7 +72,7 @@ class DataSourceImp(private val api: Api) : DataSource {
         } catch (e: Throwable) {
             e.printStackTrace()
             when (e) {
-                is UnknownHostException -> Result.Error(Result.Error.Code.NO_CONNECTION)
+                is UnknownHostException -> Result.Error(Result.Error.Code.NO_CONNECTION, e.message)
                 else -> Result.Error(Result.Error.Code.UNKNOWN, e.message)
             }
         }
