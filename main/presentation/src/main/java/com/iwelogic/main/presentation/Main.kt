@@ -13,7 +13,7 @@ import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import com.iwelogic.core.views.*
-import com.iwelogic.profile.presentation.*
+import com.iwelogic.profile.presentation.profile.*
 import com.iwelogic.projects.presentation.*
 import com.iwelogic.settings.presentation.*
 
@@ -37,7 +37,7 @@ fun MainScreen(navController: NavController) {
                 ),
                 title = {
                     Column(
-                        modifier = Modifier.fillMaxSize(),
+                        modifier = Modifier.fillMaxSize().padding(end = 16.dp),
                         verticalArrangement = Arrangement.Center
                     ) {
                        TypingEffect(stringResource(selectedScreen.title)) { text ->
