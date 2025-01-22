@@ -1,13 +1,14 @@
 package com.iwelogic.main.presentation
 
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.*
-import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.res.*
+import androidx.compose.ui.text.style.*
+import androidx.compose.ui.unit.*
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
@@ -17,88 +18,73 @@ import com.iwelogic.settings.presentation.*
 
 @Composable
 fun MainScreen(navController: NavController) {
-    var navigationSelectedItem by remember {
-        mutableStateOf(0)
-    }
+    var selectedScreen by remember { mutableStateOf<Screen>(Screen.Profile) }
     val mainNavController = rememberNavController()
-
+    val screens = listOf(Screen.Profile, Screen.Projects, Screen.Settings)
     Scaffold(
         modifier = Modifier.fillMaxSize(),
+        topBar = {
+            TopAppBar(
+                modifier = Modifier
+                    .statusBarsPadding()
+                    .height(50.dp),
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
+                    actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                ),
+                title = {
+                    Text(
+                        stringResource(selectedScreen.title),
+                        modifier = Modifier.fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.titleLarge
+                    )
+                }
+            )
+        },
         bottomBar = {
-            NavigationBar {
-                NavigationBarItem(
-                    selected = 0 == navigationSelectedItem,
-                    label = {
-                        Text(Screens.Profile.route)
-                    },
-                    icon = {
-                        Icon(
-                            Icons.Filled.Home,
-                            contentDescription = Screens.Profile.route
+            NavigationBar(
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier
+                    .navigationBarsPadding()
+                    .height(50.dp)
+            ) {
+                for (screen in screens) {
+                    val isSelected = screen == selectedScreen
+                    Box(
+                        modifier = Modifier.weight(1.0f),
+                        contentAlignment = Alignment.TopCenter,
+                    ) {
+                        val interactionSource = remember { MutableInteractionSource() }
+                        BottomNavItem(
+                            modifier = Modifier.clickable(
+                                interactionSource = interactionSource,
+                                indication = null
+                            ) {
+                                selectedScreen = screen
+                                mainNavController.navigate(screen.route) {
+                                    popUpTo(mainNavController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            screen = screen,
+                            isSelected = isSelected
                         )
-                    },
-                    onClick = {
-                        navigationSelectedItem = 0
-                        mainNavController.navigate(Screens.Profile.route) {
-                            popUpTo(mainNavController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
                     }
-                )
-                NavigationBarItem(
-                    selected = 1 == navigationSelectedItem,
-                    label = {
-                        Text(Screens.Projects.route)
-                    },
-                    icon = {
-                        Icon(
-                            Icons.Filled.Search,
-                            contentDescription = Screens.Projects.route
-                        )
-                    },
-                    onClick = {
-                        navigationSelectedItem = 1
-                        mainNavController.navigate(Screens.Projects.route) {
-                            popUpTo(mainNavController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
-                )
-                NavigationBarItem(
-                    selected = 2 == navigationSelectedItem,
-                    label = {
-                        Text(Screens.Settings.route)
-                    },
-                    icon = {
-                        Icon(
-                            Icons.Filled.Settings,
-                            contentDescription = Screens.Settings.route
-                        )
-                    },
-                    onClick = {
-                        navigationSelectedItem = 2
-                        mainNavController.navigate(Screens.Settings.route) {
-                            popUpTo(mainNavController.graph.findStartDestination().id) {
-                                saveState = true
-                            }
-                            launchSingleTop = true
-                            restoreState = true
-                        }
-                    }
-                )
+                }
             }
         }
     ) { innerPadding ->
         NavHost(
             navController = mainNavController,
-            startDestination = Screens.Profile.route,
-            modifier = Modifier.padding(paddingValues = innerPadding)) {
+            startDestination = Screen.Profile.route,
+            modifier = Modifier.padding(paddingValues = innerPadding)
+        ) {
             composable("profile") {
                 ProfileScreen()
             }

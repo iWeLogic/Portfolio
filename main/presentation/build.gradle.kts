@@ -27,6 +27,10 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
+        allWarningsAsErrors = false
+        freeCompilerArgs += listOf(
+            "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api"
+        )
     }
     buildFeatures {
         compose = true
@@ -38,9 +42,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(project(":profile:presentation"))
-    implementation(project(":projects:presentation"))
-    implementation(project(":settings:presentation"))
+    implementation(projects.profile.presentation)
+    implementation(projects.projects.presentation)
+    implementation(projects.settings.presentation)
+    implementation(projects.core)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
