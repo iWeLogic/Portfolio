@@ -12,6 +12,7 @@ import androidx.compose.ui.unit.*
 import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
+import com.iwelogic.core.views.*
 import com.iwelogic.profile.presentation.*
 import com.iwelogic.projects.presentation.*
 import com.iwelogic.settings.presentation.*
@@ -35,12 +36,19 @@ fun MainScreen(navController: NavController) {
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 title = {
-                    Text(
-                        stringResource(selectedScreen.title),
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleLarge
-                    )
+                    Column(
+                        modifier = Modifier.fillMaxSize(),
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                       TypingEffect(stringResource(selectedScreen.title)) { text ->
+                           Text(
+                               text,
+                               modifier = Modifier.fillMaxWidth(),
+                               textAlign = TextAlign.Center,
+                               style = MaterialTheme.typography.titleLarge
+                           )
+                       }
+                    }
                 }
             )
         },
