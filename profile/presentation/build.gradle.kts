@@ -41,4 +41,5 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.base.ui)
     implementation(libs.bundles.testing)
+    implementation(libs.readmore.material3)
 }

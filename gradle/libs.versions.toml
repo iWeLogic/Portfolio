@@ -13,10 +13,11 @@ composeBom = "2025.01.00"
 appcompat = "1.7.0"
 material = "1.12.0"
 navigation-compose = "2.8.5"
-kotlinx-coroutines-core = "1.6.0"
+kotlinx-coroutines-core = "1.9.0"
 dagger-hilt = "2.51.1"
 hilt = "2.51.1"
 ksp = "2.0.21-1.0.25"
+readMoreVersion = "1.6.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -43,6 +44,7 @@ navigation-compose = { group = "androidx.navigation", name = "navigation-compose
 kotlinx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "kotlinx-coroutines-core" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+readmore-material3 = { group = "com.webtoonscorp.android", name = "readmore-material3", version.ref = "readMoreVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

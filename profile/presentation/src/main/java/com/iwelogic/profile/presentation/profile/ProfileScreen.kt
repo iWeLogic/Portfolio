@@ -3,7 +3,7 @@ package com.iwelogic.profile.presentation.profile
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.unit.*
@@ -40,9 +40,12 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     },
                     contentDescription = "asdas",
                 )
+
+                ExpandableText(text = "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas " +
+                        "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd " +
+                        "asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas ",
+                    modifier = Modifier.padding(16.dp))
             }
-
-
         }
     }
 
