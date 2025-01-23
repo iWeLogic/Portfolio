@@ -1,5 +1,6 @@
 package com.iwelogic.profile.presentation.profile
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.material3.*
@@ -25,7 +26,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
         is ProfileState.Main -> {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
             ) {
                 SubcomposeAsyncImage(
                     modifier = Modifier
@@ -41,10 +42,40 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     contentDescription = "asdas",
                 )
 
-                ExpandableText(text = "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas " +
-                        "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd " +
-                        "asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas ",
-                    modifier = Modifier.padding(16.dp))
+                Text("Status Open to work")
+                Text("Novak Nazar")
+                Text("Software developer (Android)")
+                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    ExpandableText(
+                        text = "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas " +
+                                "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd " +
+                                "asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas "
+                    )
+                }
+
+                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    Column {
+                        Text("Contacts")
+                    }
+                }
+
+                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    Column {
+                        Text("Study history")
+                    }
+                }
+
+                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    Column {
+                        Text("Job history")
+                    }
+                }
+
+                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                    Column {
+                        Text("Location")
+                    }
+                }
             }
         }
     }

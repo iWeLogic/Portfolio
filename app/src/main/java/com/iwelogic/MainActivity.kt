@@ -1,6 +1,5 @@
 package com.iwelogic
 
-import android.graphics.*
 import android.os.Bundle
 import androidx.activity.*
 import androidx.activity.compose.setContent
@@ -9,6 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.*
 import com.iwelogic.main.presentation.*
@@ -29,30 +29,24 @@ class MainActivity : ComponentActivity() {
                 val isDarkMode = isSystemInDarkTheme()
                 val context = this
 
-                val statusBarLight = Color.WHITE
-                val statusBarDark = Color.WHITE
-                val navigationBarLight = Color.WHITE
-                val navigationBarDark = Color.WHITE
+                val statusBar =  MaterialTheme.colorScheme.primaryContainer.toArgb()
+                val navigationBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
 
                 DisposableEffect(isDarkMode) {
                     context.enableEdgeToEdge(
                         statusBarStyle = if (!isDarkMode) {
-                            SystemBarStyle.light(
-                                statusBarLight,
-                                statusBarDark
+                            SystemBarStyle.dark(
+                                statusBar
                             )
                         } else {
                             SystemBarStyle.dark(
-                                statusBarDark
+                                statusBar
                             )
                         },
                         navigationBarStyle = if(!isDarkMode){
-                            SystemBarStyle.light(
-                                navigationBarLight,
-                                navigationBarDark
-                            )
+                            SystemBarStyle.dark(navigationBar)
                         } else {
-                            SystemBarStyle.dark(navigationBarDark)
+                            SystemBarStyle.dark(navigationBar)
                         }
                     )
 

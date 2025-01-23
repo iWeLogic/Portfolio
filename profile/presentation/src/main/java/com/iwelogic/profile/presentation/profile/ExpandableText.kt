@@ -1,8 +1,8 @@
 package com.iwelogic.profile.presentation.profile
 
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import com.iwelogic.profile.presentation.R
@@ -22,12 +22,12 @@ fun ExpandableText(text: String, modifier: Modifier = Modifier) {
             expanded = it
         },
         readMoreText = stringResource(R.string.read_more),
-        readMoreColor = Color.Blue,
+        readMoreColor = MaterialTheme.colorScheme.primaryContainer,
         readMoreFontWeight = FontWeight.Bold,
         readMoreMaxLines = 3,
         readMoreOverflow = ReadMoreTextOverflow.Ellipsis,
         readLessText = stringResource(R.string.read_less),
-        readLessColor = Color.Blue,
+        readLessColor = MaterialTheme.colorScheme.primaryContainer,
         readLessFontWeight = FontWeight.Bold,
         toggleArea = ToggleArea.More
     )

@@ -3,9 +3,11 @@ package com.iwelogic.main.presentation
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
@@ -28,7 +30,8 @@ fun MainScreen(navController: NavController) {
             TopAppBar(
                 modifier = Modifier
                     .statusBarsPadding()
-                    .height(50.dp),
+                    .height(50.dp)
+                    .clip(RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)),
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -58,6 +61,7 @@ fun MainScreen(navController: NavController) {
                 modifier = Modifier
                     .navigationBarsPadding()
                     .height(50.dp)
+                    .clip(RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp))
             ) {
                 for (screen in screens) {
                     val isSelected = screen == selectedScreen

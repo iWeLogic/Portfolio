@@ -30,7 +30,7 @@ fun BottomNavItem(
             dampingRatio = Spring.DampingRatioMediumBouncy
         )
         val animatedAlpha by animateFloatAsState(
-            targetValue = if (isSelected) 1f else .4f,
+            targetValue = if (isSelected) 1f else .6f,
             animationSpec = animSpec,
             label = "animatedAlpha"
         )
@@ -59,6 +59,7 @@ fun BottomNavItem(
                 rememberVectorPainter(
                     image = ImageVector.vectorResource(id = if (animationRotation > 90f) screen.activeIcon else screen.inactiveIcon)
                 ),
+                tint = Color.White,
                 modifier = Modifier
                     .fillMaxHeight()
                     .alpha(animatedAlpha)
