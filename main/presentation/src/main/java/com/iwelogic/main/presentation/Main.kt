@@ -27,10 +27,9 @@ fun MainScreen(navController: NavController) {
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
-            TopAppBar(
+            CenterAlignedTopAppBar(
                 modifier = Modifier
                     .statusBarsPadding()
-                    .height(50.dp)
                     .clip(RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)),
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
@@ -39,18 +38,12 @@ fun MainScreen(navController: NavController) {
                     actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
                 ),
                 title = {
-                    Column(
-                        modifier = Modifier.fillMaxSize().padding(end = 16.dp),
-                        verticalArrangement = Arrangement.Center
-                    ) {
-                       TypingEffect(stringResource(selectedScreen.title)) { text ->
-                           Text(
-                               text,
-                               modifier = Modifier.fillMaxWidth(),
-                               textAlign = TextAlign.Center,
-                               style = MaterialTheme.typography.titleLarge
-                           )
-                       }
+                    TypingEffect(stringResource(selectedScreen.title)) { text ->
+                        Text(
+                            text,
+                            textAlign = TextAlign.Center,
+                            style = MaterialTheme.typography.titleLarge
+                        )
                     }
                 }
             )
@@ -101,7 +94,7 @@ fun MainScreen(navController: NavController) {
                 ProfileScreen()
             }
             composable("projects") {
-                ProjectsScreen()
+                ProjectsScreen(navController)
             }
             composable("settings") {
                 SettingsScreen()

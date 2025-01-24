@@ -14,9 +14,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
 
-    val state: ProfileState = viewModel.state.value
-
-    when (state) {
+    when (val state: ProfileState = viewModel.state.value) {
         is ProfileState.Loading -> {
 
         }

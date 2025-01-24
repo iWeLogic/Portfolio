@@ -1,5 +1,6 @@
 package com.iwelogic.projects.presentation.ui.list
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -8,15 +9,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
+import androidx.navigation.*
 
 @Composable
-fun ProjectsScreen( viewModel: ProjectsViewModel = hiltViewModel()) {
+fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = hiltViewModel()) {
 
-    val state: ProjectsState = viewModel.state.value
-
-    when (state) {
+    when (val state: ProjectsState = viewModel.state.value) {
         is ProjectsState.Loading -> {
-
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                CircularProgressIndicator()
+            }
         }
         is ProjectsState.Error -> {
 
@@ -35,7 +37,12 @@ fun ProjectsScreen( viewModel: ProjectsViewModel = hiltViewModel()) {
                 items(state.projects) {
                     Text(
                         text = it.title,
-                        modifier = Modifier.fillMaxWidth().padding(16.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                            .clickable {
+                                navController.navigate("project_details")
+                            },
                         style = MaterialTheme.typography.bodyLarge
                     )
                 }
