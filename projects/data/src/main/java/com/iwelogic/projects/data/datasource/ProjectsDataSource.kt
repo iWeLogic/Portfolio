@@ -9,7 +9,6 @@ import javax.inject.Inject
 class ProjectsDataSource @Inject constructor(private val api: ProjectsApi) : BaseDataSource() {
 
     suspend fun getProjects(): Result<List<ProjectDto>> {
-        Log.w("myLog", "getProjects: ")
         return getResponse(request = { api.getProjects() })
     }
 }

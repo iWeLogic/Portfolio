@@ -41,7 +41,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
                             .fillMaxWidth()
                             .padding(16.dp)
                             .clickable {
-                                navController.navigate("project_details")
+                                navController.navigate("project/${it.id}")
                             },
                         style = MaterialTheme.typography.bodyLarge
                     )

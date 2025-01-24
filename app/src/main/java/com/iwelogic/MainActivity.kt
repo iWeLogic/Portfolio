@@ -11,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.*
 import androidx.navigation.compose.*
 import com.iwelogic.main.presentation.*
 import com.iwelogic.projects.presentation.ui.details.*
@@ -28,7 +29,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val isDarkMode = isSystemInDarkTheme()
                 val context = this
-                val statusBar =  MaterialTheme.colorScheme.primaryContainer.toArgb()
+                val statusBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
                 val navigationBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
                 DisposableEffect(isDarkMode) {
                     context.enableEdgeToEdge(
@@ -41,7 +42,7 @@ class MainActivity : ComponentActivity() {
                                 statusBar
                             )
                         },
-                        navigationBarStyle = if(!isDarkMode){
+                        navigationBarStyle = if (!isDarkMode) {
                             SystemBarStyle.dark(navigationBar)
                         } else {
                             SystemBarStyle.dark(navigationBar)
@@ -65,8 +66,12 @@ class MainActivity : ComponentActivity() {
                         composable("main") {
                             MainScreen(navController = navController)
                         }
-                        composable("project_details") {
-                            ProjectDetailsScreen(navController = navController)
+                        composable(
+                            route = "project/{id}",
+                            arguments = listOf(navArgument("id") { type = NavType.StringType }
+                            )
+                        ) {
+                            ProjectDetailsScreen(it.arguments?.getString("id"), navController = navController)
                         }
                     }
                 }

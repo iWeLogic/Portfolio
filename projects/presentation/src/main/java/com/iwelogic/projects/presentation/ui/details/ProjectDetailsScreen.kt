@@ -8,15 +8,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
-import androidx.compose.ui.res.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
+import androidx.hilt.navigation.compose.*
 import androidx.navigation.*
 import com.iwelogic.core.views.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProjectDetailsScreen(navController: NavController) {
+fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: ProjectDetailsViewModel = hiltViewModel()) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
@@ -46,10 +46,25 @@ fun ProjectDetailsScreen(navController: NavController) {
             )
         },
         content = { innerPadding ->
-            Text(
-                text = "ProjectDetailsScreen!",
-                modifier = Modifier.padding(innerPadding)
-            )
+            when (val state: ProjectDetailsState = viewModel.state.value) {
+                is ProjectDetailsState.Loading -> {
+                    Box(
+                        contentAlignment = Alignment.Center, modifier = Modifier
+                            .fillMaxSize()
+                            .padding(innerPadding)
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                }
+                is ProjectDetailsState.Error -> {
+
+                }
+                is ProjectDetailsState.Main -> {
+                    Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                        Text(state.project.title)
+                    }
+                }
+            }
         }
     )
 }
