@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.*
 import com.iwelogic.main.presentation.*
-import com.iwelogic.projects.presentation.*
+import com.iwelogic.projects.presentation.ui.details.*
 import com.iwelogic.ui.theme.PortfolioTheme
 import dagger.hilt.android.*
 
@@ -24,14 +24,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             PortfolioTheme {
-
                 val navController = rememberNavController()
                 val isDarkMode = isSystemInDarkTheme()
                 val context = this
-
                 val statusBar =  MaterialTheme.colorScheme.primaryContainer.toArgb()
                 val navigationBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
-
                 DisposableEffect(isDarkMode) {
                     context.enableEdgeToEdge(
                         statusBarStyle = if (!isDarkMode) {
@@ -49,7 +46,6 @@ class MainActivity : ComponentActivity() {
                             SystemBarStyle.dark(navigationBar)
                         }
                     )
-
                     onDispose { }
                 }
 

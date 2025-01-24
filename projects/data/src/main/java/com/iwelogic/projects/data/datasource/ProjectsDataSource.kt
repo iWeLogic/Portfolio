@@ -1,0 +1,15 @@
+package com.iwelogic.projects.data.datasource
+
+import android.util.*
+import com.iwelogic.core.base.datasource.*
+import com.iwelogic.projects.data.dto.*
+import com.iwelogic.projects.data.remote.*
+import javax.inject.Inject
+
+class ProjectsDataSource @Inject constructor(private val api: ProjectsApi) : BaseDataSource() {
+
+    suspend fun getProjects(): Result<List<ProjectDto>> {
+        Log.w("myLog", "getProjects: ")
+        return getResponse(request = { api.getProjects() })
+    }
+}

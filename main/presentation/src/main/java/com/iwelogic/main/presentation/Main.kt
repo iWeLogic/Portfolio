@@ -16,7 +16,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import com.iwelogic.core.views.*
 import com.iwelogic.profile.presentation.profile.*
-import com.iwelogic.projects.presentation.*
+import com.iwelogic.projects.presentation.ui.list.*
 import com.iwelogic.settings.presentation.*
 
 @Composable
@@ -101,7 +101,7 @@ fun MainScreen(navController: NavController) {
                 ProfileScreen()
             }
             composable("projects") {
-                ProjectsScreen(navController = navController)
+                ProjectsScreen()
             }
             composable("settings") {
                 SettingsScreen()
