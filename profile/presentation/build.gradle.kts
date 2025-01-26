@@ -2,7 +2,8 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -42,4 +43,7 @@ dependencies {
     implementation(libs.bundles.base.ui)
     implementation(libs.bundles.testing)
     implementation(libs.readmore.material3)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }

@@ -1,6 +1,6 @@
-package com.iwelogic.profile.presentation.models
+package com.iwelogic.profile.domain.models
 
-data class Profile(
+data class ProfileDomain(
     val rate: String,
     val surname: String,
     val name: String,

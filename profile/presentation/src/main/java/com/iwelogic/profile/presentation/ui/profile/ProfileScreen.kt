@@ -18,7 +18,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
 
     when (val state: ProfileState = viewModel.state.value) {
         is ProfileState.Loading -> {
-
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                CircularProgressIndicator()
+            }
         }
         is ProfileState.Error -> {
 
@@ -37,16 +39,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                 ) {
                     ProfileCard(
                         modifier = Modifier.fillMaxWidth(),
-                        profile = Profile(
-                            name = "Nazar Novak",
-                            position = "Software developer (Android)",
-                            avatar = "https://media.licdn.com/dms/image/v2/C4D03AQGb_ud7ivzNgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517614699692?e=1743033600&v=beta&t=Tw3qFazog4jK-lUgJ8fFWZh2Tv-YtXL-qehYWJ6luDI",
-                            isOpenToWork = true
-                        )
+                        profile = state.profile
                     )
-
                 }
-
 
                 Card(
                     modifier = Modifier
@@ -93,8 +88,6 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         Text("Study history")
                     }
                 }
-
-
 
                 Card(
                     modifier = Modifier
