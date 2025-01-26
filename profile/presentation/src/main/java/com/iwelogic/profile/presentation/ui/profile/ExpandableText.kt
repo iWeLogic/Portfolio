@@ -22,12 +22,12 @@ fun ExpandableText(text: String, modifier: Modifier = Modifier) {
             expanded = it
         },
         readMoreText = stringResource(R.string.read_more),
-        readMoreColor = MaterialTheme.colorScheme.primaryContainer,
+        readMoreColor = MaterialTheme.colorScheme.onPrimaryContainer,
         readMoreFontWeight = FontWeight.Bold,
-        readMoreMaxLines = 3,
+        readMoreMaxLines = 4,
         readMoreOverflow = ReadMoreTextOverflow.Ellipsis,
         readLessText = stringResource(R.string.read_less),
-        readLessColor = MaterialTheme.colorScheme.primaryContainer,
+        readLessColor = MaterialTheme.colorScheme.onPrimaryContainer,
         readLessFontWeight = FontWeight.Bold,
         toggleArea = ToggleArea.More
     )

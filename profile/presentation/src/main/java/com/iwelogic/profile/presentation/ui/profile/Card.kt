@@ -23,7 +23,6 @@ fun Card(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
                 color = MaterialTheme.colorScheme.secondaryContainer,
                 shape = RoundedCornerShape(16.dp)
             )
-            .padding(16.dp)
     ) {
        content()
     }
