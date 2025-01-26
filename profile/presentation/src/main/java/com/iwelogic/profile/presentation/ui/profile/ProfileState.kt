@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.profile
+package com.iwelogic.profile.presentation.ui.profile
 
 sealed class ProfileState {
     data object Loading : ProfileState()

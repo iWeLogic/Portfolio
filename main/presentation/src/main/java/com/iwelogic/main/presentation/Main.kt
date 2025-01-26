@@ -15,7 +15,7 @@ import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import com.iwelogic.core.views.*
-import com.iwelogic.profile.presentation.profile.*
+import com.iwelogic.profile.presentation.ui.profile.*
 import com.iwelogic.projects.presentation.ui.list.*
 import com.iwelogic.settings.presentation.*
 
@@ -30,12 +30,12 @@ fun MainScreen(navController: NavController) {
             CenterAlignedTopAppBar(
                 modifier = Modifier
                     .statusBarsPadding()
-                    .clip(RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)),
+                    .clip(RoundedCornerShape(0.dp, 0.dp, 16.dp, 16.dp)),
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
-                    titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
-                    actionIconContentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                    titleContentColor = MaterialTheme.colorScheme.onBackground,
+                    navigationIconContentColor = MaterialTheme.colorScheme.onBackground,
+                    actionIconContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = {
                     TypingEffect(stringResource(selectedScreen.title)) { text ->
@@ -54,7 +54,7 @@ fun MainScreen(navController: NavController) {
                 modifier = Modifier
                     .navigationBarsPadding()
                     .height(50.dp)
-                    .clip(RoundedCornerShape(15.dp, 15.dp, 0.dp, 0.dp))
+                    .clip(RoundedCornerShape(16.dp, 16.dp, 0.dp, 0.dp))
             ) {
                 for (screen in screens) {
                     val isSelected = screen == selectedScreen

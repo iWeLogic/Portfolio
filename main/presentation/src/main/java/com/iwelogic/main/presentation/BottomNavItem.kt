@@ -59,7 +59,7 @@ fun BottomNavItem(
                 rememberVectorPainter(
                     image = ImageVector.vectorResource(id = if (animationRotation > 90f) screen.activeIcon else screen.inactiveIcon)
                 ),
-                tint = Color.White,
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
                 modifier = Modifier
                     .fillMaxHeight()
                     .alpha(animatedAlpha)

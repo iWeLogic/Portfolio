@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.profile
+package com.iwelogic.profile.presentation.ui.profile
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -10,6 +10,7 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.unit.*
 import coil3.compose.*
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.iwelogic.profile.presentation.models.*
 
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
@@ -24,26 +25,23 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
         is ProfileState.Main -> {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState())
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(rememberScrollState())
             ) {
-                SubcomposeAsyncImage(
-                    modifier = Modifier
-                        .size(140.dp)
-                        .clip(CircleShape),
-                    model = state.photo,
-                    loading = {
-                        CircularProgressIndicator(modifier = Modifier.padding(30.dp))
-                    },
-                    error = { state ->
-                        Text("error")
-                    },
-                    contentDescription = "asdas",
+                ProfileCard(
+                    modifier = Modifier.fillMaxWidth().padding(16.dp),
+                    profile = Profile(
+                        name = "Nazar Novak",
+                        position = "Software developer (Android)",
+                        avatar = "https://media.licdn.com/dms/image/v2/C4D03AQGb_ud7ivzNgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1517614699692?e=1743033600&v=beta&t=Tw3qFazog4jK-lUgJ8fFWZh2Tv-YtXL-qehYWJ6luDI",
+                        isOpenToWork = true
+                    )
                 )
 
-                Text("Status Open to work")
-                Text("Novak Nazar")
-                Text("Software developer (Android)")
-                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
                     ExpandableText(
                         text = "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas " +
                                 "asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd asd as ddas asdas sd asd asd " +
@@ -51,25 +49,33 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     )
                 }
 
-                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
                     Column {
                         Text("Contacts")
                     }
                 }
 
-                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
                     Column {
                         Text("Study history")
                     }
                 }
 
-                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
                     Column {
                         Text("Job history")
                     }
                 }
 
-                Card(modifier = Modifier.fillMaxWidth().padding(16.dp)) {
+                Card(modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)) {
                     Column {
                         Text("Location")
                     }

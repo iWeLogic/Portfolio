@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.profile
+package com.iwelogic.profile.presentation.ui.profile
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
