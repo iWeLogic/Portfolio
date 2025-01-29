@@ -1,6 +1,5 @@
 package com.iwelogic.projects.presentation.ui.details
 
-import android.util.*
 import androidx.compose.runtime.*
 import androidx.lifecycle.*
 import com.iwelogic.projects.domain.use_case.*
@@ -12,24 +11,22 @@ import javax.inject.Inject
 @HiltViewModel
 class ProjectDetailsViewModel @Inject constructor(
     private val useCase: ProjectsUseCase,
-    private val savedState: SavedStateHandle,
+    savedState: SavedStateHandle,
 ) : ViewModel() {
 
     private val _state = mutableStateOf<ProjectDetailsState>(ProjectDetailsState.Loading)
     val state: State<ProjectDetailsState> = _state
+    private val id = savedState.get<String>("id")
 
     init {
-        val id = savedState.get<String>("id")
-        onReload(id)
+        onReload()
     }
 
-    private fun onReload(id: String?) {
-        Log.w("myLog", "onReload: ${id}")
+    private fun onReload() {
         _state.value = ProjectDetailsState.Loading
         viewModelScope.launch {
             useCase.getProject(id)
                 .onSuccess {
-                    Log.w("myLog", "onReload: ${it.toProject().title}")
                     _state.value = ProjectDetailsState.Main(it.toProject())
                 }
                 .onFailure {

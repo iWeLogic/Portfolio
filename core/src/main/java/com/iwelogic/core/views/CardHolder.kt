@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.ui.profile
+package com.iwelogic.core.views
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -11,7 +11,7 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.unit.*
 
 @Composable
-fun Card(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
+fun CardHolder(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
     Box(
         modifier = modifier
             .shadow(

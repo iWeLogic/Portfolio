@@ -6,6 +6,8 @@ data class Project(
     val link: String,
     val icon: String,
     val description: String,
-    val title: String,
+    val name: String,
+    val rating: String,
+    val downloads: String,
     val tags: List<String>
 )

@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.bundles.base.data)
     implementation(libs.bundles.testing)
+    implementation(libs.coil.compose)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)

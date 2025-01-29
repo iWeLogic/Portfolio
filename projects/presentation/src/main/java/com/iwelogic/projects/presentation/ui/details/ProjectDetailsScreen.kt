@@ -61,7 +61,7 @@ fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: P
                 }
                 is ProjectDetailsState.Main -> {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                        Text(state.project.title)
+                        Text(state.project.name)
                     }
                 }
             }

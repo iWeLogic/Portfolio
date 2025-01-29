@@ -9,9 +9,11 @@ fun ProjectDomain.toProject(): Project {
         id = id,
         icon = icon,
         images = images,
-        title = title,
+        name = name,
         link = link,
         description = description,
-        tags = tags
+        tags = tags,
+        rating = rating,
+        downloads = downloads,
     )
 }

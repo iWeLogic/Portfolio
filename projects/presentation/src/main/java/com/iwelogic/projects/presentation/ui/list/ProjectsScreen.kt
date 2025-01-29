@@ -1,6 +1,5 @@
 package com.iwelogic.projects.presentation.ui.list
 
-import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -29,22 +28,15 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
                 state = rememberLazyListState(),
                 contentPadding = PaddingValues(16.dp),
                 reverseLayout = false,
-                verticalArrangement = Arrangement.spacedBy(12.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 flingBehavior = ScrollableDefaults.flingBehavior(),
                 userScrollEnabled = true
             ) {
                 items(state.projects) {
-                    Text(
-                        text = it.title,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp)
-                            .clickable {
-                                navController.navigate("project/${it.id}")
-                            },
-                        style = MaterialTheme.typography.bodyLarge
-                    )
+                    ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
+                            navController.navigate("project/$id")
+                    }
                 }
             }
         }

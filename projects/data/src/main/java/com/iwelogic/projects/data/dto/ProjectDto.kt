@@ -19,8 +19,14 @@ data class ProjectDto(
 	@field:SerializedName("id")
 	val id: String,
 
-	@field:SerializedName("title")
-	val title: String,
+	@field:SerializedName("name")
+	val name: String,
+
+	@field:SerializedName("rating")
+	val rating: String,
+
+	@field:SerializedName("downloads")
+	val downloads: String,
 
 	@field:SerializedName("tags")
 	val tags: List<String>

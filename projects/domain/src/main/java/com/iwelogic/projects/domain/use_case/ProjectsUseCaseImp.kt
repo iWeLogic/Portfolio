@@ -12,9 +12,11 @@ class ProjectsUseCaseImp(private val repository: ProjectsRepository) : ProjectsU
     override suspend fun getProjects(): Result<List<ProjectDomain>> = withContext(Dispatchers.IO) {
         val result = repository.getProjects()
         if (result.isSuccess) {
-            cacheProjects = result.getOrNull() ?: listOf()
+            val temp = (result.getOrNull() ?: listOf()).toMutableList()
+            temp.sortBy { it.id }
+            cacheProjects = temp
         }
-        result
+        Result.success(cacheProjects)
     }
 
     override suspend fun getProject(id: String?): Result<ProjectDomain> = withContext(Dispatchers.IO) {
