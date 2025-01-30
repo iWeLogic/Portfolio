@@ -1,16 +1,15 @@
 package com.iwelogic.projects.presentation.ui.list
 
-import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
-import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import androidx.navigation.*
+import com.iwelogic.core_ui.views.*
 
 @Composable
 fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = hiltViewModel()) {
@@ -22,8 +21,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
             }
         }
         is ProjectsState.Error -> {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
-                Image(painter = painterResource(com.iwelogic.core_ui.R.drawable.error_loading), contentDescription = "")
+            ErrorPage(modifier = Modifier.fillMaxSize()) {
             }
         }
         is ProjectsState.Main -> {
@@ -39,7 +37,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
             ) {
                 items(state.projects) {
                     ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
-                            navController.navigate("project/$id")
+                        navController.navigate("project/$id")
                     }
                 }
             }
