@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.saveable.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.*
@@ -21,7 +22,7 @@ import com.iwelogic.settings.presentation.*
 
 @Composable
 fun MainScreen(navController: NavController) {
-    var selectedScreen by remember { mutableStateOf<Screen>(Screen.Profile) }
+    var selectedScreen by rememberSaveable { mutableStateOf("profile") }
     val mainNavController = rememberNavController()
     val screens = listOf(Screen.Profile, Screen.Projects, Screen.Settings)
     Scaffold(
@@ -38,7 +39,7 @@ fun MainScreen(navController: NavController) {
                     actionIconContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = {
-                    TypingEffect(stringResource(selectedScreen.title)) { text ->
+                    TypingEffect(stringResource(Screen.getByRoute(selectedScreen).title)) { text ->
                         Text(
                             text,
                             textAlign = TextAlign.Center,
@@ -57,7 +58,7 @@ fun MainScreen(navController: NavController) {
                     .clip(RoundedCornerShape(16.dp, 16.dp, 0.dp, 0.dp))
             ) {
                 for (screen in screens) {
-                    val isSelected = screen == selectedScreen
+                    val isSelected = screen.route == selectedScreen
                     Box(
                         modifier = Modifier.weight(1.0f),
                         contentAlignment = Alignment.TopCenter,
@@ -68,7 +69,7 @@ fun MainScreen(navController: NavController) {
                                 interactionSource = interactionSource,
                                 indication = null
                             ) {
-                                selectedScreen = screen
+                                selectedScreen = screen.route
                                 mainNavController.navigate(screen.route) {
                                     popUpTo(mainNavController.graph.findStartDestination().id) {
                                         saveState = true
