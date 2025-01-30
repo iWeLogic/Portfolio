@@ -47,6 +47,7 @@ dependencies {
     implementation(projects.projects.presentation)
     implementation(projects.settings.presentation)
     implementation(projects.core)
+    implementation(projects.coreUi)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

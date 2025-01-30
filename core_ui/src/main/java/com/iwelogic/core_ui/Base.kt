@@ -1,4 +1,4 @@
-package com.iwelogic.core
+package com.iwelogic.core_ui
 
 import androidx.compose.ui.graphics.*
 

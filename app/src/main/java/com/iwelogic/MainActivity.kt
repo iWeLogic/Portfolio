@@ -10,12 +10,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.*
 import androidx.navigation.compose.*
 import com.iwelogic.main.presentation.*
 import com.iwelogic.projects.presentation.ui.details.*
-import com.iwelogic.ui.theme.PortfolioTheme
+import com.iwelogic.core_ui.theme.PortfolioTheme
 import dagger.hilt.android.*
 
 @AndroidEntryPoint
@@ -77,21 +76,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PortfolioTheme {
-        Greeting("Android")
     }
 }

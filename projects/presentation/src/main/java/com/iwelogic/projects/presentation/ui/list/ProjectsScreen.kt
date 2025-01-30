@@ -1,11 +1,13 @@
 package com.iwelogic.projects.presentation.ui.list
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import androidx.navigation.*
@@ -20,7 +22,9 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
             }
         }
         is ProjectsState.Error -> {
-
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                Image(painter = painterResource(com.iwelogic.core_ui.R.drawable.error_loading), contentDescription = "")
+            }
         }
         is ProjectsState.Main -> {
             LazyColumn(

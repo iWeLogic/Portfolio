@@ -25,7 +25,8 @@ class ProjectsViewModel @Inject constructor(
         viewModelScope.launch {
             useCase.getProjects()
                 .onSuccess {
-                    _state.value = ProjectsState.Main(it.map { item -> item.toProject() })
+//                    _state.value = ProjectsState.Main(it.map { item -> item.toProject() })
+                    _state.value = ProjectsState.Error
                 }
                 .onFailure {
                     _state.value = ProjectsState.Error

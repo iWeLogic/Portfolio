@@ -12,7 +12,6 @@ import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import androidx.navigation.*
-import com.iwelogic.core.views.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -24,7 +23,7 @@ fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: P
                     .statusBarsPadding()
                     .clip(RoundedCornerShape(0.dp, 0.dp, 15.dp, 15.dp)),
                 title = {
-                    TypingEffect("Minecraft") { text ->
+                    com.iwelogic.core_ui.views.TypingEffect("Minecraft") { text ->
                         Text(
                             text,
                             textAlign = TextAlign.Center,

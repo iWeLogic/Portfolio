@@ -9,7 +9,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
-import com.iwelogic.core.views.*
+import com.iwelogic.core_ui.views.*
 import com.iwelogic.projects.presentation.R
 import com.iwelogic.projects.presentation.models.*
 
@@ -18,7 +18,6 @@ fun ProjectItem(item: Project, modifier: Modifier = Modifier, onClickItem: (Stri
     CardHolder(
         modifier = modifier
     ) {
-
         val size = 120.dp
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -40,9 +39,8 @@ fun ProjectItem(item: Project, modifier: Modifier = Modifier, onClickItem: (Stri
             ) {
                 Text(
                     text = item.name,
-                    style = MaterialTheme.typography.bodyLarge
+                    style = MaterialTheme.typography.titleMedium
                 )
-
                 Spacer(Modifier.weight(1.0f))
 
                 Row {
@@ -59,7 +57,7 @@ fun ProjectItem(item: Project, modifier: Modifier = Modifier, onClickItem: (Stri
                         Text(
                             modifier = Modifier.padding(start = 8.dp),
                             text = item.downloads,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                     Row(
@@ -78,7 +76,7 @@ fun ProjectItem(item: Project, modifier: Modifier = Modifier, onClickItem: (Stri
                         Text(
                             modifier = Modifier.padding(start = 8.dp),
                             text = item.rating,
-                            style = MaterialTheme.typography.bodyLarge
+                            style = MaterialTheme.typography.bodyMedium
                         )
                     }
                 }

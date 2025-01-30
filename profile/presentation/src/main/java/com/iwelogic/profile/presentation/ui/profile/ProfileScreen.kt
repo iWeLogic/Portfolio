@@ -7,7 +7,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.iwelogic.core.views.*
 
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
@@ -28,7 +27,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     .fillMaxSize()
                     .verticalScroll(rememberScrollState()),
             ) {
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 8.dp)
@@ -39,7 +38,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     )
                 }
 
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp, vertical = 8.dp)
@@ -50,7 +49,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     )
                 }
 
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
@@ -61,7 +60,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                 }
 
 
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
@@ -71,7 +70,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     }
                 }
 
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
@@ -81,7 +80,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                     }
                 }
 
-                CardHolder(
+                com.iwelogic.core_ui.views.CardHolder(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)

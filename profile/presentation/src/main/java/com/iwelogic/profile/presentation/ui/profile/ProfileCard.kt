@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import coil3.compose.*
-import com.iwelogic.core.*
+import com.iwelogic.core_ui.*
 import com.iwelogic.profile.presentation.R
 import com.iwelogic.profile.presentation.models.*
 

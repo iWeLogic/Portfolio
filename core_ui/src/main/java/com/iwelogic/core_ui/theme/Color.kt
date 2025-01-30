@@ -1,4 +1,4 @@
-package com.iwelogic.ui.theme
+package com.iwelogic.core_ui.theme
 
 import androidx.compose.ui.graphics.Color
 

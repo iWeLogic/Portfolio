@@ -1,4 +1,4 @@
-package com.iwelogic.core.views
+package com.iwelogic.core_ui.views
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
