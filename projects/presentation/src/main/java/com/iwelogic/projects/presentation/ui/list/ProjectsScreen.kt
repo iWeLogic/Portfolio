@@ -14,6 +14,14 @@ import com.iwelogic.core_ui.views.*
 @Composable
 fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = hiltViewModel()) {
 
+    LaunchedEffect(Unit) {
+        viewModel.uiEffect.collect { uiEffect ->
+            when (uiEffect) {
+                is ProjectsUiEffect.OpenProjectDetails -> navController.navigate("project/${uiEffect.id}")
+            }
+        }
+    }
+
     when (val state: ProjectsState = viewModel.state.value) {
         is ProjectsState.Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
@@ -22,6 +30,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
         }
         is ProjectsState.Error -> {
             ErrorPage(modifier = Modifier.fillMaxSize()) {
+                viewModel.obtainEvent(ProjectsUserEvent.OnClickReload)
             }
         }
         is ProjectsState.Main -> {
@@ -37,7 +46,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
             ) {
                 items(state.projects) {
                     ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
-                        navController.navigate("project/$id")
+                        viewModel.obtainEvent(ProjectsUserEvent.OpenDetails(id))
                     }
                 }
             }

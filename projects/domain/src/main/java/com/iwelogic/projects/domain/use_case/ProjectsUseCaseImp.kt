@@ -7,7 +7,7 @@ import kotlinx.coroutines.withContext
 
 class ProjectsUseCaseImp(private val repository: ProjectsRepository) : ProjectsUseCase {
 
-    private var cacheProjects = listOf<ProjectDomain>();
+    private var cacheProjects = listOf<ProjectDomain>()
 
     override suspend fun getProjects(): Result<List<ProjectDomain>> = withContext(Dispatchers.IO) {
         val result = repository.getProjects()
@@ -15,8 +15,10 @@ class ProjectsUseCaseImp(private val repository: ProjectsRepository) : ProjectsU
             val temp = (result.getOrNull() ?: listOf()).toMutableList()
             temp.sortBy { it.id }
             cacheProjects = temp
+            Result.success(cacheProjects)
+        } else {
+            result
         }
-        Result.success(cacheProjects)
     }
 
     override suspend fun getProject(id: String?): Result<ProjectDomain> = withContext(Dispatchers.IO) {
