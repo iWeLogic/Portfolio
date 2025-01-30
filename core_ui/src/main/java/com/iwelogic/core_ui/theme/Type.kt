@@ -19,46 +19,46 @@ val Typography = Typography(
     headlineLarge = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.Bold,
-        fontSize = 22.sp,
+        fontSize = 21.sp,
     ),
     headlineMedium = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
+        fontSize = 19.sp,
     ),
     headlineSmall = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.Bold,
-        fontSize = 18.sp,
+        fontSize = 17.sp,
     ),
     titleLarge = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 20.sp,
+        fontSize = 19.sp,
     ),
     titleMedium = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 18.sp,
+        fontSize = 17.sp,
     ),
     titleSmall = TextStyle(
         fontFamily = openSans,
         fontWeight = FontWeight.SemiBold,
-        fontSize = 16.sp,
+        fontSize = 15.sp,
     ),
     bodyLarge = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 16.sp
+        fontSize = 17.sp
     ),
     bodyMedium = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 14.sp
+        fontSize = 15.sp
     ),
     bodySmall = TextStyle(
         fontFamily = FontFamily.Default,
         fontWeight = FontWeight.Normal,
-        fontSize = 12.sp
+        fontSize = 13.sp
     )
 )

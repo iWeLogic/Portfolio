@@ -2,7 +2,6 @@ package com.iwelogic.profile.presentation.ui.profile
 
 import androidx.compose.runtime.*
 import androidx.lifecycle.*
-import com.iwelogic.profile.domain.repository.*
 import com.iwelogic.profile.domain.use_case.*
 import com.iwelogic.profile.presentation.mapper.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,9 +21,12 @@ class ProfileViewModel @Inject constructor(private val useCase: ProfileUseCase) 
     private fun onReload() {
         _state.value = ProfileState.Loading
         viewModelScope.launch {
-            useCase.getProfile()
-                .onSuccess {
-                    _state.value = ProfileState.Main(profile = it.toProfile())
+            useCase.getHomeData()
+                .onSuccess { result ->
+                    _state.value = ProfileState.Main(
+                        profile = result.profile.toProfile(),
+                        contacts = result.contacts.map { it.toContact() }
+                    )
                 }
                 .onFailure {
                     _state.value = ProfileState.Error

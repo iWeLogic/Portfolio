@@ -10,4 +10,8 @@ class ProfileRepositoryImp(private val profileDataSource: ProfileDataSource) : P
     override suspend fun getProfile(): Result<ProfileDomain> {
         return profileDataSource.getProfile().map { it.toProfile() }
     }
+
+    override suspend fun getContacts(): Result<List<ContactDomain>> {
+        return profileDataSource.getContacts().map { result -> result.map { it.toContact() } }
+    }
 }

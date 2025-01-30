@@ -10,4 +10,8 @@ class ProfileDataSource @Inject constructor(private val api: ProfileApi) : BaseD
     suspend fun getProfile(): Result<ProfileDto> {
         return getResponse(request = { api.getProfile() })
     }
+
+    suspend fun getContacts(): Result<List<ContactDto>> {
+        return getResponse(request = { api.getContacts() })
+    }
 }

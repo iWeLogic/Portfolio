@@ -21,6 +21,7 @@ fun ExpandableText(text: String, modifier: Modifier = Modifier) {
         onExpandedChange = {
             expanded = it
         },
+        style = MaterialTheme.typography.bodyMedium,
         readMoreText = stringResource(R.string.read_more),
         readMoreColor = MaterialTheme.colorScheme.onPrimaryContainer,
         readMoreFontWeight = FontWeight.Bold,
@@ -29,6 +30,6 @@ fun ExpandableText(text: String, modifier: Modifier = Modifier) {
         readLessText = stringResource(R.string.read_less),
         readLessColor = MaterialTheme.colorScheme.onPrimaryContainer,
         readLessFontWeight = FontWeight.Bold,
-        toggleArea = ToggleArea.More
+        toggleArea = ToggleArea.More,
     )
 }

@@ -8,4 +8,7 @@ interface ProfileApi {
 
     @GET("profile")
     suspend fun getProfile(): Response<ProfileDto>
+
+    @GET("contacts")
+    suspend fun getContacts(): Response<List<ContactDto>>
 }
