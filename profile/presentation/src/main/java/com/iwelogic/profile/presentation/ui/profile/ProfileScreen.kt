@@ -90,7 +90,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                                 }
                                 .padding(start = 8.dp, top = 8.dp, bottom = 8.dp),
                             style = MaterialTheme.typography.titleSmall,
-                            color = MaterialTheme.colorScheme.onPrimaryContainer
+                            color = MaterialTheme.colorScheme.primary
                         )
                     }
                 }

@@ -20,7 +20,7 @@ fun CardHolder(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
                 shape = RoundedCornerShape(16.dp)
             )
             .background(
-                color = MaterialTheme.colorScheme.secondaryContainer,
+                color = MaterialTheme.colorScheme.primaryContainer,
                 shape = RoundedCornerShape(16.dp)
             )
     ) {
