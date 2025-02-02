@@ -11,8 +11,8 @@ import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
-import coil3.compose.*
 import com.iwelogic.core_ui.*
+import com.iwelogic.core_ui.views.*
 import com.iwelogic.profile.presentation.R
 import com.iwelogic.profile.presentation.models.*
 
@@ -51,21 +51,14 @@ fun ProfileCard(profile: Profile, modifier: Modifier = Modifier) {
             color = Color.White,
         )
         Row {
-            SubcomposeAsyncImage(
+            RemoteImage(
+                url = profile.avatar,
                 modifier = Modifier
                     .size(96.dp)
                     .clip(CircleShape)
                     .background(Color.White)
                     .padding(3.dp)
-                    .clip(CircleShape),
-                model = profile.avatar,
-                loading = {
-                    CircularProgressIndicator(modifier = Modifier.padding(30.dp))
-                },
-                error = { state ->
-                    Text("error")
-                },
-                contentDescription = "asdas",
+                    .clip(CircleShape)
             )
 
             Column(

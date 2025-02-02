@@ -3,6 +3,7 @@ package com.iwelogic
 import android.os.Bundle
 import androidx.activity.*
 import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -18,23 +19,24 @@ import com.iwelogic.core_ui.theme.PortfolioTheme
 import dagger.hilt.android.*
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContent {
             PortfolioTheme {
                 val navController = rememberNavController()
                 val isDarkMode = isSystemInDarkTheme()
                 val context = this
                 val statusBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
+                val statusBarTextColor = MaterialTheme.colorScheme.onPrimaryContainer.toArgb()
                 val navigationBar = MaterialTheme.colorScheme.primaryContainer.toArgb()
                 DisposableEffect(isDarkMode) {
                     context.enableEdgeToEdge(
                         statusBarStyle = if (!isDarkMode) {
-                            SystemBarStyle.dark(
-                                statusBar
+                            SystemBarStyle.light(
+                                statusBar,
+                                statusBarTextColor
                             )
                         } else {
                             SystemBarStyle.dark(
@@ -42,7 +44,10 @@ class MainActivity : ComponentActivity() {
                             )
                         },
                         navigationBarStyle = if (!isDarkMode) {
-                            SystemBarStyle.dark(navigationBar)
+                            SystemBarStyle.light(
+                                statusBar,
+                                statusBarTextColor
+                            )
                         } else {
                             SystemBarStyle.dark(navigationBar)
                         }

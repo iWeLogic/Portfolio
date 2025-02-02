@@ -55,6 +55,7 @@ dependencies {
     implementation(projects.settings.data)
     implementation(projects.projects.presentation)
     implementation(projects.projects.data)
+    implementation(libs.androidx.appcompat)
 
     implementation(libs.androidx.hilt.navigation.compose)
 
