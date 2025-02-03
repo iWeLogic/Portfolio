@@ -25,7 +25,9 @@ class ProfileViewModel @Inject constructor(private val useCase: ProfileUseCase) 
                 .onSuccess { result ->
                     _state.value = ProfileState.Main(
                         profile = result.profile.toProfile(),
-                        contacts = result.contacts.map { it.toContact() }
+                        contacts = result.contacts.map { it.toContact() },
+                        jobs = result.jobs.map { it.toJob()},
+                        studies = result.studies.map { it.toStudy()},
                     )
                 }
                 .onFailure {

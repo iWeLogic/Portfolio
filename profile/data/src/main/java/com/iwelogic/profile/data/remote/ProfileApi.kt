@@ -11,4 +11,10 @@ interface ProfileApi {
 
     @GET("contacts")
     suspend fun getContacts(): Response<List<ContactDto>>
+
+    @GET("studyHistory")
+    suspend fun getStudies(): Response<List<StudyDto>>
+
+    @GET("jobHistory")
+    suspend fun getJobs(): Response<List<JobDto>>
 }

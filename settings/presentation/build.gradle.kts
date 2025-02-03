@@ -37,15 +37,11 @@ android {
 
 dependencies {
 
-    implementation(projects.settings.domain)
-
-    implementation(libs.androidx.appcompat)
-
     implementation(projects.core)
     implementation(projects.coreUi)
-    implementation(projects.projects.domain)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.base.ui)
+
     implementation(libs.bundles.testing)
 
     implementation(libs.hilt.android)

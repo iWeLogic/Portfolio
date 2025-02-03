@@ -64,11 +64,13 @@ base-ui = [
     "androidx-core-ktx",
     "androidx-lifecycle-runtime-ktx",
     "androidx-ui",
+    "androidx-appcompat",
     "androidx-ui-graphics" ,
     "androidx-ui-tooling-preview",
     "androidx-lifecycle-viewmodel-compose",
     "androidx-material3",
     "coil-compose",
+    "material",
     "androidx-hilt-navigation-compose",
     "coil-network-okhttp"
 ]

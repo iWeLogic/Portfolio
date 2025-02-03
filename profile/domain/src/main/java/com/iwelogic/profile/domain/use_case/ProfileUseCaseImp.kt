@@ -8,16 +8,20 @@ class ProfileUseCaseImp(private val repository: ProfileRepository) : ProfileUseC
 
     override suspend fun getHomeData(): Result<HomeData> = withContext(Dispatchers.IO) {
         val calls: Array<Deferred<Result<Any>>> = arrayOf(
+            async { repository.getProfile() },
             async { repository.getContacts() },
-            async { repository.getProfile() }
+            async { repository.getJobs() },
+            async { repository.getStudies() }
         )
         val results = awaitAll(*calls)
         val error = results.firstOrNull { it.isFailure }
         val result: Result<HomeData> = if(error != null){
             Result.failure(error.exceptionOrNull()!!)
         } else {
-            val contacts : List<ContactDomain> = (results[0].getOrNull() as List<*>).map { it as ContactDomain }
-            Result.success(HomeData(contacts = contacts, profile = results[1].getOrNull() as ProfileDomain))
+            val contacts : List<ContactDomain> = (results[1].getOrNull() as List<*>).map { it as ContactDomain }
+            val jobs : List<JobDomain> = (results[2].getOrNull() as List<*>).map { it as JobDomain }
+            val studies : List<StudyDomain> = (results[3].getOrNull() as List<*>).map { it as StudyDomain }
+            Result.success(HomeData(contacts = contacts, profile = results[0].getOrNull() as ProfileDomain, jobs = jobs, studies = studies))
         }
         result
     }

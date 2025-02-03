@@ -52,7 +52,6 @@ dependencies {
     implementation(projects.profile.presentation)
     implementation(projects.profile.data)
     implementation(projects.settings.presentation)
-    implementation(projects.settings.data)
     implementation(projects.projects.presentation)
     implementation(projects.projects.data)
     implementation(libs.androidx.appcompat)
