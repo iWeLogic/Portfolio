@@ -1,3 +1,10 @@
 package com.iwelogic.settings.presentation
 
-class SettingsState (val isDarkTheme : Boolean = true)
+import com.iwelogic.settings.presentation.models.*
+
+data class SettingsState(
+    val versionName: String? = null,
+    val isDarkTheme: Boolean = true,
+    val language: Language = Language.EN,
+    val isNotificationOn: Boolean = false
+)

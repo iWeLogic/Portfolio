@@ -2,7 +2,6 @@ package com.iwelogic.core_ui
 
 import android.annotation.*
 import android.content.*
-import android.util.*
 import dagger.hilt.android.qualifiers.*
 import kotlinx.coroutines.flow.*
 import javax.inject.*
@@ -29,7 +28,6 @@ class ThemeHolder @Inject constructor(
             preferences.edit().putBoolean(IS_DARK_KEY, value).commit()
         }
         get(){
-            Log.w("myLog", "isDark:  ${preferences.getBoolean(IS_DARK_KEY, false)}")
             return preferences.getBoolean(IS_DARK_KEY, false)
         }
 

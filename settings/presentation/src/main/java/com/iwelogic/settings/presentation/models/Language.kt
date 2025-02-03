@@ -1,4 +1,4 @@
-package com.iwelogic.settings.presentation
+package com.iwelogic.settings.presentation.models
 
 enum class Language (val index : Int, val title: String, val code: String) {
 

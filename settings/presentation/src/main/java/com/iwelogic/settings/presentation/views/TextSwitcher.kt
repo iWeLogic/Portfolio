@@ -1,4 +1,4 @@
-package com.iwelogic.settings.presentation
+package com.iwelogic.settings.presentation.views
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
@@ -21,12 +21,11 @@ fun TextSwitcher(
     onSelectionChange: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-
     BoxWithConstraints(
         modifier
             .height(56.dp)
             .clip(RoundedCornerShape(8.dp))
-            .background(Color(0xFFEAEAEA))
+            .background(MaterialTheme.colorScheme.secondaryContainer)
             .padding(8.dp)
     ) {
         if (items.isNotEmpty()) {
@@ -51,7 +50,6 @@ fun TextSwitcher(
             Row(modifier = Modifier
                 .fillMaxWidth()
                 .drawWithContent {
-
                     val padding = 8.dp.toPx()
                     drawRoundRect(
                         topLeft = Offset(x = indicatorOffset.toPx() + padding, padding),
@@ -92,7 +90,7 @@ fun TextSwitcher(
                         Text(
                             text = text,
                             fontSize = 20.sp,
-                            color = Color.Gray
+                            color = MaterialTheme.colorScheme.onSecondaryContainer
                         )
                     }
                 }

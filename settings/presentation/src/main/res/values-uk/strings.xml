@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dark">Темна</string>
+    <string name="light">Світла</string>
+    <string name="theme">Тема</string>
+    <string name="language">Мова</string>
+    <string name="write_to_support">Написати в підтримку</string>
+    <string name="share_app">Поділитись додатком</string>
+    <string name="rate_app">Оцінити додаток</string>
+    <string name="version">Версія %1$s</string>
+    <string name="share_text">Привіт спробуй додаток %1$s</string>
+    <string name="notifications">Cповіщення</string>
+    <string name="on">Вкл</string>
+    <string name="off">Викл</string>
+    <string name="email_subject">Портфоліо додаток</string>
+</resources>
