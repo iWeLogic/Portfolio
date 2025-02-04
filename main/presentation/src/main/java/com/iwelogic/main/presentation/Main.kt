@@ -1,5 +1,6 @@
 package com.iwelogic.main.presentation
 
+import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
 import androidx.compose.foundation.layout.*
@@ -89,6 +90,12 @@ fun MainScreen(navController: NavController) {
         NavHost(
             navController = mainNavController,
             startDestination = Screen.Profile.route,
+            enterTransition = {
+                EnterTransition.None
+            },
+            exitTransition = {
+                ExitTransition.None
+            },
             modifier = Modifier.padding(paddingValues = innerPadding)
         ) {
             composable("profile") {

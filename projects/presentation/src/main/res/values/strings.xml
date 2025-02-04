@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="experience">%1$s years</string>
-    <string name="rate">%1$s$/hour</string>
     <string name="loading">Loading…</string>
 </resources>

@@ -9,13 +9,19 @@ import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
 @Composable
-fun ContactItem (contact: Contact, isDivider: Boolean, onClick: (Contact) -> Unit){
+fun ContactItem(contact: Contact, isDivider: Boolean, onClick: (Contact) -> Unit) {
     Column(modifier = Modifier.padding(vertical = 6.dp)) {
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Absolute.SpaceBetween) {
-            Text(contact.name, style = MaterialTheme.typography.bodyMedium)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Absolute.SpaceBetween
+        ) {
+            Text(
+                contact.name,
+                style = MaterialTheme.typography.bodyLarge
+            )
             Text(
                 contact.value,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.primary,
                 modifier = Modifier.clickable {
                     onClick(contact)

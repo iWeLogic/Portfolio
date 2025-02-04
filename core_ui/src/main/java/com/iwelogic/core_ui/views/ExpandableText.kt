@@ -1,11 +1,11 @@
-package com.iwelogic.profile.presentation.ui.views
+package com.iwelogic.core_ui.views
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
-import com.iwelogic.profile.presentation.R
+import com.iwelogic.core_ui.R
 import com.webtoonscorp.android.readmore.foundation.*
 import com.webtoonscorp.android.readmore.material3.*
 

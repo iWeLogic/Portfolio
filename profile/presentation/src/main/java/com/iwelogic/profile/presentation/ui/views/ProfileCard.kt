@@ -64,32 +64,34 @@ fun ProfileCard(profile: Profile, modifier: Modifier = Modifier) {
             Column(
                 modifier = Modifier
                     .height(96.dp)
-                    .padding(start = 16.dp),
+                    .padding(start = 8.dp),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                Column {
+                Column() {
                     Text(text = profile.name, color = Color.White)
                     Text(text = profile.position, color = Color(0xB3FFFFFF))
                 }
-                Row {
+                Row (verticalAlignment = Alignment.CenterVertically){
                     Icon(
                         painter = painterResource(R.drawable.clock),
                         tint = Color.White,
-                        contentDescription = "salary"
+                        contentDescription = "experience"
                     )
                     Text(
-                        modifier = Modifier.padding(start = 8.dp),
-                        text = "8+ years", color = Color.White
+                        modifier = Modifier.padding(start = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium,
+                        text = String.format(stringResource(R.string.experience), profile.years), color = Color.White
                     )
                     Icon(
-                        modifier = Modifier.padding(start = 16.dp),
+                        modifier = Modifier.padding(start = 8.dp),
                         painter = painterResource(R.drawable.salary),
                         tint = Color.White,
                         contentDescription = "salary"
                     )
                     Text(
-                        modifier = Modifier.padding(start = 8.dp),
-                        text = "35$/hour", color = Color.White
+                        modifier = Modifier.padding(start = 4.dp),
+                        style = MaterialTheme.typography.bodyMedium,
+                        text = String.format(stringResource(R.string.rate), profile.rate), color = Color.White
                     )
                 }
             }

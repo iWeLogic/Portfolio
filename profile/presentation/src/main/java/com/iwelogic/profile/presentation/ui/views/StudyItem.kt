@@ -8,13 +8,20 @@ import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
 @Composable
-fun StudyItem (study: Study, isDivider: Boolean){
+fun StudyItem(study: Study, isDivider: Boolean) {
     Column(modifier = Modifier.padding(vertical = 6.dp)) {
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Absolute.SpaceBetween) {
-            Text(study.name, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1.0f))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Absolute.SpaceBetween
+        ) {
+            Text(
+                study.name,
+                style = MaterialTheme.typography.bodyLarge,
+                modifier = Modifier.weight(1.0f)
+            )
             Text(
                 study.duration,
-                style = MaterialTheme.typography.bodyMedium,
+                style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )
         }

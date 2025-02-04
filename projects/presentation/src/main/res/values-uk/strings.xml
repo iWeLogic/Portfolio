@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="experience">%1$s років</string>
-    <string name="rate">%1$s$/година</string>
     <string name="loading">Завантаження…</string>
 </resources>

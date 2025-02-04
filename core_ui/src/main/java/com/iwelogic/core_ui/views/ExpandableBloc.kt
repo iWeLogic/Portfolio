@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.ui.views
+package com.iwelogic.core_ui.views
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.*
@@ -7,7 +7,9 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.*
 import androidx.compose.ui.*
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
+import com.iwelogic.core_ui.R
 
 @Composable
 fun ExpandableBloc(title: String, modifier: Modifier = Modifier, content: @Composable (Boolean) -> Unit) {
@@ -22,7 +24,7 @@ fun ExpandableBloc(title: String, modifier: Modifier = Modifier, content: @Compo
         content(isExpanded)
 
         Text(
-            if (isExpanded) "less" else "more",
+            stringResource(if (isExpanded) R.string.less else R.string.more),
             modifier = Modifier
                 .align(Alignment.End)
                 .clickable(
