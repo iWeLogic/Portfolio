@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.ui.profile
+package com.iwelogic.profile.presentation.ui
 
 import com.iwelogic.profile.presentation.models.*
 

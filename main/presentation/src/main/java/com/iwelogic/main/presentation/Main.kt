@@ -16,7 +16,7 @@ import androidx.navigation.*
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.*
 import com.iwelogic.core_ui.views.*
-import com.iwelogic.profile.presentation.ui.profile.*
+import com.iwelogic.profile.presentation.ui.*
 import com.iwelogic.projects.presentation.ui.list.*
 import com.iwelogic.settings.presentation.*
 

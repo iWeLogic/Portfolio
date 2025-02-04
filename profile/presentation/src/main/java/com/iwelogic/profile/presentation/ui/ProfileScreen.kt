@@ -1,17 +1,37 @@
-package com.iwelogic.profile.presentation.ui.profile
+package com.iwelogic.profile.presentation.ui
 
+import android.content.*
+import android.net.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.platform.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import com.iwelogic.core_ui.views.*
-import com.iwelogic.profile.presentation.ui.profile.views.*
+import com.iwelogic.profile.presentation.ui.views.*
+
 
 @Composable
 fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
+
+    val context = LocalContext.current
+
+    LaunchedEffect(Unit) {
+        viewModel.uiEffect.collect { effect ->
+            when (effect) {
+                is ProfileUIEffect.DialPhone -> {
+                    context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${effect.phone}")))
+                }
+                is ProfileUIEffect.OpenLink -> {
+                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(effect.url)))
+                }
+            }
+        }
+    }
+
 
     when (val state: ProfileState = viewModel.state.value) {
         is ProfileState.Loading -> {
@@ -20,7 +40,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
             }
         }
         is ProfileState.Error -> {
-
+            ErrorPage(modifier = Modifier.fillMaxSize()) {
+                viewModel.obtainEvent(ProfileEvent.OnClickReload)
+            }
         }
         is ProfileState.Main -> {
             Column(
@@ -64,7 +86,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                             ContactItem(
                                 contact = state.contacts[index],
                                 isDivider = index != state.contacts.size - 1 && isExpanded
-                            )
+                            ){
+                                viewModel.obtainEvent(ProfileEvent.OnClickContact(it))
+                            }
                         }
                     }
                 }
@@ -82,7 +106,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                             JobItem(
                                 job = state.jobs[index],
                                 isDivider = index != state.jobs.size - 1 && isExpanded
-                            )
+                            ) {
+                                viewModel.obtainEvent(ProfileEvent.OnClickJob(it))
+                            }
                         }
                     }
                 }

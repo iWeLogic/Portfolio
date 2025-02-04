@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<State : Any, UiEffect, UserEvent>(initialState: State) : ViewModel() {
+abstract class BaseViewModel<State : Any, UserEvent, UiEffect>(initialState: State) : ViewModel() {
 
     private val _state = mutableStateOf(initialState)
     val state: androidx.compose.runtime.State<State> = _state

@@ -14,7 +14,7 @@ import javax.inject.*
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(@ApplicationContext private val context: Context, private val themeHolder: ThemeHolder) :
-    BaseViewModel<SettingsState, SettingsUIEffect, SettingsEvent>(SettingsState(isDarkTheme = themeHolder.isDark)) {
+    BaseViewModel<SettingsState, SettingsEvent, SettingsUIEffect>(SettingsState(isDarkTheme = themeHolder.isDark)) {
     private var packageName: String = ""
 
     init {

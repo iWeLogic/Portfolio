@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProjectsViewModel @Inject constructor(
     private val useCase: ProjectsUseCase
-) : BaseViewModel<ProjectsState, ProjectsUiEffect, ProjectsUserEvent>(initialState = ProjectsState.Loading) {
+) : BaseViewModel<ProjectsState, ProjectsUserEvent, ProjectsUiEffect>(initialState = ProjectsState.Loading) {
 
     init {
         onReload()

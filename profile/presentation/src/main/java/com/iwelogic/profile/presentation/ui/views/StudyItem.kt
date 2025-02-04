@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.ui.profile.views
+package com.iwelogic.profile.presentation.ui.views
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,12 +8,12 @@ import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
 @Composable
-fun JobItem (job: Job, isDivider: Boolean){
+fun StudyItem (study: Study, isDivider: Boolean){
     Column(modifier = Modifier.padding(vertical = 6.dp)) {
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Absolute.SpaceBetween) {
-            Text(job.position, style = MaterialTheme.typography.bodyMedium)
+            Text(study.name, style = MaterialTheme.typography.bodyMedium, modifier = Modifier.weight(1.0f))
             Text(
-                job.name,
+                study.duration,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
             )

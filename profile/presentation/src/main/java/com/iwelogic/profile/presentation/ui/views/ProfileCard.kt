@@ -1,4 +1,4 @@
-package com.iwelogic.profile.presentation.ui.profile
+package com.iwelogic.profile.presentation.ui.views
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
