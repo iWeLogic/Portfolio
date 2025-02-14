@@ -5,21 +5,19 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Intent
 import android.media.RingtoneManager
-import android.util.*
 import androidx.core.app.*
 import androidx.core.content.ContextCompat
 import androidx.core.net.*
 import com.google.firebase.messaging.*
 import com.iwelogic.R
-
-const val KEY_DESTINATION = "destination"
-const val KEY_ID = "id"
+import com.iwelogic.core.Const.KEY_DESTINATION
+import com.iwelogic.core.Const.KEY_ID
+import com.iwelogic.core.Const.URL
 
 
 class NotificationService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
-        Log.w("myLog", "onNewToken: ${token}")
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -36,12 +34,12 @@ class NotificationService : FirebaseMessagingService() {
         if(!remoteMessage.data[KEY_DESTINATION].isNullOrEmpty()){
             val intent = Intent().apply {
                 action = Intent.ACTION_VIEW
-                data = "https://iwelogic.com/${remoteMessage.data[KEY_DESTINATION]}/${remoteMessage.data[KEY_ID]}".toUri()
+                data = "$URL/${remoteMessage.data[KEY_DESTINATION]}/${remoteMessage.data[KEY_ID]}".toUri()
             }
             val pendingIntent = TaskStackBuilder.create(this).run {
                 addNextIntentWithParentStack(intent)
                 getPendingIntent(
-                    1234,
+                    1,
                     PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                 )
             }

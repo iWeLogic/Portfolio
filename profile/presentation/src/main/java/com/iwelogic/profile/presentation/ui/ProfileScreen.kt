@@ -8,9 +8,11 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.*
+import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import com.iwelogic.core_ui.views.*
+import com.iwelogic.profile.presentation.R
 import com.iwelogic.profile.presentation.ui.views.*
 
 
@@ -79,7 +81,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     ExpandableBloc(
-                        title = "Contact",
+                        title = stringResource(R.string.contacts),
                         modifier = Modifier.padding(16.dp)
                     ) { isExpanded ->
                         for (index in 0 until if (isExpanded) state.contacts.size else 1) {
@@ -99,7 +101,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         .padding(horizontal = 16.dp, vertical = 8.dp)
                 ) {
                     ExpandableBloc(
-                        title = "Jobs",
+                        title = stringResource(R.string.jobs),
                         modifier = Modifier.padding(16.dp)
                     ) { isExpanded ->
                         for (index in 0 until if (isExpanded) state.jobs.size else 1) {
@@ -119,7 +121,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         .padding(start = 16.dp, end = 16.dp, top = 8.dp, bottom = 16.dp)
                 ) {
                     ExpandableBloc(
-                        title = "Education",
+                        title = stringResource(R.string.education),
                         modifier = Modifier.padding(16.dp)
                     ) { isExpanded ->
                         for (index in 0 until if (isExpanded) state.studies.size else 1) {

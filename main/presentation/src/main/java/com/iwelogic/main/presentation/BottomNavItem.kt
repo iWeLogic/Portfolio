@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BottomNavItem(
-    screen: Screen,
+    screen: Tab,
     isSelected: Boolean,
     modifier: Modifier = Modifier,
 ) {

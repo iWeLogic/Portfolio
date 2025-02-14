@@ -3,4 +3,7 @@
     <string name="experience">%1$s років</string>
     <string name="rate">%1$s$/година</string>
     <string name="loading">Завантаження…</string>
+    <string name="contacts">Контакти</string>
+    <string name="jobs">Досвід</string>
+    <string name="education">Освіта</string>
 </resources>

@@ -14,11 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.navigation.*
 import androidx.navigation.compose.*
+import com.iwelogic.core.Const.KEY_DESTINATION
+import com.iwelogic.core.Const.KEY_ID
+import com.iwelogic.core.Const.URL
+import com.iwelogic.core.navigation.*
 import com.iwelogic.core_ui.*
 import com.iwelogic.main.presentation.*
 import com.iwelogic.projects.presentation.ui.details.*
 import com.iwelogic.core_ui.theme.PortfolioTheme
-import com.iwelogic.services.*
 import dagger.hilt.android.*
 import javax.inject.Inject
 
@@ -73,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 Column {
                     NavHost(
                         navController = navController,
-                        startDestination = "main",
+                        startDestination = Screen.Main.route,
                         enterTransition = {
                             EnterTransition.None
                         },
@@ -82,19 +85,19 @@ class MainActivity : AppCompatActivity() {
                         },
                         modifier = Modifier.weight(1f)
                     ) {
-                        composable("main") {
+                        composable(Screen.Main.route) {
                             MainScreen(navController = navController)
                         }
                         composable(
-                            route = "project/{id}",
+                            route = "${Screen.Project.route}/{${KEY_ID}}",
                             deepLinks = listOf(navDeepLink {
-                                uriPattern = "https://iwelogic.com/project/{id}"
+                                uriPattern = "$URL/${Screen.Project.route}/{${KEY_ID}}"
                                 action = Intent.ACTION_VIEW
                             }),
-                            arguments = listOf(navArgument("id") { type = NavType.StringType }
+                            arguments = listOf(navArgument(KEY_ID) { type = NavType.StringType }
                             )
                         ) {
-                            ProjectDetailsScreen(it.arguments?.getString("id"), navController = navController)
+                            ProjectDetailsScreen(it.arguments?.getString(KEY_ID), navController = navController)
                         }
                     }
                 }

@@ -9,6 +9,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import androidx.navigation.*
+import com.iwelogic.core.navigation.*
 import com.iwelogic.core_ui.views.*
 
 @Composable
@@ -17,7 +18,7 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
     LaunchedEffect(Unit) {
         viewModel.uiEffect.collect { uiEffect ->
             when (uiEffect) {
-                is ProjectsUiEffect.OpenProjectDetails -> navController.navigate("project/${uiEffect.id}")
+                is ProjectsUiEffect.OpenProjectDetails -> navController.navigate("${Screen.Project.route}/${uiEffect.id}")
             }
         }
     }

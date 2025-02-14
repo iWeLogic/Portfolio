@@ -1,6 +1,7 @@
 package com.iwelogic.projects.presentation.ui.details
 
 import androidx.lifecycle.*
+import com.iwelogic.core.Const.KEY_ID
 import com.iwelogic.core_ui.base.*
 import com.iwelogic.projects.domain.use_case.*
 import com.iwelogic.projects.presentation.mapper.*
@@ -14,7 +15,7 @@ class ProjectDetailsViewModel @Inject constructor(
     savedState: SavedStateHandle,
 ) : BaseViewModel<ProjectDetailsState, ProjectDetailsEvent, ProjectDetailsUIEffect>(ProjectDetailsState.Loading) {
 
-    private val id = savedState.get<String>("id")
+    private val id = savedState.get<String>(KEY_ID)
 
     init {
         onReload()

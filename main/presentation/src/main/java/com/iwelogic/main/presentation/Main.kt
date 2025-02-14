@@ -23,9 +23,9 @@ import com.iwelogic.settings.presentation.*
 
 @Composable
 fun MainScreen(navController: NavController) {
-    var selectedScreen by rememberSaveable { mutableStateOf("profile") }
+    var selectedScreen by rememberSaveable { mutableStateOf(Tab.Profile.route) }
     val mainNavController = rememberNavController()
-    val screens = listOf(Screen.Profile, Screen.Projects, Screen.Settings)
+    val screens = listOf(Tab.Profile, Tab.Projects, Tab.Settings)
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
@@ -40,7 +40,7 @@ fun MainScreen(navController: NavController) {
                     actionIconContentColor = MaterialTheme.colorScheme.onBackground
                 ),
                 title = {
-                    TypingEffect(stringResource(Screen.getByRoute(selectedScreen).title)) { text ->
+                    TypingEffect(stringResource(Tab.getByRoute(selectedScreen).title)) { text ->
                         Text(
                             text,
                             textAlign = TextAlign.Center,
@@ -89,7 +89,7 @@ fun MainScreen(navController: NavController) {
     ) { innerPadding ->
         NavHost(
             navController = mainNavController,
-            startDestination = Screen.Profile.route,
+            startDestination = Tab.Profile.route,
             enterTransition = {
                 EnterTransition.None
             },
@@ -98,13 +98,13 @@ fun MainScreen(navController: NavController) {
             },
             modifier = Modifier.padding(paddingValues = innerPadding)
         ) {
-            composable("profile") {
+            composable(Tab.Profile.route) {
                 ProfileScreen()
             }
-            composable("projects") {
+            composable(Tab.Projects.route) {
                 ProjectsScreen(navController)
             }
-            composable("settings") {
+            composable(Tab.Settings.route) {
                 SettingsScreen()
             }
         }

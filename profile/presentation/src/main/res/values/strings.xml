@@ -4,4 +4,7 @@
     <string name="experience">%1$s years</string>
     <string name="rate">%1$s$/hour</string>
     <string name="loading">Loading…</string>
+    <string name="contacts">Contacts</string>
+    <string name="jobs">Jobs</string>
+    <string name="education">Education</string>
 </resources>
