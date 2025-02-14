@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "455869194774",
+    "project_id": "iwelogic-portfolio",
+    "storage_bucket": "iwelogic-portfolio.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:455869194774:android:14d56b82577d939e688b37",
+        "android_client_info": {
+          "package_name": "com.iwelogic"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "455869194774-v1t50ib0ijabt0jhh1jalhj4ku6t1v78.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.iwelogic",
+            "certificate_hash": "3929755a3d04a1534747097e58e896515daa6e9b"
+          }
+        },
+        {
+          "client_id": "455869194774-a7he7dbfpro4qd9oi0mchvi06ctpuqqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBm3sV8ydlRtmi8GplXtOMRqXt0hyq-clw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "455869194774-a7he7dbfpro4qd9oi0mchvi06ctpuqqv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

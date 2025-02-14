@@ -1,5 +1,6 @@
 package com.iwelogic
 
+import android.content.*
 import android.os.Bundle
 import androidx.activity.*
 import androidx.activity.compose.setContent
@@ -17,6 +18,7 @@ import com.iwelogic.core_ui.*
 import com.iwelogic.main.presentation.*
 import com.iwelogic.projects.presentation.ui.details.*
 import com.iwelogic.core_ui.theme.PortfolioTheme
+import com.iwelogic.services.*
 import dagger.hilt.android.*
 import javax.inject.Inject
 
@@ -85,12 +87,21 @@ class MainActivity : AppCompatActivity() {
                         }
                         composable(
                             route = "project/{id}",
+                            deepLinks = listOf(navDeepLink {
+                                uriPattern = "https://iwelogic.com/project/{id}"
+                                action = Intent.ACTION_VIEW
+                            }),
                             arguments = listOf(navArgument("id") { type = NavType.StringType }
                             )
                         ) {
                             ProjectDetailsScreen(it.arguments?.getString("id"), navController = navController)
                         }
                     }
+                }
+
+                if (!intent.extras?.getString(KEY_DESTINATION).isNullOrEmpty()) {
+                    navController.navigate("${intent.extras?.getString(KEY_DESTINATION)}/${intent.extras?.getString(KEY_ID)}")
+                    intent = null
                 }
             }
         }
