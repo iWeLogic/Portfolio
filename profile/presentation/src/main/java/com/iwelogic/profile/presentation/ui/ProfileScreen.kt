@@ -22,7 +22,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        viewModel.uiEffect.collect { effect ->
+        viewModel.event.collect { effect ->
             when (effect) {
                 is ProfileUIEffect.DialPhone -> {
                     context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${effect.phone}")))
@@ -43,7 +43,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
         }
         is ProfileState.Error -> {
             ErrorPage(modifier = Modifier.fillMaxSize()) {
-                viewModel.obtainEvent(ProfileEvent.OnClickReload)
+                viewModel.handleIntent(ProfileIntent.OnClickReload)
             }
         }
         is ProfileState.Main -> {
@@ -89,7 +89,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                                 contact = state.contacts[index],
                                 isDivider = index != state.contacts.size - 1 && isExpanded
                             ){
-                                viewModel.obtainEvent(ProfileEvent.OnClickContact(it))
+                                viewModel.handleIntent(ProfileIntent.OnClickContact(it))
                             }
                         }
                     }
@@ -109,7 +109,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                                 job = state.jobs[index],
                                 isDivider = index != state.jobs.size - 1 && isExpanded
                             ) {
-                                viewModel.obtainEvent(ProfileEvent.OnClickJob(it))
+                                viewModel.handleIntent(ProfileIntent.OnClickJob(it))
                             }
                         }
                     }

@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProjectsViewModel @Inject constructor(
     private val useCase: ProjectsUseCase
-) : BaseViewModel<ProjectsState, ProjectsUserEvent, ProjectsUiEffect>(initialState = ProjectsState.Loading) {
+) : BaseViewModel<ProjectsState, ProjectsIntent, ProjectsEvent>(initialState = ProjectsState.Loading) {
 
     init {
         onReload()
@@ -30,10 +30,10 @@ class ProjectsViewModel @Inject constructor(
         }
     }
 
-    override fun obtainEvent(userEvent: ProjectsUserEvent) {
-        when (userEvent) {
-            is ProjectsUserEvent.OnClickReload -> onReload()
-            is ProjectsUserEvent.OpenDetails -> sendUiEffect(ProjectsUiEffect.OpenProjectDetails(userEvent.id))
+    override fun handleIntent(intent: ProjectsIntent) {
+        when (intent) {
+            is ProjectsIntent.OnClickReload -> onReload()
+            is ProjectsIntent.OpenDetails -> sendEvent(ProjectsEvent.OpenProjectDetails(intent.id))
         }
     }
 }

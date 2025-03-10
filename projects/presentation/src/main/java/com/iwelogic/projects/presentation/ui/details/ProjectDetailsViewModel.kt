@@ -13,7 +13,7 @@ import javax.inject.Inject
 class ProjectDetailsViewModel @Inject constructor(
     private val useCase: ProjectsUseCase,
     savedState: SavedStateHandle,
-) : BaseViewModel<ProjectDetailsState, ProjectDetailsEvent, ProjectDetailsUIEffect>(ProjectDetailsState.Loading) {
+) : BaseViewModel<ProjectDetailsState, ProjectDetailsIntent, ProjectDetailsEvent>(ProjectDetailsState.Loading) {
 
     private val id = savedState.get<String>(KEY_ID)
 
@@ -34,9 +34,9 @@ class ProjectDetailsViewModel @Inject constructor(
         }
     }
 
-    override fun obtainEvent(userEvent: ProjectDetailsEvent) {
-        when (userEvent) {
-            ProjectDetailsEvent.OnClickReload -> onReload()
+    override fun handleIntent(intent: ProjectDetailsIntent) {
+        when (intent) {
+            ProjectDetailsIntent.OnClickReload -> onReload()
         }
     }
 }

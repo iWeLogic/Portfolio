@@ -19,17 +19,17 @@ import com.iwelogic.settings.presentation.views.*
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
 
-    viewModel.obtainEvent(SettingsEvent.CheckLanguage)
+    viewModel.handleIntent(SettingsIntent.CheckLanguage)
     val state by viewModel.state
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        viewModel.uiEffect.collect { uiEffect ->
+        viewModel.event.collect { uiEffect ->
             when (uiEffect) {
-                is SettingsUIEffect.ChangeLanguage -> {
+                is SettingsEvent.ChangeLanguage -> {
                     AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(uiEffect.code))
                 }
-                is SettingsUIEffect.RateApp -> {
+                is SettingsEvent.RateApp -> {
                     val uri: Uri = Uri.parse("market://details?id=${uiEffect.packageName}")
                     val goToMarket = Intent(Intent.ACTION_VIEW, uri)
                     goToMarket.setPackage("com.android.vending")
@@ -45,7 +45,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
                         )
                     }
                 }
-                is SettingsUIEffect.SendEmail -> {
+                is SettingsEvent.SendEmail -> {
                     val selectorIntent = Intent(Intent.ACTION_SENDTO)
                     selectorIntent.setData(Uri.parse("mailto:"))
                     val emailIntent = Intent(Intent.ACTION_SEND)
@@ -55,7 +55,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
                     emailIntent.selector = selectorIntent
                     context.startActivity(Intent.createChooser(emailIntent, "Send email..."))
                 }
-                is SettingsUIEffect.ShareApp -> {
+                is SettingsEvent.ShareApp -> {
                     val sendIntent = Intent()
                     sendIntent.setAction(Intent.ACTION_SEND)
                     sendIntent.putExtra(
@@ -75,7 +75,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             selectedIndex = state.language.index,
             items = Language.entries.map { it.title },
             onSelectionChange = { index ->
-                viewModel.obtainEvent(SettingsEvent.OnClickChangeLanguage(index))
+                viewModel.handleIntent(SettingsIntent.OnClickChangeLanguage(index))
 
             },
             modifier = Modifier.padding(top = 8.dp)
@@ -87,7 +87,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             selectedIndex = Theme.entries.first { it.isDark == state.isDarkTheme }.index,
             items = Theme.entries.map { stringResource(it.title) },
             onSelectionChange = { index ->
-                viewModel.obtainEvent(SettingsEvent.OnClickChangeTheme(Theme.entries.first { it.index == index }.isDark))
+                viewModel.handleIntent(SettingsIntent.OnClickChangeTheme(Theme.entries.first { it.index == index }.isDark))
             },
             modifier = Modifier.padding(top = 8.dp)
         )
@@ -98,7 +98,7 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             selectedIndex = NotificationStatus.entries.first { it.isOn == state.isNotificationOn }.index,
             items = NotificationStatus.entries.map { stringResource(it.title) },
             onSelectionChange = { index ->
-                viewModel.obtainEvent(SettingsEvent.OnClickChangeNotificationStatus(NotificationStatus.entries.first { it.index == index }.isOn))
+                viewModel.handleIntent(SettingsIntent.OnClickChangeNotificationStatus(NotificationStatus.entries.first { it.index == index }.isOn))
             },
             modifier = Modifier.padding(top = 8.dp)
         )
@@ -108,21 +108,21 @@ fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
             text = stringResource(R.string.write_to_support),
             modifier = Modifier.padding(top = 16.dp)
         ) {
-            viewModel.obtainEvent(SettingsEvent.OnClickSupport)
+            viewModel.handleIntent(SettingsIntent.OnClickSupport)
         }
 
         SettingsButton(
             icon = R.drawable.share,
             text = stringResource(R.string.share_app),
         ) {
-            viewModel.obtainEvent(SettingsEvent.OnClickShare)
+            viewModel.handleIntent(SettingsIntent.OnClickShare)
         }
 
         SettingsButton(
             icon = R.drawable.rate,
             text = stringResource(R.string.rate_app),
         ) {
-            viewModel.obtainEvent(SettingsEvent.OnClickRate)
+            viewModel.handleIntent(SettingsIntent.OnClickRate)
         }
 
         Spacer(modifier = Modifier.weight(1.0f))

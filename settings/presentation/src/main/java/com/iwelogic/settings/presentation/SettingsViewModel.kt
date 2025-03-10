@@ -14,7 +14,7 @@ import javax.inject.*
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(@ApplicationContext private val context: Context, private val themeHolder: ThemeHolder) :
-    BaseViewModel<SettingsState, SettingsEvent, SettingsUIEffect>(SettingsState(isDarkTheme = themeHolder.isDark)) {
+    BaseViewModel<SettingsState, SettingsIntent, SettingsEvent>(SettingsState(isDarkTheme = themeHolder.isDark)) {
     private var packageName: String = ""
 
     init {
@@ -27,26 +27,26 @@ class SettingsViewModel @Inject constructor(@ApplicationContext private val cont
         }
     }
 
-    override fun obtainEvent(userEvent: SettingsEvent) {
-        when (userEvent) {
-            is SettingsEvent.OnClickChangeTheme -> {
-                themeHolder.isDark = userEvent.isDark
-                setState(state.value.copy(isDarkTheme = userEvent.isDark))
+    override fun handleIntent(intent: SettingsIntent) {
+        when (intent) {
+            is SettingsIntent.OnClickChangeTheme -> {
+                themeHolder.isDark = intent.isDark
+                setState(state.value.copy(isDarkTheme = intent.isDark))
             }
-            is SettingsEvent.OnClickChangeLanguage -> {
-                val language = Language.entries.firstOrNull { it.index == userEvent.index } ?: Language.EN
+            is SettingsIntent.OnClickChangeLanguage -> {
+                val language = Language.entries.firstOrNull { it.index == intent.index } ?: Language.EN
                 setState(state.value.copy(language = language))
-                sendUiEffect(SettingsUIEffect.ChangeLanguage(language.code))
+                sendEvent(SettingsEvent.ChangeLanguage(language.code))
             }
-            is SettingsEvent.OnClickChangeNotificationStatus -> {
-                setState(state.value.copy(isNotificationOn = userEvent.isOn))
+            is SettingsIntent.OnClickChangeNotificationStatus -> {
+                setState(state.value.copy(isNotificationOn = intent.isOn))
             }
-            SettingsEvent.CheckLanguage -> {
+            SettingsIntent.CheckLanguage -> {
                 setState(state.value.copy(language = Language.entries.firstOrNull { it.code == getCurrentLocale(context).language } ?: Language.EN))
             }
-            SettingsEvent.OnClickRate -> sendUiEffect(SettingsUIEffect.RateApp(packageName = packageName))
-            SettingsEvent.OnClickShare -> sendUiEffect(SettingsUIEffect.ShareApp(packageName = packageName))
-            SettingsEvent.OnClickSupport -> sendUiEffect(SettingsUIEffect.SendEmail(email = "novaknazar@gmail.com"))
+            SettingsIntent.OnClickRate -> sendEvent(SettingsEvent.RateApp(packageName = packageName))
+            SettingsIntent.OnClickShare -> sendEvent(SettingsEvent.ShareApp(packageName = packageName))
+            SettingsIntent.OnClickSupport -> sendEvent(SettingsEvent.SendEmail(email = "novaknazar@gmail.com"))
         }
     }
 

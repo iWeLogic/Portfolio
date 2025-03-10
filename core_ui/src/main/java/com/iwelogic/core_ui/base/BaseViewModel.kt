@@ -2,31 +2,29 @@ package com.iwelogic.core_ui.base
 
 import androidx.compose.runtime.*
 import androidx.lifecycle.*
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-abstract class BaseViewModel<State : Any, UserEvent, UiEffect>(initialState: State) : ViewModel() {
+abstract class BaseViewModel<State : Any, Intent, Event>(initialState: State) : ViewModel() {
 
     private val _state = mutableStateOf(initialState)
     val state: androidx.compose.runtime.State<State> = _state
 
-    private val _uiEffect = Channel<UiEffect>(Channel.BUFFERED)
-    private val _baseUiEffect = Channel<BaseUiEffect>(Channel.BUFFERED)
+    private val _event = MutableSharedFlow<Event>()
+    private val _baseEvent = MutableSharedFlow<BaseEvent>()
 
-    val uiEffect: Flow<UiEffect> = _uiEffect.receiveAsFlow()
-    val baseUiEffect: Flow<BaseUiEffect> = _baseUiEffect.receiveAsFlow()
+    val event: Flow<Event> = _event.asSharedFlow()
+    val baseEvent: Flow<BaseEvent> = _baseEvent.asSharedFlow()
 
-    protected fun sendUiEffect(uiEffect: UiEffect) {
+    protected fun sendEvent(event: Event) {
         viewModelScope.launch {
-            _uiEffect.send(uiEffect)
+            _event.emit(event)
         }
     }
 
-    protected fun sendBaseUiEffect(uiEffect: BaseUiEffect) {
+    protected fun sendBaseEvent(event: BaseEvent) {
         viewModelScope.launch {
-            _baseUiEffect.send(uiEffect)
+            _baseEvent.emit(event)
         }
     }
 
@@ -34,5 +32,5 @@ abstract class BaseViewModel<State : Any, UserEvent, UiEffect>(initialState: Sta
         _state.value = state
     }
 
-    abstract fun obtainEvent(userEvent: UserEvent)
+    abstract fun handleIntent(intent: Intent)
 }

@@ -1,12 +1,8 @@
 package com.iwelogic.settings.presentation
 
-
 sealed class SettingsEvent {
-    class OnClickChangeTheme(val isDark: Boolean) : SettingsEvent()
-    class OnClickChangeNotificationStatus(val isOn: Boolean) : SettingsEvent()
-    class OnClickChangeLanguage(val index: Int) : SettingsEvent()
-    data object OnClickSupport : SettingsEvent()
-    data object OnClickShare : SettingsEvent()
-    data object OnClickRate : SettingsEvent()
-    data object CheckLanguage : SettingsEvent()
+    data class ChangeLanguage(val code: String) : SettingsEvent()
+    data class SendEmail(val email: String) : SettingsEvent()
+    data class ShareApp(val packageName: String) : SettingsEvent()
+    data class RateApp(val packageName: String) : SettingsEvent()
 }

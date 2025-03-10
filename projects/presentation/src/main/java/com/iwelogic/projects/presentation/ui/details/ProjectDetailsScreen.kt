@@ -62,7 +62,7 @@ fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: P
                 }
                 is ProjectDetailsState.Error -> {
                     ErrorPage(modifier = Modifier.fillMaxSize()) {
-                        viewModel.obtainEvent(ProjectDetailsEvent.OnClickReload)
+                        viewModel.handleIntent(ProjectDetailsIntent.OnClickReload)
                     }
                 }
                 is ProjectDetailsState.Main -> {
