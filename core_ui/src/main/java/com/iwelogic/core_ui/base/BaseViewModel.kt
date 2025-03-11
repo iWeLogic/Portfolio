@@ -13,8 +13,8 @@ abstract class BaseViewModel<State : Any, Intent, Event>(initialState: State) : 
     private val _event = MutableSharedFlow<Event>()
     private val _baseEvent = MutableSharedFlow<BaseEvent>()
 
-    val event: Flow<Event> = _event.asSharedFlow()
-    val baseEvent: Flow<BaseEvent> = _baseEvent.asSharedFlow()
+    val event: SharedFlow<Event> = _event.asSharedFlow()
+    val baseEvent: SharedFlow<BaseEvent> = _baseEvent.asSharedFlow()
 
     protected fun sendEvent(event: Event) {
         viewModelScope.launch {

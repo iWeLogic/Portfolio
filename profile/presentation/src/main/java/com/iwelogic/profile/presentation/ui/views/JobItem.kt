@@ -6,6 +6,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
@@ -40,4 +41,10 @@ fun JobItem(job: Job, isDivider: Boolean, onClick: (Job) -> Unit) {
         if (isDivider)
             HorizontalDivider(thickness = 1.dp, modifier = Modifier.padding(top = 12.dp))
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun JobItemPreview(){
+    JobItem(job = Job.preview, false,  {} )
 }

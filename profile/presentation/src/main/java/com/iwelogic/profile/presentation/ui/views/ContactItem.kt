@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
@@ -31,4 +32,10 @@ fun ContactItem(contact: Contact, isDivider: Boolean, onClick: (Contact) -> Unit
         if (isDivider)
             HorizontalDivider(thickness = 1.dp, modifier = Modifier.padding(top = 12.dp))
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ContactItemPreview(){
+    ContactItem(contact = Contact.preview, false, {})
 }

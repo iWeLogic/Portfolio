@@ -11,7 +11,7 @@ import javax.inject.*
 
 @HiltViewModel
 class ProfileViewModel @Inject constructor(private val useCase: ProfileUseCase) :
-    BaseViewModel<ProfileState, ProfileIntent, ProfileUIEffect>(ProfileState.Loading) {
+    BaseViewModel<ProfileState, ProfileIntent, ProfileEvent>(ProfileState.Loading) {
 
     init {
         onReload()
@@ -44,12 +44,12 @@ class ProfileViewModel @Inject constructor(private val useCase: ProfileUseCase) 
         when (intent) {
             is ProfileIntent.OnClickContact -> {
                 if (intent.contact.type == "phone") {
-                    sendEvent(ProfileUIEffect.DialPhone(intent.contact.value))
+                    sendEvent(ProfileEvent.DialPhone(intent.contact.value))
                 } else if(intent.contact.link != null){
-                    sendEvent(ProfileUIEffect.OpenLink(intent.contact.link))
+                    sendEvent(ProfileEvent.OpenLink(intent.contact.link))
                 }
             }
-            is ProfileIntent.OnClickJob -> sendEvent(ProfileUIEffect.OpenLink(intent.job.link))
+            is ProfileIntent.OnClickJob -> sendEvent(ProfileEvent.OpenLink(intent.job.link))
             ProfileIntent.OnClickReload -> onReload()
         }
     }

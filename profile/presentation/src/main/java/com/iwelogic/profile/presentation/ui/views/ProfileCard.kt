@@ -10,6 +10,7 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.geometry.*
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.res.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import com.iwelogic.core_ui.*
 import com.iwelogic.core_ui.views.*
@@ -97,4 +98,10 @@ fun ProfileCard(profile: Profile, modifier: Modifier = Modifier) {
             }
         }
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ProfileCardPreview(){
+    ProfileCard(profile = Profile.preview)
 }

@@ -8,8 +8,17 @@ sealed class ProfileState {
     data class Main(
         val profile: Profile,
         val contacts: List<Contact>,
-        val isContactsExpanded: Boolean = true,
         val jobs: List<Job>,
         val studies: List<Study>
-    ) : ProfileState()
+    ) : ProfileState() {
+
+        companion object {
+            val preview = Main(
+                profile = Profile.preview,
+                contacts = listOf(Contact.preview),
+                jobs = listOf(Job.preview),
+                studies = listOf(Study.preview),
+            )
+        }
+    }
 }

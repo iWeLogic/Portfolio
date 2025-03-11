@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import com.iwelogic.profile.presentation.models.*
 
@@ -28,4 +29,10 @@ fun StudyItem(study: Study, isDivider: Boolean) {
         if (isDivider)
             HorizontalDivider(thickness = 1.dp, modifier = Modifier.padding(top = 12.dp))
     }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun StudyItemPreview(){
+    StudyItem(study = Study.preview, false)
 }

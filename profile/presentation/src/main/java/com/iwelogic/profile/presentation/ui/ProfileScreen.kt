@@ -9,10 +9,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
+import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
 import com.iwelogic.core_ui.views.*
 import com.iwelogic.profile.presentation.R
+import com.iwelogic.profile.presentation.models.*
+import com.iwelogic.profile.presentation.ui.ProfileState.*
 import com.iwelogic.profile.presentation.ui.views.*
 
 
@@ -24,29 +27,51 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
     LaunchedEffect(Unit) {
         viewModel.event.collect { effect ->
             when (effect) {
-                is ProfileUIEffect.DialPhone -> {
+                is ProfileEvent.DialPhone -> {
                     context.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:${effect.phone}")))
                 }
-                is ProfileUIEffect.OpenLink -> {
+                is ProfileEvent.OpenLink -> {
                     context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(effect.url)))
                 }
             }
         }
     }
 
+    ProfileView(
+        state = viewModel.state.value,
+        onClickReload = {
+            viewModel.handleIntent(ProfileIntent.OnClickReload)
+        },
+        onClickContact = { contact ->
+            viewModel.handleIntent(ProfileIntent.OnClickContact(contact))
+        },
+        onClickJob = { job ->
+            viewModel.handleIntent(ProfileIntent.OnClickJob(job))
+        },
+    )
+}
 
-    when (val state: ProfileState = viewModel.state.value) {
-        is ProfileState.Loading -> {
+
+@Composable
+fun ProfileView(
+    state: ProfileState,
+    onClickReload: () -> Unit,
+    onClickContact: (Contact) -> Unit,
+    onClickJob: (Job) -> Unit
+) {
+    when (state) {
+        is Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()
             }
         }
-        is ProfileState.Error -> {
-            ErrorPage(modifier = Modifier.fillMaxSize()) {
-                viewModel.handleIntent(ProfileIntent.OnClickReload)
-            }
+        is Error -> {
+            ErrorPage(
+                modifier = Modifier.fillMaxSize(),
+                onClickReload = onClickReload
+            )
         }
-        is ProfileState.Main -> {
+        is Main -> {
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
@@ -87,10 +112,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         for (index in 0 until if (isExpanded) state.contacts.size else 1) {
                             ContactItem(
                                 contact = state.contacts[index],
-                                isDivider = index != state.contacts.size - 1 && isExpanded
-                            ){
-                                viewModel.handleIntent(ProfileIntent.OnClickContact(it))
-                            }
+                                isDivider = index != state.contacts.size - 1 && isExpanded,
+                                onClickContact
+                            )
                         }
                     }
                 }
@@ -107,10 +131,9 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
                         for (index in 0 until if (isExpanded) state.jobs.size else 1) {
                             JobItem(
                                 job = state.jobs[index],
-                                isDivider = index != state.jobs.size - 1 && isExpanded
-                            ) {
-                                viewModel.handleIntent(ProfileIntent.OnClickJob(it))
-                            }
+                                isDivider = index != state.jobs.size - 1 && isExpanded,
+                                onClickJob
+                            )
                         }
                     }
                 }
@@ -135,5 +158,10 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
             }
         }
     }
+}
 
+@Preview(showBackground = true)
+@Composable
+fun ProfilePreview() {
+    ProfileView(Main.preview, {}, {}, {})
 }

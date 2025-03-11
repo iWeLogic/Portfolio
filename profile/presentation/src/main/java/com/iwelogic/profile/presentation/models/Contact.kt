@@ -6,4 +6,8 @@ data class Contact(
     val id: Int,
     val type: String,
     val value: String
-)
+) {
+    companion object {
+        val preview = Contact("Linkedin", "https://www.linkedin.com/in/nazar-novak/", 1, "link", "nazar-novak")
+    }
+}
