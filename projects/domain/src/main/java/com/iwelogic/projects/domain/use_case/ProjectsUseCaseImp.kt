@@ -21,9 +21,9 @@ class ProjectsUseCaseImp(private val repository: ProjectsRepository) : ProjectsU
         }
     }
 
-    override suspend fun getProject(id: String?): Result<ProjectDomain> = withContext(Dispatchers.IO) {
+    override suspend fun getProject(id: String?, isForceReload: Boolean): Result<ProjectDomain> = withContext(Dispatchers.IO) {
         var project = cacheProjects.firstOrNull { it.id == id }
-        if (project != null) {
+        if (project != null && !isForceReload) {
             Result.success(project)
         } else {
             val result = repository.getProjects()

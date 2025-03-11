@@ -6,6 +6,6 @@ interface ProjectsUseCase {
 
     suspend fun getProjects(): Result<List<ProjectDomain>>
 
-    suspend fun getProject(id: String?): Result<ProjectDomain>
+    suspend fun getProject(id: String?, isForceReload: Boolean): Result<ProjectDomain>
 }
 

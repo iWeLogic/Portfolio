@@ -4,6 +4,7 @@ import androidx.compose.foundation.gestures.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
+import androidx.compose.material3.pulltorefresh.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
@@ -12,6 +13,7 @@ import androidx.navigation.*
 import com.iwelogic.core.navigation.*
 import com.iwelogic.core_ui.views.*
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = hiltViewModel()) {
 
@@ -35,19 +37,28 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
             }
         }
         is ProjectsState.Main -> {
-            LazyColumn(
-                modifier = Modifier.fillMaxSize(),
-                state = rememberLazyListState(),
-                contentPadding = PaddingValues(16.dp),
-                reverseLayout = false,
-                verticalArrangement = Arrangement.spacedBy(16.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                flingBehavior = ScrollableDefaults.flingBehavior(),
-                userScrollEnabled = true
+            PullToRefreshBox(
+                isRefreshing = false,
+                onRefresh = {
+                    viewModel.handleIntent(ProjectsIntent.OnClickReload)
+                },
+                modifier = Modifier
+                    .fillMaxSize()
             ) {
-                items(state.projects) {
-                    ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
-                        viewModel.handleIntent(ProjectsIntent.OpenDetails(id))
+                LazyColumn(
+                    modifier = Modifier.fillMaxSize(),
+                    state = rememberLazyListState(),
+                    contentPadding = PaddingValues(16.dp),
+                    reverseLayout = false,
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    flingBehavior = ScrollableDefaults.flingBehavior(),
+                    userScrollEnabled = true
+                ) {
+                    items(state.projects) {
+                        ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
+                            viewModel.handleIntent(ProjectsIntent.OpenDetails(id))
+                        }
                     }
                 }
             }

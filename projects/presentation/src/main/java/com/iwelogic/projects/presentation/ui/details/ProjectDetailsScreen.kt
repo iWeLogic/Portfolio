@@ -7,6 +7,7 @@ import androidx.compose.foundation.shape.*
 import androidx.compose.material.icons.*
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
+import androidx.compose.material3.pulltorefresh.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.draw.*
@@ -67,82 +68,94 @@ fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: P
                 }
                 is ProjectDetailsState.Main -> {
                     title = state.project.name
-                    Column(
+                    PullToRefreshBox(
+                        isRefreshing = false,
+                        onRefresh = {
+                            viewModel.handleIntent(ProjectDetailsIntent.OnClickReload)
+                        },
                         modifier = Modifier
-                            .padding(innerPadding)
-                            .verticalScroll(rememberScrollState())
+                            .fillMaxSize()
                     ) {
-                        val pagerState = rememberPagerState(pageCount = {
-                            state.project.images.size
-                        })
+                        Column(
+                            modifier = Modifier
+                                .padding(innerPadding)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            val pagerState = rememberPagerState(pageCount = {
+                                state.project.images.size
+                            })
 
-                        HorizontalPager(state = pagerState) { page ->
-                            Box(modifier = Modifier.fillMaxWidth()) {
-                                RemoteImage(
-                                    state.project.images[page],
+                            HorizontalPager(state = pagerState) { page ->
+                                Box(modifier = Modifier.fillMaxWidth()) {
+                                    RemoteImage(
+                                        state.project.images[page],
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .aspectRatio(1.66f)
+                                            .clip(RoundedCornerShape(16.dp))
+                                    )
+                                }
+                            }
+
+                            Row(modifier = Modifier.padding(16.dp)) {
+                                Row(
+                                    modifier = Modifier.weight(1.0f),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        painter = painterResource(R.drawable.download),
+                                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                        contentDescription = "downloads",
+                                        modifier = Modifier.size(24.dp)
+                                    )
+                                    Text(
+                                        modifier = Modifier.padding(start = 8.dp),
+                                        text = state.project.downloads,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
+                                Row(
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .aspectRatio(1.66f)
-                                        .clip(RoundedCornerShape(16.dp))
-                                )
+                                        .weight(1.0f)
+                                        .padding(start = 16.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Icon(
+                                        painter = painterResource(R.drawable.rating),
+                                        tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                                        contentDescription = "downloads",
+                                        modifier = Modifier
+                                            .size(24.dp)
+                                    )
+                                    Text(
+                                        modifier = Modifier.padding(start = 8.dp),
+                                        text = state.project.rating,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
                             }
-                        }
 
-                        Row (modifier = Modifier.padding(16.dp)){
-                            Row(
-                                modifier = Modifier.weight(1.0f),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.download),
-                                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                                    contentDescription = "downloads",
-                                    modifier = Modifier.size(24.dp)
-                                )
-                                Text(
-                                    modifier = Modifier.padding(start = 8.dp),
-                                    text = state.project.downloads,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
+                            FlowRow(modifier = Modifier.padding(horizontal = 8.dp)) {
+                                state.project.tags.forEach {
+                                    Text(
+                                        modifier = Modifier
+                                            .padding(start = 8.dp)
+                                            .background(
+                                                color = MaterialTheme.colorScheme.primaryContainer,
+                                                shape = RoundedCornerShape(16.dp)
+                                            )
+                                            .padding(horizontal = 8.dp, vertical = 4.dp),
+                                        text = it,
+                                        style = MaterialTheme.typography.bodyMedium
+                                    )
+                                }
                             }
-                            Row(
-                                modifier = Modifier
-                                    .weight(1.0f)
-                                    .padding(start = 16.dp),
-                                verticalAlignment = Alignment.CenterVertically
-                            ) {
-                                Icon(
-                                    painter = painterResource(R.drawable.rating),
-                                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                                    contentDescription = "downloads",
-                                    modifier = Modifier
-                                        .size(24.dp)
-                                )
-                                Text(
-                                    modifier = Modifier.padding(start = 8.dp),
-                                    text = state.project.rating,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
-                        }
 
-                        FlowRow(modifier = Modifier.padding(horizontal = 8.dp)) {
-                            state.project.tags.forEach {
-                                Text(
-                                    modifier = Modifier.padding(start = 8.dp).background(
-                                        color = MaterialTheme.colorScheme.primaryContainer,
-                                        shape = RoundedCornerShape(16.dp)
-                                    ).padding(horizontal = 8.dp, vertical = 4.dp),
-                                    text = it,
-                                    style = MaterialTheme.typography.bodyMedium
-                                )
-                            }
+                            ExpandableText(
+                                modifier = Modifier.padding(16.dp),
+                                text = state.project.description.replace("\\n", "\n")
+                            )
                         }
-
-                        ExpandableText(
-                            modifier = Modifier.padding(16.dp),
-                            text = state.project.description.replace("\\n", "\n")
-                        )
                     }
                 }
             }

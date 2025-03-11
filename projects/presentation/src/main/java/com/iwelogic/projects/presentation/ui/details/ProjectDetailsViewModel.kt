@@ -22,10 +22,10 @@ class ProjectDetailsViewModel @Inject constructor(
         onReload()
     }
 
-    private fun onReload() {
+    private fun onReload(isForceReload: Boolean = false) {
         setState(ProjectDetailsState.Loading)
         viewModelScope.launch {
-            useCase.getProject(id)
+            useCase.getProject(id, isForceReload)
                 .onSuccess { result ->
                     setState(ProjectDetailsState.Main(result.toProject()))
                 }
@@ -40,7 +40,7 @@ class ProjectDetailsViewModel @Inject constructor(
 
     override fun handleIntent(intent: ProjectDetailsIntent) {
         when (intent) {
-            ProjectDetailsIntent.OnClickReload -> onReload()
+            ProjectDetailsIntent.OnClickReload -> onReload(true)
         }
     }
 }
