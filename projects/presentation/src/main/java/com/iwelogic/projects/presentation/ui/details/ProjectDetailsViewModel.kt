@@ -2,12 +2,13 @@ package com.iwelogic.projects.presentation.ui.details
 
 import androidx.lifecycle.*
 import com.iwelogic.core.Const.KEY_ID
+import com.iwelogic.core.base.datasource.*
 import com.iwelogic.core_ui.base.*
 import com.iwelogic.projects.domain.use_case.*
 import com.iwelogic.projects.presentation.mapper.*
 import dagger.hilt.android.lifecycle.*
 import kotlinx.coroutines.*
-import javax.inject.Inject
+import javax.inject.*
 
 @HiltViewModel
 class ProjectDetailsViewModel @Inject constructor(
@@ -25,11 +26,14 @@ class ProjectDetailsViewModel @Inject constructor(
         setState(ProjectDetailsState.Loading)
         viewModelScope.launch {
             useCase.getProject(id)
-                .onSuccess {
-                    setState(ProjectDetailsState.Main(it.toProject()))
+                .onSuccess { result ->
+                    setState(ProjectDetailsState.Main(result.toProject()))
                 }
-                .onFailure {
-                    setState(ProjectDetailsState.Error)
+                .onFailure { failure ->
+                    when (failure) {
+                        is AppFailure.UnknownFailure -> setState(ProjectDetailsState.Error)
+                        else -> setState(ProjectDetailsState.Error)
+                    }
                 }
         }
     }

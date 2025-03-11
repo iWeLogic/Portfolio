@@ -1,6 +1,7 @@
 package com.iwelogic.profile.presentation.ui
 
 import androidx.lifecycle.*
+import com.iwelogic.core.base.datasource.*
 import com.iwelogic.core_ui.base.*
 import com.iwelogic.profile.domain.use_case.*
 import com.iwelogic.profile.presentation.mapper.*
@@ -30,8 +31,11 @@ class ProfileViewModel @Inject constructor(private val useCase: ProfileUseCase) 
                         )
                     )
                 }
-                .onFailure {
-                    setState(ProfileState.Error)
+                .onFailure { failure ->
+                    when(failure){
+                        is AppFailure.UnknownFailure ->  setState(ProfileState.Error)
+                        else ->  setState(ProfileState.Error)
+                    }
                 }
         }
     }
