@@ -33,7 +33,7 @@ class ProjectsUseCaseImp(private val repository: ProjectsRepository) : ProjectsU
                 if (project != null) {
                     Result.success(project)
                 } else {
-                    Result.failure(Throwable(message = "Project didnt finded"))
+                    Result.failure(Throwable(message = "Project didn't found"))
                 }
             } else {
                 Result.failure(result.exceptionOrNull()!!)

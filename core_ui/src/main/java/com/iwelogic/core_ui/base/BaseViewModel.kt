@@ -10,8 +10,8 @@ abstract class BaseViewModel<State : Any, Intent, Event>(initialState: State) : 
     private val _state = mutableStateOf(initialState)
     val state: androidx.compose.runtime.State<State> = _state
 
-    private val _event = MutableSharedFlow<Event>()
-    private val _baseEvent = MutableSharedFlow<BaseEvent>()
+    private val _event = MutableSharedFlow<Event>(replay = 0)
+    private val _baseEvent = MutableSharedFlow<BaseEvent>(replay = 0)
 
     val event: SharedFlow<Event> = _event.asSharedFlow()
     val baseEvent: SharedFlow<BaseEvent> = _baseEvent.asSharedFlow()
