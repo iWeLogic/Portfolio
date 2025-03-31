@@ -15,13 +15,14 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.style.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
+import androidx.lifecycle.compose.*
 import androidx.navigation.*
 import com.iwelogic.core_ui.views.*
 import com.iwelogic.projects.presentation.R
 
 @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
 @Composable
-fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: ProjectDetailsViewModel = hiltViewModel()) {
+fun ProjectDetailsScreen(navController: NavController, viewModel: ProjectDetailsViewModel = hiltViewModel()) {
 
     val loading = stringResource(R.string.loading)
     var title by remember { mutableStateOf(loading) }
@@ -55,7 +56,7 @@ fun ProjectDetailsScreen(id: String?, navController: NavController, viewModel: P
             )
         },
         content = { innerPadding ->
-            when (val state: ProjectDetailsState = viewModel.state.value) {
+            when (val state: ProjectDetailsState = viewModel.state.collectAsStateWithLifecycle().value) {
                 is ProjectDetailsState.Loading -> {
                     Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                         CircularProgressIndicator()

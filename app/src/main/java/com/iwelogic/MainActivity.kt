@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity() {
                             arguments = listOf(navArgument(KEY_ID) { type = NavType.StringType }
                             )
                         ) {
-                            ProjectDetailsScreen(it.arguments?.getString(KEY_ID), navController = navController)
+                            ProjectDetailsScreen(navController = navController)
                         }
                     }
                 }

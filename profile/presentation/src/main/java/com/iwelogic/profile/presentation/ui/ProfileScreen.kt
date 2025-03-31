@@ -13,6 +13,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.tooling.preview.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
+import androidx.lifecycle.compose.*
 import com.iwelogic.core_ui.views.*
 import com.iwelogic.profile.presentation.R
 import com.iwelogic.profile.presentation.models.*
@@ -39,7 +40,7 @@ fun ProfileScreen(viewModel: ProfileViewModel = hiltViewModel()) {
     }
 
     ProfileView(
-        state = viewModel.state.value,
+        state = viewModel.state.collectAsStateWithLifecycle().value,
         onClickReload = {
             viewModel.handleIntent(ProfileIntent.OnClickReload)
         },

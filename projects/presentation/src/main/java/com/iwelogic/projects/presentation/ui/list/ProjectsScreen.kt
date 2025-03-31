@@ -9,6 +9,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.hilt.navigation.compose.*
+import androidx.lifecycle.*
+import androidx.lifecycle.compose.*
 import androidx.navigation.*
 import com.iwelogic.core.navigation.*
 import com.iwelogic.core_ui.views.*
@@ -16,16 +18,19 @@ import com.iwelogic.core_ui.views.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = hiltViewModel()) {
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
 
     LaunchedEffect(Unit) {
-        viewModel.event.collect { uiEffect ->
+        viewModel.event
+            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .collect { uiEffect ->
             when (uiEffect) {
                 is ProjectsEvent.OpenProjectDetails -> navController.navigate("${Screen.Project.route}/${uiEffect.id}")
             }
         }
     }
 
-    when (val state: ProjectsState = viewModel.state.value) {
+    when (val state: ProjectsState = viewModel.state.collectAsStateWithLifecycle().value) {
         is ProjectsState.Loading -> {
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 CircularProgressIndicator()

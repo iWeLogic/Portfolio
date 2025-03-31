@@ -12,19 +12,24 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.core.os.*
 import androidx.hilt.navigation.compose.*
+import androidx.lifecycle.*
+import androidx.lifecycle.compose.*
+import androidx.lifecycle.compose.LocalLifecycleOwner
 import com.iwelogic.settings.presentation.models.*
 import com.iwelogic.settings.presentation.views.*
 
 
 @Composable
 fun SettingsScreen(viewModel: SettingsViewModel = hiltViewModel()) {
-
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
     viewModel.handleIntent(SettingsIntent.CheckLanguage)
-    val state by viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
     LaunchedEffect(Unit) {
-        viewModel.event.collect { uiEffect ->
+        viewModel.event
+            .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
+            .collect { uiEffect ->
             when (uiEffect) {
                 is SettingsEvent.ChangeLanguage -> {
                     AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(uiEffect.code))
