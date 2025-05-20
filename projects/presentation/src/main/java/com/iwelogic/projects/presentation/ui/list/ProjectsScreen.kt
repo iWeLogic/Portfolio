@@ -24,10 +24,10 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
         viewModel.event
             .flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)
             .collect { uiEffect ->
-            when (uiEffect) {
-                is ProjectsEvent.OpenProjectDetails -> navController.navigate("${Screen.Project.route}/${uiEffect.id}")
+                when (uiEffect) {
+                    is ProjectsEvent.OpenProjectDetails -> navController.navigate("${Screen.Project.route}/${uiEffect.id}")
+                }
             }
-        }
     }
 
     when (val state: ProjectsState = viewModel.state.collectAsStateWithLifecycle().value) {
@@ -58,9 +58,9 @@ fun ProjectsScreen(navController: NavController, viewModel: ProjectsViewModel = 
                     verticalArrangement = Arrangement.spacedBy(16.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     flingBehavior = ScrollableDefaults.flingBehavior(),
-                    userScrollEnabled = true
+                    userScrollEnabled = true,
                 ) {
-                    items(state.projects) {
+                    items(state.projects, key = { project -> project.id }) {
                         ProjectItem(item = it, modifier = Modifier.fillMaxWidth()) { id ->
                             viewModel.handleIntent(ProjectsIntent.OpenDetails(id))
                         }

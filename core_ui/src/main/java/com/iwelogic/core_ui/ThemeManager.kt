@@ -5,6 +5,7 @@ import android.content.*
 import dagger.hilt.android.qualifiers.*
 import kotlinx.coroutines.flow.*
 import javax.inject.*
+import androidx.core.content.edit
 
 @Singleton
 class ThemeHolder @Inject constructor(
@@ -25,7 +26,7 @@ class ThemeHolder @Inject constructor(
         @SuppressLint("ApplySharedPref")
         set(value) {
             _isDarkFlow.value = value
-            preferences.edit().putBoolean(IS_DARK_KEY, value).commit()
+            preferences.edit(commit = true) { putBoolean(IS_DARK_KEY, value) }
         }
         get(){
             return preferences.getBoolean(IS_DARK_KEY, false)
